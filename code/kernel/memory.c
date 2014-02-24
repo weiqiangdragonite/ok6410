@@ -3,12 +3,13 @@
  */
 
 #include "os.h"
+#include "errno.h"
 
 
 /*
  *
  */
-static void
+void
 init_mem_list(void)
 {
 	int i;
@@ -33,12 +34,13 @@ init_mem_list(void)
 /*
  *
  */
-struct os_mem
+struct os_mem *
 create_mem(void *addr, u32 num_blocks, u32 block_len)
 {
 	cpsr_t	cpsr;
+	/* Link to next block address */
 	void	**link_ptr;
-	/* block pointer */
+	/* Block pointer */
 	u8	*block_ptr;
 	u32	loops;
 	u32	i;
@@ -50,6 +52,7 @@ create_mem(void *addr, u32 num_blocks, u32 block_len)
 	}
 
 	enter_critical();
+	/* Get the free block address */
 	mem_ptr = os_mem_free_list;
 
 	if (os_mem_free_list != NULL)
@@ -58,7 +61,7 @@ create_mem(void *addr, u32 num_blocks, u32 block_len)
 	exit_critical();
 
 	if (mem_ptr == NULL) {
-		error = ERR_MEM_INVALID_PART;
+		errno = ERR_MEM_INVALID_PART;
 		return NULL;
 	}
 
@@ -78,8 +81,10 @@ create_mem(void *addr, u32 num_blocks, u32 block_len)
 		*link_ptr = block_ptr;
 
 		/* link_ptr = &addr[0][0], [1][0], [2][0] ... */
+		/* link_ptr = next block address */
 		link_ptr = (void **) block_ptr;
 	}
+	/* Last block point to NULL */
 	*link_ptr = NULL;
 
 	mem_ptr->mem_addr = addr;

@@ -17,6 +17,7 @@ SECTIONS
 		core.o
 		task.o
 		time.o
+		memory.o
 		app.o
 		* (.text)
 	}

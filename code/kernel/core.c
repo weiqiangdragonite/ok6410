@@ -185,7 +185,7 @@ init_event_list(void)
 	event_ptr_current->event_ptr = NULL;
 
 	os_event_free_list = os_event_table;
-
+}
 
 /**
  *

@@ -22,6 +22,7 @@ SRC_C = bsp/exceptions.c \
 	kernel/core.c \
 	kernel/task.c \
 	kernel/time.c \
+	kernel/memory.c \
 	lib/lib.c \
 	app/app.c
 

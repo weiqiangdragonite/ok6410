@@ -251,6 +251,8 @@ int resume_task(prio_t prio);
 int delete_task(prio_t prio);
 int delete_task_request(prio_t prio);
 
+extern void init_mem_list(void);
+
 
 
 void test(void);

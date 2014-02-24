@@ -39,6 +39,8 @@
 #define ERR_MEM_INVALID_PTR	42
 #define ERR_MEM_NO_FREE_BLOCK	43
 
+
+
 /*
 #define OS_ERR_EVENT_TYPE               1u
 #define OS_ERR_PEND_ISR                 2u
