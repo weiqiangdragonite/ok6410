@@ -27,7 +27,7 @@ init_mem_list(void)
 	mem_ptr = &os_mem_table[i];
 	mem_ptr->mem_free_list = NULL;
 
-	os_mem_free_list = os_mem_table;	
+	os_mem_free_list = os_mem_table;
 }
 
 
@@ -48,6 +48,11 @@ create_mem(void *addr, u32 num_blocks, u32 block_len)
 
 	if (addr == NULL) {
 		errno = ERR_MEM_INVALID_ADDR;
+		return NULL;
+	}
+
+	if (block_len < 4) {
+		//errno = ;
 		return NULL;
 	}
 
@@ -101,7 +106,7 @@ create_mem(void *addr, u32 num_blocks, u32 block_len)
  *
  */
 void *
-get_mem(struct os_mem *mem_ptr)
+get_mem(struct os_mem *mem_ptr, u32 size)
 {
 	cpsr_t	cpsr;
 	void	*block_ptr;
@@ -113,12 +118,31 @@ get_mem(struct os_mem *mem_ptr)
 
 	enter_critical();
 
-	/* See if there any free memory blocks */
+/*
+	// See if there any free memory blocks
 	if (mem_ptr->num_free > 0) {
+		// Point to the start free block
 		block_ptr = mem_ptr->mem_free_list;
-		/* mem_free_list = next block addr */
+		// mem_free_list = next block addr
 		mem_ptr->mem_free_list = *(void **) block_ptr;
 		--(mem_ptr->num_free);
+
+		exit_critical();
+		return block_ptr;
+	}
+*/
+
+	/**/
+	int need_blocks;
+	need_blocks = (int) (size / mem_ptr->block_len) + 1;
+	if (mem_ptr->num_free > need_blocks) {
+		/* Point to the start free block */
+		block_ptr = mem_ptr->mem_free_list;
+		/* mem_free_list = next n blocks addr */
+		mem_ptr->mem_free_list = *(void **) ((u8 *) block_ptr + \
+			(need_blocks - 1) * mem_ptr->block_len);
+
+		mem_ptr->num_free -= need_blocks;
 
 		exit_critical();
 		return block_ptr;
@@ -152,9 +176,34 @@ free_mem(struct os_mem *mem_ptr, void *block_ptr)
 		return;
 	}
 
-	*(void **) block_ptr = mem_ptr->mem_free_list;
+	/* block_ptr point to the next free block address */
+	//*(void **) block_ptr = mem_ptr->mem_free_list;
+	//mem_ptr->mem_free_list = block_ptr;
+
+	void *free_block;
+	int return_blocks = 0;
+	void **link_ptr;
+
+	/* free block address */
+	free_block = mem_ptr->mem_free_list;
 	mem_ptr->mem_free_list = block_ptr;
-	++(mem_ptr->num_free);
+	
+	link_ptr = mem_ptr->mem_free_list;
+
+	/* Link the block address back to list */
+	while (TRUE) {
+		block_ptr += mem_ptr->block_len;
+
+		if (block_ptr == free_block)
+			break;
+
+		*link_ptr = block_ptr;
+		link_ptr = (void **) block_ptr;
+
+		++return_blocks;
+	}
+
+	mem_ptr->num_free += return_blocks + 1;
 
 	exit_critical();	
 }

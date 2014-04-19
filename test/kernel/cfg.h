@@ -35,4 +35,14 @@
 #define STK_SIZE		512
 
 
+
+
+/* Memory */
+#define OS_MAX_MEM_NUM		10
+
+#define MEM_BLOCK		128
+#define BLOCK_LEN		128
+
+
+
 #endif	/* CFG_H */

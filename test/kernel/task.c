@@ -186,7 +186,7 @@ suspend_task(prio_t prio)
 	}
 
 	/* Make task status to suspend */
-	tcb_ptr->tcb_status |= TASK_SUSPEND;
+	tcb_ptr->task_status |= TASK_SUSPEND;
 	exit_critical();
 
 	if (self == TRUE)
@@ -224,14 +224,14 @@ resume_task(prio_t prio)
 		return -1;
 	}
 
-	if ((tcb_ptr->tcb_status & TASK_SUSPEND) == TASK_READY) {
+	if ((tcb_ptr->task_status & TASK_SUSPEND) == TASK_READY) {
 		errno = ERR_TASK_NOT_SUSPENDED;
 		exit_critical();
 		return -1;
 	}
 
 	/* Remove suspend status */
-	tcb_ptr->tcb_status &= ~TASK_SUSPEND;
+	tcb_ptr->task_status &= ~TASK_SUSPEND;
 	exit_critical();
 
 	if (os_is_running)
@@ -333,11 +333,11 @@ delete_task(prio_t prio)
 	}
 
 	/* Make task to suspend */
-	tcb_ptr->tcb_status = TASK_SUSPEND;
+	tcb_ptr->task_status = TASK_SUSPEND;
 
 	/* Prevent time_tick() */
 	tcb_ptr->tcb_delay = 0;
-	tcb_ptr->tcb_pend = TASK_PEND_OK;
+	//tcb_ptr->tcb_pend = TASK_PEND_OK;
 
 	--os_task_counter;
 

@@ -30,7 +30,7 @@ delay(unsigned int ticks)
 	enter_critical();
 
 	/* Change the task status */
-	os_tcb_current_ptr->tcb_status |= TASK_SLEEP;
+	os_tcb_current_ptr->task_status |= TASK_SLEEP;
 
 	/* Delay ticks */
 	os_tcb_current_ptr->tcb_delay = ticks;
@@ -131,8 +131,14 @@ cancel_delay(prio_t prio)
 	if (tcb_ptr->tcb_delay != 0) {
 		tcb_ptr->tcb_delay = 0;
 
+		/* If the task status is sleep, then clear it */
+		if ((tcb_ptr->task_status & TASK_SLEEP) == TASK_SLEEP)
+			tcb_ptr->task_status &= ~TASK_SLEEP;
+
+/*
 		if ((tcb_ptr->tcb_status & TASK_SUSPEND) == TASK_READY)
 			tcb_ptr->tcb_status = TASK_READY;
+*/
 	}
 
 	sched();

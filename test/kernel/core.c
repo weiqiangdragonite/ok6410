@@ -39,6 +39,8 @@ init_os(void)
 	/* Initialize statistic task */
 	init_stat_task();
 #endif
+
+	init_mem_list();
 }
 
 
@@ -156,7 +158,7 @@ init_tcb(prio_t prio, stk_t *stk_ptr)
 		/* Load task priority to TCB */
 		tcb_ptr->tcb_prio = prio;
 		/* Clear pend status */
-		tcb_ptr->tcb_pend = TASK_PEND_OK;
+		//tcb_ptr->tcb_pend = TASK_PEND_OK;
 		/* Task is not delay */
 		tcb_ptr->tcb_delay = 0;
 		/* Task is not delete */
@@ -387,6 +389,9 @@ time_tick(void)
 	}
 }
 
+/*
+ *
+ */
 static void
 change_task_status(struct os_tcb *tcb_ptr)
 {
@@ -396,7 +401,13 @@ change_task_status(struct os_tcb *tcb_ptr)
 	uart_print(" change task status\n");
 #endif
 
-	/* Clear not suspend task status */
+
+	/* If the task status is sleep, then clear it */
+	if ((tcb_ptr->task_status & TASK_SLEEP) == TASK_SLEEP)
+		tcb_ptr->task_status &= ~TASK_SLEEP;
+
+/*
+	// Clear not suspend task status
 	if ((tcb_ptr->tcb_status & TASK_PEND_ANY) != TASK_READY) {
 		tcb_ptr->tcb_status &= ~TASK_PEND_ANY;
 		tcb_ptr->tcb_pend = TASK_PEND_OVER;
@@ -404,9 +415,10 @@ change_task_status(struct os_tcb *tcb_ptr)
 		tcb_ptr->tcb_pend = TASK_PEND_OK;
 	}
 
-	/* Make sure the suspend task don't be ready */
+	// Make sure the suspend task don't be ready
 	if ((tcb_ptr->tcb_status & TASK_SUSPEND) == TASK_READY)
 		tcb_ptr->tcb_status = TASK_READY;
+*/
 }
 
 /*

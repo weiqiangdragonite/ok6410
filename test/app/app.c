@@ -28,7 +28,7 @@ main(void)
 	/* Init led */
 	init_led();
 
-	char *str = "hello";
+	char *str = "hello ";
 
 	create_task(main_task, str, &main_stk[STK_SIZE - 1], 0);
 	create_task(second_task, str, &second_stk[STK_SIZE - 1], 10);
@@ -73,7 +73,7 @@ second_task(void *arg)
 {
 	while (1) {
 		uart_print((char *) arg);
-		uart_print(" led 2\n");
+		uart_print("led 2\n");
 		if (get_led_2() == LED_ON)
 			set_led_2(LED_OFF);
 		else

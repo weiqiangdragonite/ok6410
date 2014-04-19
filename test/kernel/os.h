@@ -15,10 +15,11 @@
  * Define Macro
  */
 
-/* Need this? */
+
 #ifndef NULL
 #define NULL	((void *) 0)
 #endif
+
 
 #ifndef TRUE
 #define TRUE	1
@@ -28,10 +29,10 @@
 #define FALSE	0
 #endif
 
-/**/
+
+/* Save and restore CPSR macro */
 #define enter_critical()	{ cpsr = save_cpsr(); }
 #define exit_critical()		{ restore_cpsr(cpsr); }
-
 
 
 /* Number of system tasks */
@@ -45,25 +46,8 @@
 
 
 
-
-
-
-
-/*
- * Task status
- */
-
-
-/* Task is ready to run */
-#define TASK_READY		0x00
-/* Task is sleep */
-#define TASK_SLEEP		0x01
-/* Task is suspend */
-#define TASK_SUSPEND		0x02
-
-
-
-
+/* Task self priority */
+#define OS_PRIO_SELF		0xFF
 
 /* Task delete request */
 #define OS_TASK_DEL_REQ		0xFF
@@ -73,10 +57,18 @@
 /* IDLE task priority */
 #define TASK_IDLE_PRIO		(OS_LOWEST_PRIO)
 
-/* Task self priority */
-#define OS_PRIO_SELF		0xFF
 
 
+
+/*
+ * Task status
+ */
+/* Task is ready to run */
+#define TASK_READY		0x00
+/* Task is sleep */
+#define TASK_SLEEP		0x01
+/* Task is suspend */
+#define TASK_SUSPEND		0x02
 
 
 /*
@@ -95,6 +87,17 @@ struct os_tcb {
 	u32		tcb_delay;
 
 	u8		tcb_del_req;
+};
+
+/*
+ * struct os_mem
+ */
+struct os_mem {
+	void	*mem_addr;
+	void	*mem_free_list;
+	u32	block_len;
+	u32	num_blocks;
+	u32	num_free;
 };
 
 
@@ -154,6 +157,11 @@ struct os_tcb	*os_tcb_list_tail;
 /* Point to the list of free TCBs */
 struct os_tcb	*os_tcb_free_list;
 
+
+
+
+struct os_mem	*os_mem_free_list;
+struct os_mem	os_mem_table[OS_MAX_MEM_NUM];
 
 
 
