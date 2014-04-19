@@ -10,7 +10,7 @@
 /* Max number of tasks in your application, and the lowest user task's
    priority is (OS_USR_TASKS - 1), the system idle and statistics task's
    priority is OS_USR_TASKS and (OS_USR_TASKS + 1) */
-#define OS_USR_TASKS		32
+#define OS_USR_TASKS		100
 
 
 /* Enable statistics task */
@@ -40,7 +40,7 @@
 /* Memory */
 #define OS_MAX_MEM_NUM		10
 
-#define MEM_BLOCK		128
+#define NUM_BLOCK		128
 #define BLOCK_LEN		128
 
 

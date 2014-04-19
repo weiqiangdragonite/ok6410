@@ -7,6 +7,7 @@
 #include "os.h"
 #include "errno.h"
 #include "uart.h"
+#include "memory.h"
 
 
 static void init_variable(void);

@@ -172,11 +172,10 @@ suspend_task(prio_t prio)
 	if (prio == OS_PRIO_SELF) {
 		prio = os_tcb_current_ptr->tcb_prio;
 		self = TRUE;
-	} else if (prio == os_tcb_current_ptr->tcb_prio) {
+	} else if (prio == os_tcb_current_ptr->tcb_prio)
 		self = TRUE;
-	} else {
+	else
 		self = FALSE;
-	}
 
 	tcb_ptr = os_tcb_prio_table[prio];
 	if (tcb_ptr == NULL) {
@@ -224,11 +223,11 @@ resume_task(prio_t prio)
 		return -1;
 	}
 
-	if ((tcb_ptr->task_status & TASK_SUSPEND) == TASK_READY) {
-		errno = ERR_TASK_NOT_SUSPENDED;
-		exit_critical();
-		return -1;
-	}
+	//if ((tcb_ptr->task_status & TASK_SUSPEND) == TASK_READY) {
+	//	errno = ERR_TASK_NOT_SUSPENDED;
+	//	exit_critical();
+	//	return -1;
+	//}
 
 	/* Remove suspend status */
 	tcb_ptr->task_status &= ~TASK_SUSPEND;
