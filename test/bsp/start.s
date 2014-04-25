@@ -67,7 +67,6 @@ _start:
 	/* 0x00000014  Unused */
 	nop
 	/* 0x00000018  IRQ (IRQ) - interrupt request */
-	/* irq_isr is defined in ok6410/arm/cpu_s.s */
 	ldr pc, =irq_isr
 	/* 0x0000001C  FIQ (FIQ) - fast interrupt request */
 	ldr pc, =fiq
@@ -118,7 +117,7 @@ reset:
 	beq clean_bss		/* if equal, go to clean bss */
 
 	/* Copy the code from nand to sdram, parameter is r0, r1, r2 */
-	/* void copy_nand_to_sdram(start_addr, dest_addr, length)*/
+	/* void copy_nand_to_sdram(start_addr, dest_addr, length) */
 	bl copy_nand_to_sdram
 
 /* clean bss */

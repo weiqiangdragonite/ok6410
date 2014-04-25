@@ -404,7 +404,7 @@ write_to_boot(unsigned int dest, unsigned int length)
     
     while (1) {
         
-        if (page > 0 && page < 5) dest -= 2048;
+	if (page > 0 && page < 5) dest -= 2048;
         
         //uart_printf("\ndest_addr = 0x");
         //uart_print_hex(dest);

@@ -43,7 +43,7 @@ boot(void)
 			while (1)
 				continue;
 		case 'c':
-			/**/
+			/* Return and start run the os */
 			return;
 		default:
 			break;
