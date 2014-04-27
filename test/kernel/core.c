@@ -41,6 +41,7 @@ init_os(void)
 	init_stat_task();
 #endif
 
+	/* Initialize the memory list */
 	init_mem_list();
 }
 

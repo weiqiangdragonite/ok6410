@@ -44,6 +44,10 @@
 /* Number of TCB tables */
 #define NUM_TCB_TABLES		((OS_USR_TASKS) + (OS_SYS_TASKS))
 
+/* Statistic task priority */
+#define TASK_STAT_PRIO		((OS_LOWEST_PRIO) - 1)
+/* IDLE task priority */
+#define TASK_IDLE_PRIO		(OS_LOWEST_PRIO)
 
 
 /* Task self priority */
@@ -52,10 +56,7 @@
 /* Task delete request */
 #define OS_TASK_DEL_REQ		0xFF
 
-/* Statistic task priority */
-#define TASK_STAT_PRIO		((OS_LOWEST_PRIO) - 1)
-/* IDLE task priority */
-#define TASK_IDLE_PRIO		(OS_LOWEST_PRIO)
+
 
 
 
@@ -119,14 +120,14 @@ extern prio_t	os_prio_current;
 /* Priority of highest priority ready task */
 extern prio_t	os_prio_high_ready;
 
-
 /* Scheduling lock counter */
 u8	os_lock_counter;
 /* Tasks create counter */
 u8	os_task_counter;
 /* Counter of number of context switches */
 u32	os_switch_counter;
-/* Idle task counter  */
+
+/* Idle task counter */
 volatile u32	os_idle_counter;
 /* Max value that idle task counter can get in one second */
 u32	os_idle_counter_max;
