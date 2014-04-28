@@ -8,6 +8,7 @@
 #include "errno.h"
 #include "uart.h"
 #include "memory.h"
+#include "time.h"
 
 
 static void init_variable(void);
@@ -487,6 +488,14 @@ idle_task(void *arg)
 	}
 }
 
+static void
+init_stat_task(void)
+{
+	create_task(stat_task, 0, &os_stat_task_stk[STAT_TASK_STK_SIZE - 1],
+			TASK_STAT_PRIO);
+	os_stat_task_ready = FALSE;
+}
+
 /*
  * call in the user application
  */
@@ -495,26 +504,46 @@ init_stat(void)
 {
 	cpsr_t cpsr;
 
+	/* Delay 2 time-ticks */
+	delay(2);
 
 	enter_critical();
+	/* Clear idle counter */
 	os_idle_counter  = 0;
-	os_idle_counter_max = 0;
 	exit_critical();
 
-	
+	/* delay 1 second */
+	sleep(1);
+
+	enter_critical();
+	/* Get the idle counter */
+	os_idle_counter_max = os_idle_counter;
+	os_stat_task_ready = TRUE;
+	exit_critical();
 }
 
-static void
-init_stat_task(void)
-{
-	create_task(stat_task, 0, &os_stat_task_stk[STAT_TASK_STK_SIZE - 1],
-			TASK_STAT_PRIO);
-}
-
+/*
+ * Calculate the CPU usage.
+ */
 void
 stat_task(void *arg)
 {
-	//cpsr_t cpsr;
+	cpsr_t cpsr;
+
+	/* Wait for stat task to ready */
+	while (os_stat_task_ready == FALSE)
+		sleep(1);
+
+	while (1) {
+		enter_critical();
+		os_idle_counter_run = os_idle_counter;
+		os_idle_counter = 0;
+		exit_critical();
+		os_cpu_usage =
+			(u8) (100 * os_idle_counter_run / os_idle_counter_max);
+		/* Wait for next second */
+		sleep(1);
+	}
 	
 }
 

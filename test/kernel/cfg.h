@@ -14,7 +14,7 @@
 
 
 /* Enable statistics task */
-#define ENABLE_STAT_TASK	0
+#define ENABLE_STAT_TASK	1
 
 
 

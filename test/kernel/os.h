@@ -131,6 +131,12 @@ u32	os_switch_counter;
 volatile u32	os_idle_counter;
 /* Max value that idle task counter can get in one second */
 u32	os_idle_counter_max;
+/* Value reached by idle counter at run time in 1 one second  */
+u32	os_idle_counter_run;         
+/* Statistic task is ready */
+u8	os_stat_task_ready;
+/* CPU usage */
+u8	os_cpu_usage;
 
 
 /* Idle task stack */
