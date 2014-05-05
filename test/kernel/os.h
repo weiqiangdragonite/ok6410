@@ -11,23 +11,6 @@
 #include "cfg.h"
 
 
-/*
- * Define Macro
- */
-
-
-#ifndef NULL
-#define NULL	((void *) 0)
-#endif
-
-
-#ifndef TRUE
-#define TRUE	1
-#endif
-
-#ifndef FALSE
-#define FALSE	0
-#endif
 
 
 /* Save and restore CPSR macro */

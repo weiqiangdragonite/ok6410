@@ -26,6 +26,25 @@ typedef u8	prio_t;
 
 
 
+/*
+ * Define Macro
+ */
+
+
+#ifndef NULL
+#define NULL	((void *) 0)
+#endif
+
+
+#ifndef TRUE
+#define TRUE	1
+#endif
+
+#ifndef FALSE
+#define FALSE	0
+#endif
+
+
 #define min(x,y) ({ \
 	typeof(x) _x = (x);	\
 	typeof(y) _y = (y);	\

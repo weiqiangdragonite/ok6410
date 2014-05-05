@@ -5,12 +5,13 @@
 *
 * By weiqiangdragonite@gmail.com
 *
-* Date: 2013-8-16
+* Date: 2014
 *******************************************************************************/
 
 
-#include "../app/includes.h"
-
+#include "s3c6410.h"
+#include "lcd.h"
+#include "types.h"
 #include "font_8x16.h"
 
 
@@ -104,7 +105,7 @@ void enable_lcd_power(void)
     // 看不出有作用
     GPEDAT |= 1;
     
-    ENABLE_LCD_POWER = true;
+    ENABLE_LCD_POWER = TRUE;
     
     return;
 }
@@ -115,7 +116,7 @@ void disable_lcd_power(void)
     // 看不出有作用
     GPEDAT &= ~1;
     
-    ENABLE_LCD_POWER = false;
+    ENABLE_LCD_POWER = FALSE;
     
     return;
 }
@@ -124,7 +125,7 @@ void enable_lcd_backLight(void)
 {
     GPFDAT |= (1<<14);
     
-    ENABLE_LCD_BL = true;
+    ENABLE_LCD_BL = TRUE;
     
     return;
 }
@@ -133,7 +134,7 @@ void disable_lcd_backLight(void)
 {
     GPFDAT &= ~(1<<14);
     
-    ENABLE_LCD_BL = false;
+    ENABLE_LCD_BL = FALSE;
     
     return;
 }
@@ -143,7 +144,7 @@ void enable_lcd_display(void)
     VIDCON0 |= 3;
 	WINCON0 |= 1;
     
-    ENABLE_LCD_DIS = true;
+    ENABLE_LCD_DIS = TRUE;
     
     return;
 }
@@ -153,7 +154,7 @@ void disable_lcd_display(void)
     VIDCON0 &= ~3;
 	WINCON0 &= ~1;
     
-    ENABLE_LCD_DIS = false;
+    ENABLE_LCD_DIS = FALSE;
     
     return;
 }
@@ -167,8 +168,9 @@ void change_bg_color(void)
     static int index = 0;
     
     // display color
-    for (int y = 0; y <= lcd_cfg.height; ++y) {
-        for (int x = 0; x <= lcd_cfg.width; ++x) {
+    int x, y;
+    for (y = 0; y <= lcd_cfg.height; ++y) {
+        for (x = 0; x <= lcd_cfg.width; ++x) {
             ptr[addr++] = colors[index];
         }
     }
@@ -183,8 +185,9 @@ void display_bg_color(unsigned int color)
     volatile unsigned int *ptr = (volatile unsigned int *) FRAME_BUFFER;
     unsigned int addr = 0;
     
-    for (int y = 0; y < lcd_cfg.height; ++y) {
-        for (int x = 0; x < lcd_cfg.width; ++x) {
+    int x, y;
+    for (y = 0; y < lcd_cfg.height; ++y) {
+        for (x = 0; x < lcd_cfg.width; ++x) {
             ptr[addr++] = color;
         }
     }
@@ -271,10 +274,11 @@ void lcd_display_char(unsigned int x, unsigned int y,
 {
     unsigned char font;
     int index = (int) ch;
-    
-    for (int i = 0; i < FONT_HEIGHT; ++i, ++y) {
+    int i, j, k;
+
+    for (i = 0; i < FONT_HEIGHT; ++i, ++y) {
         font = courier_font[index][i];
-        for (int j = 0, k = x; j < FONT_WIDTH; ++j, ++k) {
+        for (j = 0, k = x; j < FONT_WIDTH; ++j, ++k) {
             if (font & 0x80) lcd_write_pixel(k, y, font_color);
             else lcd_write_pixel(k, y, bg_color);
             font <<= 1;
@@ -287,7 +291,8 @@ void lcd_display_char(unsigned int x, unsigned int y,
 void lcd_display_str(unsigned int x, unsigned int y,
                      unsigned int font_color, unsigned int bg_color , char *str)
 {
-    for (int i = 0; str[i] != '\0'; ++i) {
+    int i;
+    for (i = 0; str[i] != '\0'; ++i) {
         lcd_display_char(x, y, font_color, bg_color , str[i]);
         x += FONT_WIDTH;
     }
@@ -301,7 +306,8 @@ void lcd_display_string(int line, int column, unsigned int font_color,
     unsigned int x = column * FONT_WIDTH;
     unsigned int y = line * FONT_HEIGHT;
     
-    for (int i = 0; str[i] != '\0'; ++i) {
+    int i;
+    for (i = 0; str[i] != '\0'; ++i) {
         lcd_display_char(x, y, font_color, bg_color, str[i]);
         x += FONT_WIDTH;
     }
@@ -309,7 +315,10 @@ void lcd_display_string(int line, int column, unsigned int font_color,
     return;
 }
 
-
+/*
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ */
 
 
 

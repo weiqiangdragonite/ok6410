@@ -13,6 +13,9 @@ SECTIONS
 		boot.o
 		timer.o
 		led.o
+		buzzer.o
+		key.o
+		lcd.o
 		arm_s.o
 		core.o
 		task.o

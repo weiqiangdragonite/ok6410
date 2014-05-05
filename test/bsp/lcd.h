@@ -8,12 +8,10 @@
 * Date: 2013-8-16
 *******************************************************************************/
 
-#ifndef BSP_LCD_H
-#define BSP_LCD_H
+#ifndef LCD_H
+#define LCD_H
 
 
-/* include the registers address */
-#include "registers.h"
 
 /*
 
@@ -46,6 +44,10 @@
     |              forlinx
     V
     y
+
+
+1个字符的
+显示的字符串：
 
 
 */
@@ -112,4 +114,4 @@ void lcd_display_str(unsigned int x, unsigned int y,
 void lcd_display_string(int line, int column, unsigned int font_color,
                         unsigned int bg_color, char *str);
 
-#endif // BSP_LCD_H
+#endif	/* LCD_H */

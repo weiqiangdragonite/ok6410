@@ -7,6 +7,7 @@
 #include "sdram.h"
 #include "nand.h"
 #include "timer.h"
+#include "lcd.h"
 
 static int update_program(void);
 
@@ -18,6 +19,11 @@ boot(void)
 
 	/* Init uart */
 	init_uart();
+
+	/* Init LCD */
+	config_lcd(480, 272, SCREEN_HOIZONTAL);
+	init_lcd();
+	lcd_display_string(0, 0, COLOR_RED, COLOR_WHITE, "hello, world!");
 
 	/* Menu */
 	while (1) {

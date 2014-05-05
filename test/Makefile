@@ -9,7 +9,7 @@ EXE = ok6410
 
 # space-separated list of source files
 SRC_S = bsp/start.s \
-	arm/arm_s.s \
+	bsp/arm_s.s \
 
 SRC_C = bsp/exceptions.c \
 	bsp/clock.c \
@@ -19,6 +19,9 @@ SRC_C = bsp/exceptions.c \
 	bsp/boot.c \
 	bsp/timer.c \
 	bsp/led.c \
+	bsp/buzzer.c \
+	bsp/key.c \
+	bsp/lcd.c \
 	kernel/core.c \
 	kernel/task.c \
 	kernel/time.c \
