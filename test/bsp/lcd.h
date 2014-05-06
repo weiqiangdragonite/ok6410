@@ -11,6 +11,10 @@
 #ifndef LCD_H
 #define LCD_H
 
+#define FONT_WIDTH  8
+#define FONT_HEIGHT 16
+
+#define ENABLE_LCD		1
 
 
 /*
@@ -46,7 +50,10 @@
     y
 
 
-1个字符的
+1个字符大小为 8 x 16 像素
+本显示屏宽480，可显示60列字符，高为272，可显示17行字符，共显示60 * 17 = 1020 个字符
+列：0 ~ 59
+行：0 ~ 16
 显示的字符串：
 
 
@@ -73,6 +80,8 @@ LCD_CFG lcd_cfg;
 // default, recommend not changed
 #define     FRAME_BUFFER        0x5FA00000
 
+//unsigned int FRAME_BUFFER[480 * 272];
+
 
 //#define     LINEVAL             (SCREEN_SIZE_Y - 1)
 //#define     HOZVAL              (SCREEN_SIZE_X - 1)
@@ -82,6 +91,10 @@ LCD_CFG lcd_cfg;
 #define     COLOR_RED           0xFF0000
 #define     COLOR_GREEN         0x00FF00
 #define     COLOR_BLUE          0x0000FF
+
+// 
+unsigned short curr_row;
+unsigned short curr_col;
 
 
 unsigned int ENABLE_LCD_POWER;
@@ -113,5 +126,7 @@ void lcd_display_str(unsigned int x, unsigned int y,
                      unsigned int font_color, unsigned int bg_color, char *str);
 void lcd_display_string(int line, int column, unsigned int font_color,
                         unsigned int bg_color, char *str);
+
+void lcd_clear_line(int line, unsigned int bg_color);
 
 #endif	/* LCD_H */

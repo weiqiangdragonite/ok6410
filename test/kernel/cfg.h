@@ -23,8 +23,6 @@
 
 
 
-/* Debug infomation */
-#define ENABLE_DEBUG		0
 
 
 /* Default statistics task stack size */
@@ -42,6 +40,11 @@
 
 #define NUM_BLOCK		128
 #define BLOCK_LEN		128
+
+
+/* Debug infomation */
+#define ENABLE_DEBUG		0
+
 
 
 

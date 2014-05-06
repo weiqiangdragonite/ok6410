@@ -50,11 +50,15 @@ GPBCON = (GPBCON & ~0xFF00) | 0x22
 */
 
 #include "s3c6410.h"
+#include "lcd.h"
+#include "types.h"
 
 #define UART_0  0
 #define UART_1  1
 #define UART_2  2
 #define UART_3  3
+
+extern void *memcpy(void *dest, const void *src, size_t n);
 
 
 /*
@@ -188,6 +192,54 @@ uart_putc(unsigned char ch)
 	}
 
 	UTXH0 = ch;
+
+#if ENABLE_LCD
+	if (ch >= 128)
+		return;
+
+	/* 列 */
+	unsigned int x = curr_col * FONT_WIDTH;
+	/* 行 */
+	unsigned int y = curr_row * FONT_HEIGHT;
+
+	if (ch != '\n')
+		lcd_display_char(x, y, COLOR_BLACK, COLOR_WHITE, ch);
+	else {
+		/* 换行 */
+		curr_col = -1;
+		++curr_row;
+	}
+
+	/* 前进一列 */
+	++curr_col;
+	/* 列数为 0 - 59 */
+	if (curr_col >= 60) {
+		/* 换行 */
+		curr_col = 0;
+		++curr_row;
+	}
+
+
+	/* 行数为 0 - 16，超过16行，从第1行起往上移一行 */
+	if (curr_row >= 17) {
+		/* 1行总共有 480 * 16 * 4 = 30720 个字节，所以第1行的地址为
+		   (FRAME_BUFFER + 480 * 16)
+		   第1行到第16行总共有  480 * 16 * 16 * 4 = 491520 个字节 */
+
+		/* (dest, src, size) */
+		memcpy(FRAME_BUFFER, FRAME_BUFFER + lcd_cfg.width * FONT_HEIGHT,
+			480 * 16 * 16 * 4);
+
+		/* 然后最后一行清零 */
+		lcd_clear_line(16, COLOR_WHITE);
+
+		--curr_row;
+		curr_col = 0;
+	}
+
+
+
+#endif
 }
 
 /*

@@ -24,3 +24,19 @@ memset(void *s, int c, size_t n)
 		*xs++ = c;
 	return s;
 }
+
+
+void *
+memcpy(void *dest, const void *src, size_t n)
+{
+	char *tmp = dest;
+	const char *s = src;
+
+	while (n--) {
+		*tmp = *s;
+		++tmp;
+		++s;
+	}
+
+	return dest;	
+}

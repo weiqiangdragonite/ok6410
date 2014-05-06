@@ -20,10 +20,12 @@ boot(void)
 	/* Init uart */
 	init_uart();
 
+#if ENABLE_LCD
 	/* Init LCD */
 	config_lcd(480, 272, SCREEN_HOIZONTAL);
 	init_lcd();
-	lcd_display_string(0, 0, COLOR_RED, COLOR_WHITE, "hello, world!");
+	//lcd_display_string(0, 0, COLOR_RED, COLOR_WHITE, "hello, world!");
+#endif
 
 	/* Menu */
 	while (1) {

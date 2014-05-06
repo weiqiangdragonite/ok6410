@@ -15,6 +15,7 @@
 #include "font_8x16.h"
 
 
+
 void config_lcd(unsigned int width, unsigned int height, unsigned int orientation)
 {
     // version 1
@@ -86,7 +87,7 @@ void init_lcd(void)
     VIDOSD0C = lcd_cfg.width * lcd_cfg.height;
     
     // 设置显存起始地址
-    VIDW00ADD0B0 = FRAME_BUFFER;
+    VIDW00ADD0B0 = (int) &FRAME_BUFFER[0];
     // 设置显存结束地址
     VIDW00ADD1B0 = lcd_cfg.width * 4 * lcd_cfg.height;
     
@@ -95,6 +96,9 @@ void init_lcd(void)
     enable_lcd_backLight();
     enable_lcd_display();
     display_bg_color(COLOR_WHITE);
+
+    curr_row = 0;
+    curr_col = 0;
     
     return;
 }
@@ -313,6 +317,24 @@ void lcd_display_string(int line, int column, unsigned int font_color,
     }
     
     return;
+}
+
+
+void
+lcd_clear_line(int line, unsigned int bg_color)
+{
+	if (line >= 17)
+		return;
+
+	unsigned int x = 0;
+	unsigned int y = line * FONT_HEIGHT;
+
+	int i, j;
+	for (j = y; j < FONT_HEIGHT; ++j) {
+		for (i = x; i < lcd_cfg.width; ++i) {
+			lcd_write_pixel(i, j, bg_color);
+		}
+	}
 }
 
 /*
