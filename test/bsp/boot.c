@@ -25,6 +25,7 @@ boot(void)
 	config_lcd(480, 272, SCREEN_HOIZONTAL);
 	init_lcd();
 	//lcd_display_string(0, 0, COLOR_RED, COLOR_WHITE, "hello, world!");
+	//lcd_clear_line(0, COLOR_WHITE);
 #endif
 
 	/* Menu */

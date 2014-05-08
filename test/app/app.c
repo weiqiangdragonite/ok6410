@@ -1,3 +1,161 @@
+/*
+
+#define EAST_WEST	1
+#define WEST_EAST	2
+#define SOUTH_NORTH	3
+#define NORTH_SOUTH	4
+
+// 
+green_led_signal = 1;
+yellow_led_status = 0;
+
+south_north_status = 0;
+east_west_status = 0;
+
+// 绿灯和红灯默认时间为60秒，可通过按键中断来增加或减少时间
+green_time = 60;
+red_time = green_time;
+
+north_south_task()
+{
+	while (1) {
+		//
+		if (yellow_led_status) {
+			// 延时2个节拍
+			delay(2);
+			continue;
+		}
+
+		// 申请绿灯信号量
+		if (green_led_signal == 1) {
+			--green_led_signal;
+
+			// 南北向显示绿灯
+			lcd_display();
+
+		} else if (green_led_signal == 0) {
+			// 南北向显示红灯
+			lcd_display();
+
+			// 休眠红灯显示时间
+			south_north_status = 0;
+			sleep(red_time);
+			continue;
+		}
+
+		south_north_status = 1;
+		// 休眠绿灯显示时间，其中减3秒的时间为黄灯时间
+		sleep(green_time - 3);
+
+		// 显示3秒黄灯
+		yellow_led_status = 1;
+		lcd_display();
+		sleep(3);
+
+		// 释放绿灯信号量
+		++green_led_signal;
+		yellow_led_status = 0;
+
+		// 休眠4个节拍，让东西方向申请绿灯信号量
+		delay(4);
+	}
+}
+
+
+east_west_task()
+{
+	while (1) {
+		//
+		if (yellow_led_status) {
+			// 延时2个节拍
+			delay(2);
+			continue;
+		}
+
+		// 申请绿灯信号量
+		if (green_led_signal == 1) {
+			--green_led_signal;
+
+			// 东西向显示绿灯
+			lcd_display();
+
+		} else if (green_led_signal == 0) {
+			// 东西向显示红灯
+			lcd_display();
+
+			// 休眠红灯显示时间
+			east_west_status = 0;
+			sleep(red_time);
+			continue;
+		}
+
+		east_west_status = 1;
+		// 休眠绿灯显示时间，其中减3秒的时间为黄灯时间
+		sleep(green_time - 3);
+
+		// 显示3秒黄灯
+		yellow_led_status = 1;
+		lcd_display();
+		sleep(3);
+
+		// 释放绿灯信号量
+		++green_led_signal;
+		yellow_led_status = 0;
+
+		// 休眠4个节拍，让南北方向申请绿灯信号量
+		delay(4);
+	}
+}
+
+people_east_west_task()
+{
+	int flag = 0;
+	int old_flag = 1;
+
+	while (1) {
+		if (east_west_status) {
+			// 东西向通行，人行禁止
+			flag = 0;
+		} else {
+			// 东西向禁止，人行道通行
+			flag = 1;
+		}
+
+		if (old_flag != flag) {
+			lcd_display_people_line(SOUTH_NORTH, flag);
+			old_flag = flag;
+		}
+
+		sleep(1);
+	}
+}
+
+people_north_south_task()
+{
+	int flag = 0;
+	int old_flag = 1;
+
+	while (1) {
+		if (south_north_status) {
+			// 南北向通行，人行禁止
+			flag = 0;
+		} else {
+			// 南北向禁止，人行道通行
+			flag = 1;
+		}
+
+		if (old_flag != flag) {
+			lcd_display_people_line(WEST_EAST, flag);
+			old_flag = flag;
+		}
+
+		sleep(1);
+	}
+}
+
+
+*/
+
 
 #include "os.h"
 #include "timer.h"
@@ -5,25 +163,36 @@
 #include "led.h"
 #include "time.h"
 #include "memory.h"
+#include "lcd.h"
 
 
-stk_t main_stk[STK_SIZE];
-stk_t second_stk[STK_SIZE];
-stk_t third_stk[STK_SIZE];
+#define EAST_WEST	1
+#define WEST_EAST	2
+#define SOUTH_NORTH	3
+#define NORTH_SOUTH	4
 
-stk_t task_stk[2][STK_SIZE];
 
-void main_task(void *arg);
-void second_task(void *arg);
-void third_task(void *arg);
 
-void fourth_task(void *arg);
-void fifth_task(void *arg);
+u8 green_led_signal = 1;
+u8 yellow_led_status = 0;
 
-struct os_mem	*mem_buf;
-u8		memory[NUM_BLOCK][BLOCK_LEN];
+u8 south_north_status = 0;
+u8 east_west_status = 0;
 
-int time = 0;
+/* 绿灯和红灯默认时间为60秒，可通过按键中断来增加或减少时间 */
+int green_time = 60;
+int red_time = 60;
+int yellow_time = 3;
+
+
+
+void north_south_task(void *arg);
+void east_west_task(void *arg);
+void people_east_west_task(void *arg);
+void people_north_south_task(void *arg);
+
+
+stk_t task_stk[4][STK_SIZE];
 
 
 int
@@ -34,24 +203,23 @@ main(void)
 	/* Init sys time */
 	init_sys_time();
 
-	/* Init led */
-	init_led();
 
-	char *str = "hello ";
+	create_task(north_south_task, NULL, &task_stk[0][STK_SIZE - 1], 5);
+	create_task(east_west_task, NULL, &task_stk[1][STK_SIZE - 1], 6);
 
-	/* This three tasks is for delete task */
-	create_task(main_task, str, &main_stk[STK_SIZE - 1], 0);
-	create_task(second_task, str, &second_stk[STK_SIZE - 1], 10);
-	create_task(third_task, NULL, &third_stk[STK_SIZE - 1], 30);
+	/*  */
+	//create_task(people_north_south_task, NULL, &task_stk[3][STK_SIZE - 1], 10);
+	//create_task(people_east_west_task, NULL, &task_stk[2][STK_SIZE - 1], 11;
 
-	/* This task is for suspend task */
-	create_task(fourth_task, str, &task_stk[0][STK_SIZE - 1], 40);
 
-	/* This task is for memory */
-	create_task(fifth_task, str, &task_stk[1][STK_SIZE - 1], 50);
+	/**/
+	lcd_create_traffic_bg();
+	/* 全部先显示红灯 */
+	lcd_display_south_north_light(0);
+	lcd_display_east_west_light(0);
+	lcd_display_people_line(SOUTH_NORTH, 0);
+	lcd_display_people_line(EAST_WEST, 0);
 
-	/* Create the memory buffer */
-	mem_buf = create_mem(memory, NUM_BLOCK, BLOCK_LEN);
 
 	start_os();
 
@@ -59,114 +227,162 @@ main(void)
 }
 
 void
-main_task(void *arg)
+north_south_task(void *arg)
 {
 	while (1) {
-		uart_print((char *) arg);
-		uart_print("led 1\n");
-
-		if (get_led_1() == LED_ON)
-			set_led_1(LED_OFF);
-		else
-			set_led_1(LED_ON);
-
-		if (time == 10) {
-			uart_print("delete task 3\n");
-
-			while (delete_task_request(30) != -1) {
-				uart_print("waiting task 3 to delete\n");
-				sleep(1);
-			}
-			uart_print("task 3 not exist now\n");
+		if (yellow_led_status) {
+			/* 延时2个节拍 */
+			delay(2);
+			continue;
 		}
 
+		/* 申请绿灯信号量 */
+		if (green_led_signal == 1) {
+			--green_led_signal;
 
-		if (time == 20) {
-			uart_print("[1] resume task 4\n");
-			resume_task(40);
+			/* 南北向人行道显示红灯 */
+			lcd_display_people_line(SOUTH_NORTH, 0);
+
+			/* 南北向显示绿灯 */
+			lcd_display_south_north_light(1);
+
+		} else if (green_led_signal == 0) {
+			/* 南北向显示红灯 */
+			lcd_display_south_north_light(0);
+
+			/* 南北向人行道显示绿灯 */
+			lcd_display_people_line(SOUTH_NORTH, 1);
+
+			/* 休眠红灯显示时间 */
+			south_north_status = 0;
+			sleep(red_time);
+			continue;
 		}
 
-		++time;
+		south_north_status = 1;
+		/* 休眠绿灯显示时间，其中减3秒的时间为黄灯时间 */
+		sleep(green_time - yellow_time);
 
-		/* Sleep 1 second */
-		sleep(1);
+		/* 显示3秒黄灯 */
+		yellow_led_status = 1;
+		lcd_display_south_north_light(2);
+		sleep(yellow_time);
+
+		/* 释放绿灯信号量 */
+		++green_led_signal;
+		yellow_led_status = 0;
+
+		/* 休眠4个节拍，让东西方向申请绿灯信号量 */
+		delay(4);
 	}
 }
+
 
 void
-second_task(void *arg)
+east_west_task(void *arg)
 {
 	while (1) {
-		uart_print((char *) arg);
-		uart_print("led 2\n");
-		if (get_led_2() == LED_ON)
-			set_led_2(LED_OFF);
-		else
-			set_led_2(LED_ON);
-
-		/* Sleep 1 second */
-		sleep(1);
-	}
-}
-
-void
-third_task(void *arg)
-{
-	while (1) {
-		if (delete_task_request(30) == OS_TASK_DEL_REQ) {
-			uart_print("[3]: I am going to delete myself\n");
-			sleep(5);
-			uart_print("[3]: I had deleted myself\n");
-			delete_task(30);
+		if (yellow_led_status) {
+			/* 延时2个节拍 */
+			delay(2);
+			continue;
 		}
 
-		uart_print("task three\n");
-		sleep(1);
-	}
-}
+		/* 申请绿灯信号量 */
+		if (green_led_signal == 1) {
+			--green_led_signal;
 
-void
-fourth_task(void *arg)
-{
-	while (1) {
-		if (time == 10) {
-			uart_print("[4]: I am going to suspend myself\n");
-			suspend_task(OS_PRIO_SELF);
+			/* 东西向人行道显示红灯 */
+			lcd_display_people_line(EAST_WEST, 0);
+
+			/* 东西向显示绿灯 */
+			lcd_display_east_west_light(1);
+
+		} else if (green_led_signal == 0) {
+			/* 东西向显示红灯 */
+			lcd_display_east_west_light(0);
+
+			/* 东西向人行道显示绿灯 */
+			lcd_display_people_line(EAST_WEST, 1);
+
+			/* 休眠红灯显示时间 */
+			east_west_status = 0;
+			sleep(red_time);
+			continue;
 		}
 
-		uart_print((char *) arg);
-		uart_print("task four\n");
-		sleep(1);
+		east_west_status = 1;
+		/* 休眠绿灯显示时间，其中减3秒的时间为黄灯时间 */
+		sleep(green_time - 3);
+
+		/* 显示3秒黄灯 */
+		yellow_led_status = 1;
+		lcd_display_east_west_light(2);
+		sleep(3);
+
+		/* 释放绿灯信号量 */
+		++green_led_signal;
+		yellow_led_status = 0;
+
+		/* 休眠4个节拍，让南北方向申请绿灯信号量 */
+		delay(4);
 	}
 }
 
+
+/*
+ * 上下的人行道
+ * 一开始，南北向通行，人行道继续禁止
+ */
 void
-fifth_task(void *arg)
+people_north_south_task(void *arg)
 {
-	int *mem_ptr;
+	int flag = 0;
+	int old_flag = 1;
 
 	while (1) {
-		uart_print("task five\n");
-
-		if (time == 15) {
-			uart_print("[5]: I am going to get 300 bytes memory\n");
-
-			mem_ptr = (int *) get_mem(mem_buf, 300);
-
-			*mem_ptr = 65536;
-			uart_print("The data in the mem_ptr = ");
-			uart_print_int(*mem_ptr);
-			uart_print("\n");
-		} else if (time == 25) {
-			uart_print("[5]: I am going to release 300 bytes"
-					"memory\n");
-
-			free_mem(mem_buf, mem_ptr);
+		if (south_north_status) {
+			/* 南北向通行，人行道禁止 */
+			flag = 0;
+		} else {
+			/* 南北向禁止，人行通行 */
+			flag = 1;
 		}
 
-		uart_print("free block = ");
-		uart_print_int(mem_buf->num_free);
-		uart_print("\n");
+		if (old_flag != flag) {
+			lcd_display_people_line(SOUTH_NORTH, flag);
+			old_flag = flag;
+		}
+
 		sleep(1);
 	}
 }
+
+/*
+ * 左右的人行道
+ * 一开始，东西向禁行，所以人行道通行
+ */
+void
+people_east_west_task(void *arg)
+{
+	int flag = 0;
+	int old_flag = 0;
+
+	while (1) {
+		if (east_west_status) {
+			/* 东西向通行，人行禁止 */
+			flag = 0;
+		} else {
+			/* 东西向禁止，人行道通行 */
+			flag = 1;
+		}
+
+		if (old_flag != flag) {
+			lcd_display_people_line(EAST_WEST, flag);
+			old_flag = flag;
+		}
+
+		sleep(1);
+	}
+}
+

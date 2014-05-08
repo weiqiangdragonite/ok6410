@@ -87,8 +87,8 @@ void init_lcd(void)
     VIDOSD0C = lcd_cfg.width * lcd_cfg.height;
     
     // 设置显存起始地址
-    VIDW00ADD0B0 = (int) &FRAME_BUFFER[0];
-    // 设置显存结束地址
+    VIDW00ADD0B0 = FRAME_BUFFER;
+    // 设置显存结束地址，每个像素4个字节
     VIDW00ADD1B0 = lcd_cfg.width * 4 * lcd_cfg.height;
     
     // 
@@ -329,27 +329,316 @@ lcd_clear_line(int line, unsigned int bg_color)
 	unsigned int x = 0;
 	unsigned int y = line * FONT_HEIGHT;
 
-	int i, j;
-	for (j = y; j < FONT_HEIGHT; ++j) {
-		for (i = x; i < lcd_cfg.width; ++i) {
-			lcd_write_pixel(i, j, bg_color);
+	int end = y + FONT_HEIGHT;
+	for (; y < end; ++y) {
+		for (x = 0; x < lcd_cfg.width; ++x) {
+			lcd_write_pixel(x, y, bg_color);
 		}
 	}
 }
 
+
+
+void *
+lcd_memcpy(void *dest, const void *src, size_t n)
+{
+	int *tmp = dest;
+	const int *s = src;
+
+	/* Copy 4 bytes everytimes */
+	while (n--) {
+		*tmp = *s;
+		++tmp;
+		++s;
+	}
+
+	return dest;	
+}
+
 /*
- * -----------------------------------------------------------------------------
- * -----------------------------------------------------------------------------
- */
+
+480 x 272
++-------------++-------------------------------------------------------------
+|             ||
+|             ||
+|             ||
+|             ||
++=============++(120,68)
+|                                   |
+|                                   |
+|                                   |
+|   -------                         |
+|               +--+                |
+|   -------     |  |                |
+|               |  |                |
+|   -------     +--+                |
+|                                   |
+|                                   |
+|                                   |(240,136)
++-----------------------------------+--------------------------------------
 
 
 
 
+-----------------------------------------------------------------------------
+
+*/
 
 
+void
+lcd_create_traffic_bg(void)
+{
+
+	display_bg_color(COLOR_WHITE);
+
+	int x, y;
+
+	/* 横 */
+	for (x = 0; x < 170; ++x) {
+		lcd_write_pixel(x, 66, COLOR_BLACK);
+		lcd_write_pixel(x, 136, COLOR_BLACK);
+		lcd_write_pixel(x, 206, COLOR_BLACK);
+	}
+
+	for (x = 310; x < 480; ++x) {
+		lcd_write_pixel(x, 66, COLOR_BLACK);
+		lcd_write_pixel(x, 136, COLOR_BLACK);
+		lcd_write_pixel(x, 206, COLOR_BLACK);
+	}
+
+	/* 竖 */
+	for (y = 0; y < 66; ++y) {
+		lcd_write_pixel(170, y, COLOR_BLACK);
+		lcd_write_pixel(240, y, COLOR_BLACK);
+		lcd_write_pixel(310, y, COLOR_BLACK);
+	}
+
+	for (y = 206; y < 272; ++y) {
+		lcd_write_pixel(170, y, COLOR_BLACK);
+		lcd_write_pixel(240, y, COLOR_BLACK);
+		lcd_write_pixel(310, y, COLOR_BLACK);
+	}
+}
+
+void
+lcd_display_south_north_light(u8 status)
+{
+	int x, y, z;
+	unsigned int color;
+
+	/* 显示绿灯 */
+	if (status == 1)
+		color = COLOR_GREEN;
+	/* 显示红灯 */
+	else if (status == 0)
+		color = COLOR_RED;
+	/* 显示黄灯 */
+	else if (status == 2)
+		color = COLOR_YELLOW;
 
 
+	/* 显示灯 */
+	for (y = 66; y < 86; ++y) {
+		for (x = 250; x < 300; ++x)
+			lcd_write_pixel(x, y, color);
+	}
 
+	for (y = 186; y < 206; ++y) {
+		for (x = 180; x < 230; ++x)
+			lcd_write_pixel(x, y, color);
+	}
+
+	/* 线 */
+	if (status == 1) {
+		for (y = 70; y < 160; ++y)
+			lcd_write_pixel(205, y, COLOR_GREEN);
+
+		for (y = 110; y < 200; ++y)
+			lcd_write_pixel(275, y, COLOR_GREEN);
+	} else {
+		for (y = 70; y < 160; ++y)
+			lcd_write_pixel(205, y, COLOR_WHITE);
+
+		for (y = 110; y < 200; ++y)
+			lcd_write_pixel(275, y, COLOR_WHITE);
+	}
+
+	/* 箭头 */
+	if (status == 1) {
+		for (x = 196, z = 214, y = 150; y < 160; ++y, ++x, --z) {
+			lcd_write_pixel(x, y, COLOR_GREEN);
+			lcd_write_pixel(z, y, COLOR_GREEN);
+		}
+
+		for (x = z = 275, y = 110; y < 120; ++y, --x, ++z) {
+			lcd_write_pixel(x, y, COLOR_GREEN);
+			lcd_write_pixel(z, y, COLOR_GREEN);
+		}
+	} else {
+		for (x = 196, z = 214, y = 150; y < 160; ++y, ++x, --z) {
+			lcd_write_pixel(x, y, COLOR_WHITE);
+			lcd_write_pixel(z, y, COLOR_WHITE);
+		}
+
+		for (x = z = 275, y = 110; y < 120; ++y, --x, ++z) {
+			lcd_write_pixel(x, y, COLOR_WHITE);
+			lcd_write_pixel(z, y, COLOR_WHITE);
+		}
+	}
+}
+
+void
+lcd_display_east_west_light(u8 status)
+{
+	int x, y, z;
+	unsigned int color;
+
+	/* 显示绿灯 */
+	if (status == 1)
+		color = COLOR_GREEN;
+	/* 显示红灯 */
+	else if (status == 0)
+		color = COLOR_RED;
+	/* 显示黄灯 */
+	else if (status == 2)
+		color = COLOR_YELLOW;
+
+
+	/* 显示灯 */
+	for (y = 76; y < 126; ++y) {
+		for (x = 170; x < 190; ++x)
+			lcd_write_pixel(x, y, color);
+	}
+
+	for (y = 146; y < 196; ++y) {
+		for (x = 290; x < 310; ++x)
+			lcd_write_pixel(x, y, color);
+	}
+
+	/* 线 */
+	if (status == 1) {
+		for (x = 210; x < 300; ++x)
+			lcd_write_pixel(x, 101, COLOR_GREEN);
+
+		for (x = 180; x < 270; ++x)
+			lcd_write_pixel(x, 171, COLOR_GREEN);
+	} else {
+		for (x = 210; x < 300; ++x)
+			lcd_write_pixel(x, 101, COLOR_WHITE);
+
+		for (x = 180; x < 270; ++x)
+			lcd_write_pixel(x, 171, COLOR_WHITE);
+	}
+
+	/* 箭头 */
+	if (status == 1) {
+		for (x = 210, y = z = 101; x < 220; ++y, ++x, --z) {
+			lcd_write_pixel(x, y, COLOR_GREEN);
+			lcd_write_pixel(x, z, COLOR_GREEN);
+		}
+
+		for (x = 260, y = 162, z = 180; x < 270; ++y, ++x, --z) {
+			lcd_write_pixel(x, y, COLOR_GREEN);
+			lcd_write_pixel(x, z, COLOR_GREEN);
+		}
+	} else {
+		for (x = 210, y = z = 101; x < 220; ++y, ++x, --z) {
+			lcd_write_pixel(x, y, COLOR_WHITE);
+			lcd_write_pixel(x, z, COLOR_WHITE);
+		}
+
+		for (x = 260, y = 162, z = 180; x < 270; ++y, ++x, --z) {
+			lcd_write_pixel(x, y, COLOR_WHITE);
+			lcd_write_pixel(x, z, COLOR_WHITE);
+		}
+	}
+}
+
+
+void
+lcd_display_people_line(u8 direction, u8 status)
+{
+	int x, y;
+	unsigned int color;
+
+	/* 显示绿灯 */
+	if (status == 1)
+		color = COLOR_GREEN;
+	/* 显示红灯 */
+	else if (status == 0)
+		color = COLOR_RED;
+
+	/* 东西的斑马线 */
+	if (direction == 1 || direction == 2) {
+		/* 画斑马线 */
+		for (x = 120; x < 160; ++x) {
+			lcd_write_pixel(x, 76, color);
+			lcd_write_pixel(x, 86, color);
+			lcd_write_pixel(x, 96, color);
+			lcd_write_pixel(x, 106, color);
+			lcd_write_pixel(x, 116, color);
+			lcd_write_pixel(x, 126, color);
+
+			lcd_write_pixel(x, 146, color);
+			lcd_write_pixel(x, 156, color);
+			lcd_write_pixel(x, 166, color);
+			lcd_write_pixel(x, 176, color);
+			lcd_write_pixel(x, 186, color);
+			lcd_write_pixel(x, 196, color);
+		}
+
+		for (x = 320; x < 360; ++x) {
+			lcd_write_pixel(x, 76, color);
+			lcd_write_pixel(x, 86, color);
+			lcd_write_pixel(x, 96, color);
+			lcd_write_pixel(x, 106, color);
+			lcd_write_pixel(x, 116, color);
+			lcd_write_pixel(x, 126, color);
+
+			lcd_write_pixel(x, 146, color);
+			lcd_write_pixel(x, 156, color);
+			lcd_write_pixel(x, 166, color);
+			lcd_write_pixel(x, 176, color);
+			lcd_write_pixel(x, 186, color);
+			lcd_write_pixel(x, 196, color);
+		}
+
+	/* 南北的斑马线 */
+	} else {
+		for (y = 20; y < 60; ++y) {
+			lcd_write_pixel(180, y, color);
+			lcd_write_pixel(190, y, color);
+			lcd_write_pixel(200, y, color);
+			lcd_write_pixel(210, y, color);
+			lcd_write_pixel(220, y, color);
+			lcd_write_pixel(230, y, color);
+
+			lcd_write_pixel(250, y, color);
+			lcd_write_pixel(260, y, color);
+			lcd_write_pixel(270, y, color);
+			lcd_write_pixel(280, y, color);
+			lcd_write_pixel(290, y, color);
+			lcd_write_pixel(300, y, color);
+		}
+
+		for (y = 216; y < 256; ++y) {
+			lcd_write_pixel(180, y, color);
+			lcd_write_pixel(190, y, color);
+			lcd_write_pixel(200, y, color);
+			lcd_write_pixel(210, y, color);
+			lcd_write_pixel(220, y, color);
+			lcd_write_pixel(230, y, color);
+
+			lcd_write_pixel(250, y, color);
+			lcd_write_pixel(260, y, color);
+			lcd_write_pixel(270, y, color);
+			lcd_write_pixel(280, y, color);
+			lcd_write_pixel(290, y, color);
+			lcd_write_pixel(300, y, color);
+		}
+	}
+
+}
 
 
 

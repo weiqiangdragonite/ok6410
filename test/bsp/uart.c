@@ -58,7 +58,7 @@ GPBCON = (GPBCON & ~0xFF00) | 0x22
 #define UART_2  2
 #define UART_3  3
 
-extern void *memcpy(void *dest, const void *src, size_t n);
+extern void *lcd_memcpy(void *dest, const void *src, size_t n);
 
 
 /*
@@ -202,13 +202,18 @@ uart_putc(unsigned char ch)
 	/* 行 */
 	unsigned int y = curr_row * FONT_HEIGHT;
 
-	if (ch != '\n')
+	if (ch >= 32)
 		lcd_display_char(x, y, COLOR_BLACK, COLOR_WHITE, ch);
-	else {
+	else if (ch == '\n') {
 		/* 换行 */
 		curr_col = -1;
 		++curr_row;
-	}
+	} else if (ch == 8) {
+		/* backspace */
+		--curr_col;
+		return;
+	} else
+		return;
 
 	/* 前进一列 */
 	++curr_col;
@@ -227,8 +232,8 @@ uart_putc(unsigned char ch)
 		   第1行到第16行总共有  480 * 16 * 16 * 4 = 491520 个字节 */
 
 		/* (dest, src, size) */
-		memcpy(FRAME_BUFFER, FRAME_BUFFER + lcd_cfg.width * FONT_HEIGHT,
-			480 * 16 * 16 * 4);
+		lcd_memcpy((int *) FRAME_BUFFER, (int *) FRAME_BUFFER + lcd_cfg.width * FONT_HEIGHT,
+			480 * 16 * 16);
 
 		/* 然后最后一行清零 */
 		lcd_clear_line(16, COLOR_WHITE);
@@ -236,8 +241,6 @@ uart_putc(unsigned char ch)
 		--curr_row;
 		curr_col = 0;
 	}
-
-
 
 #endif
 }
@@ -286,6 +289,9 @@ uart_getc(void)
         
         // be careful, do not use  up/down/left/right key
         // backspace
+        // 08 -> 退回前一个字符
+        // 20 -> 输出空格（将前一个字符清空）
+        // 08 -> 再退回去
         if (buffer[i] == 8 && i > 0) {
             uart_putc(buffer[i--]);
             buffer[i] = ' ';

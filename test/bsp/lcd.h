@@ -11,6 +11,8 @@
 #ifndef LCD_H
 #define LCD_H
 
+#include "types.h"
+
 #define FONT_WIDTH  8
 #define FONT_HEIGHT 16
 
@@ -91,6 +93,7 @@ LCD_CFG lcd_cfg;
 #define     COLOR_RED           0xFF0000
 #define     COLOR_GREEN         0x00FF00
 #define     COLOR_BLUE          0x0000FF
+#define     COLOR_YELLOW        0xFFFF00
 
 // 
 unsigned short curr_row;
@@ -128,5 +131,11 @@ void lcd_display_string(int line, int column, unsigned int font_color,
                         unsigned int bg_color, char *str);
 
 void lcd_clear_line(int line, unsigned int bg_color);
+
+
+void lcd_create_traffic_bg(void);
+void lcd_display_south_north_light(u8 status);
+void lcd_display_east_west_light(u8 status);
+void lcd_display_people_line(u8 direction, u8 status);
 
 #endif	/* LCD_H */
