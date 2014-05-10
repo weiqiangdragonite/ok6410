@@ -577,3 +577,36 @@ uart_get_file_size(void)
 
 	return num;
 }
+
+
+char *
+itoa(int data, char *buf, size_t len)
+{
+	char num[80];
+	int i = 0;
+	char nav = 0;
+
+	if (data < 0) {
+		nav = 1;
+		data = -data;
+	}
+
+	num[i++] = '\0';
+	while (1) {
+		num[i++] = data % 10 + '0';
+		data /= 10;
+		if (data == 0)
+			break;
+	}
+	if (nav)
+		num[i] = '-';
+	else
+		--i;
+
+	/* reverse */
+	char *tmp = buf;
+	for (; i >= 0 && len > 0; --i, --len)
+		*buf++ = num[i];
+
+	return 	tmp;
+}

@@ -8,6 +8,7 @@
 #include "nand.h"
 #include "timer.h"
 #include "lcd.h"
+#include "key.h"
 
 static int update_program(void);
 
@@ -20,13 +21,15 @@ boot(void)
 	/* Init uart */
 	init_uart();
 
-#if ENABLE_LCD
+	init_key();
+
+//#if ENABLE_LCD
 	/* Init LCD */
 	config_lcd(480, 272, SCREEN_HOIZONTAL);
 	init_lcd();
 	//lcd_display_string(0, 0, COLOR_RED, COLOR_WHITE, "hello, world!");
 	//lcd_clear_line(0, COLOR_WHITE);
-#endif
+//#endif
 
 	/* Menu */
 	while (1) {

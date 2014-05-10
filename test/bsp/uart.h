@@ -6,6 +6,8 @@
 #ifndef UART_H
 #define UART_H
 
+#include "types.h"
+
 
 #define UART_0  0
 #define UART_1  1
@@ -41,6 +43,9 @@ void uart_print_addr_value(unsigned int data);
 
 int uart_get_file(unsigned char *buffer);
 int uart_get_file_size(void);
+
+
+char *itoa(int data, char *buf, size_t len);
 
 
 

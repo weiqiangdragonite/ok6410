@@ -12,6 +12,10 @@
 #include "s3c6410.h"
 #include "key.h"
 #include "uart.h"
+#include "lcd.h"
+
+extern int green_time;
+extern int red_time;
 
 
 void init_key(void)
@@ -88,7 +92,21 @@ void key_isr(void)
 void key_1_handler(void)
 {
     //
-    uart_puts("\nkey_1_handler");
+    //uart_puts("\nkey_1_handler");
+
+
+
+	if (green_time >= 100)
+		return;
+
+	/* Add led time */
+	green_time += 10;
+	red_time = green_time;
+
+	/* 右下角显示红绿灯时间 */
+	lcd_display_string(16, 55, COLOR_WHITE, COLOR_WHITE, "   ");
+	lcd_display_int(16, 55, COLOR_BLUE, COLOR_WHITE, green_time);
+
     
     return;
 }
@@ -96,7 +114,19 @@ void key_1_handler(void)
 void key_2_handler(void)
 {
     //
-    uart_puts("\nkey_2_handler");
+    //uart_puts("\nkey_2_handler");
+
+
+	if (green_time <= 30)
+		return;
+
+	/**/
+	green_time -= 10;
+	red_time = green_time;
+
+	/* 右下角显示红绿灯时间 */
+	lcd_display_string(16, 55, COLOR_WHITE, COLOR_WHITE, "   ");
+	lcd_display_int(16, 55, COLOR_BLUE, COLOR_WHITE, green_time);
     
     return;
 }
@@ -104,7 +134,7 @@ void key_2_handler(void)
 void key_3_handler(void)
 {
     //
-    uart_puts("\nkey_3_handler");
+    //uart_puts("\nkey_3_handler");
     
     return;
 }
@@ -112,7 +142,7 @@ void key_3_handler(void)
 void key_4_handler(void)
 {
     //
-    uart_puts("\nkey_4_handler");
+    //uart_puts("\nkey_4_handler");
     
     return;
 }
@@ -120,7 +150,7 @@ void key_4_handler(void)
 void key_5_handler(void)
 {
     //
-    uart_puts("\nkey_5_handler");
+    //uart_puts("\nkey_5_handler");
     
     return;
 }
@@ -128,7 +158,7 @@ void key_5_handler(void)
 void key_6_handler(void)
 {
     //
-    uart_puts("\nkey_6_handler");
+    //uart_puts("\nkey_6_handler");
     
     return;
 }

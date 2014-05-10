@@ -16,7 +16,7 @@
 #define FONT_WIDTH  8
 #define FONT_HEIGHT 16
 
-#define ENABLE_LCD		1
+#define ENABLE_LCD		0
 
 
 /*
@@ -137,5 +137,8 @@ void lcd_create_traffic_bg(void);
 void lcd_display_south_north_light(u8 status);
 void lcd_display_east_west_light(u8 status);
 void lcd_display_people_line(u8 direction, u8 status);
+
+void lcd_display_int(int line, int column, unsigned int font_color,
+		unsigned int bg_color, int value);
 
 #endif	/* LCD_H */

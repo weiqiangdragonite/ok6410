@@ -13,6 +13,7 @@
 #include "lcd.h"
 #include "types.h"
 #include "font_8x16.h"
+#include "uart.h"
 
 
 
@@ -638,6 +639,17 @@ lcd_display_people_line(u8 direction, u8 status)
 		}
 	}
 
+}
+
+
+void
+lcd_display_int(int line, int column, unsigned int font_color,
+		unsigned int bg_color, int value)
+{
+	char buf[80];
+	itoa(value, buf, sizeof(buf));
+
+	lcd_display_string(line, column, font_color, bg_color, buf);
 }
 
 
