@@ -259,14 +259,14 @@ north_south_task(void *arg)
 			/* 南北向人行道显示绿灯 */
 			lcd_display_people_line(SOUTH_NORTH, 1);
 
-			/* 休眠红灯显示时间 */
 			south_north_status = 0;
+			/* 休眠红灯显示时间 */
 			sleep(red_time);
 			continue;
 		}
 
 		south_north_status = 1;
-		/* 休眠绿灯显示时间，其中减3秒的时间为黄灯时间 */
+		/* 休眠绿灯显示时间 */
 		sleep(green_time - yellow_time);
 
 		/* 显示3秒黄灯 */
@@ -311,15 +311,15 @@ east_west_task(void *arg)
 			/* 东西向人行道显示绿灯 */
 			lcd_display_people_line(EAST_WEST, 1);
 
-			/* 休眠红灯显示时间 */
 			east_west_status = 0;
+			/* 休眠红灯显示时间 */
 			sleep(red_time);
 			continue;
 		}
 
 		east_west_status = 1;
-		/* 休眠绿灯显示时间，其中减3秒的时间为黄灯时间 */
-		sleep(green_time - 3);
+		/* 休眠绿灯显示时间 */
+		sleep(green_time - yellow_time);
 
 		/* 显示3秒黄灯 */
 		yellow_led_status = 1;
