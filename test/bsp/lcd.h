@@ -16,7 +16,7 @@
 #define FONT_WIDTH  8
 #define FONT_HEIGHT 16
 
-#define ENABLE_LCD		0
+#define ENABLE_LCD		1
 
 
 /*

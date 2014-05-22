@@ -95,7 +95,7 @@ void key_1_handler(void)
     //uart_puts("\nkey_1_handler");
 
 
-
+#ifdef LED_TRAFFIC
 	if (green_time >= 100)
 		return;
 
@@ -106,6 +106,7 @@ void key_1_handler(void)
 	/* 右下角显示红绿灯时间 */
 	lcd_display_string(16, 55, COLOR_WHITE, COLOR_WHITE, "   ");
 	lcd_display_int(16, 55, COLOR_BLUE, COLOR_WHITE, green_time);
+#endif
 
     
     return;
@@ -117,6 +118,7 @@ void key_2_handler(void)
     //uart_puts("\nkey_2_handler");
 
 
+#ifdef LED_TRAFFIC
 	if (green_time <= 30)
 		return;
 
@@ -127,6 +129,7 @@ void key_2_handler(void)
 	/* 右下角显示红绿灯时间 */
 	lcd_display_string(16, 55, COLOR_WHITE, COLOR_WHITE, "   ");
 	lcd_display_int(16, 55, COLOR_BLUE, COLOR_WHITE, green_time);
+#endif
     
     return;
 }

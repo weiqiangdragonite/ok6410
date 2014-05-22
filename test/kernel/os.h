@@ -185,6 +185,7 @@ void lock_schedule(void);
 void unlock_schedule(void);
 
 void idle_task(void *arg);
+void init_stat(void);
 void stat_task(void *arg);
 
 
