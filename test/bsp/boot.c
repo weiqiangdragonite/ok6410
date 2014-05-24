@@ -33,13 +33,13 @@ boot(void)
 
 	/* Menu */
 	while (1) {
-		uart_puts("\n");
-		uart_puts("***** Bootloader Menu *****");
-		uart_puts("[a] Update program");
-		uart_puts("[b] Reboot");
-		uart_puts("[c] Run OS");
-		uart_puts("***************************");
-		uart_print(">>> ");
+		uart_puts_lcd("\n");
+		uart_puts_lcd("***** Bootloader Menu *****");
+		uart_puts_lcd("[a] Update program");
+		uart_puts_lcd("[b] Reboot");
+		uart_puts_lcd("[c] Run OS");
+		uart_puts_lcd("***************************");
+		uart_print_lcd(">>> ");
 
 		choose = uart_getc();
 		uart_puts("\n");
@@ -49,7 +49,7 @@ boot(void)
 			update_program();
 			break;
 		case 'b':
-			uart_puts("Rebooting ...");
+			uart_puts_lcd("Rebooting ...");
 			reboot();
 			/* Wait for Watch Dog Timer reset */
 			while (1)
@@ -80,7 +80,7 @@ update_program(void)
 	int length = 0;
 	int size = 0;
 
-	uart_puts("Please send binary file!");
+	uart_puts_lcd("Please send binary file!");
 
 #define USE_QT_COM
 
@@ -111,7 +111,7 @@ update_program(void)
 	}
 
 	if (length == 0) {
-		uart_puts("No file receive.");
+		uart_puts_lcd("No file receive.");
 		return -1;
 	}
 
@@ -131,18 +131,18 @@ update_program(void)
 	uart_puts("");
 
 	if (ch != 'Y' && ch != 'y') {
-		uart_puts("You have cancel update.");
+		uart_puts_lcd("You have cancel update.");
 		return -1;
 	}
 
-	uart_puts("Updating ...");
+	uart_puts_lcd("Updating ...");
 
 	/* Erase block 0 (128 pages, 128 * 4K = 512 K) */
 	nand_erase_block(0);
 	/* Write to bootloader */
 	write_to_boot(addr, length);
 
-	uart_puts("Update done!");
+	uart_puts_lcd("Update done!");
 
 	return 0;
 }

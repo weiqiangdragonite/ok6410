@@ -9,8 +9,9 @@
 
 /* Max number of tasks in your application, and the lowest user task's
    priority is (OS_USR_TASKS - 1), the system idle and statistics task's
-   priority is OS_USR_TASKS and (OS_USR_TASKS + 1) */
-#define OS_USR_TASKS		100
+   priority is OS_USR_TASKS and (OS_USR_TASKS + 1)
+   Because system tasks + user tasks <= 255, so max user tasks is 254 */
+#define OS_USR_TASKS		250
 
 
 /* Enable statistics task */
@@ -25,12 +26,12 @@
 
 
 
-/* Default statistics task stack size */
+/* Default statistics task stack size: (128 * 4) bytes */
 #define STAT_TASK_STK_SIZE	128
 /* Default idle task stack size */
 #define IDLE_TASK_STK_SIZE	128
 /* Default task stack size */
-#define STK_SIZE		512
+#define STK_SIZE		128
 
 
 
@@ -38,12 +39,12 @@
 /* Memory */
 #define OS_MAX_MEM_NUM		10
 
-#define NUM_BLOCK		128
-#define BLOCK_LEN		128
+#define NUM_BLOCK		32
+#define BLOCK_LEN		32
 
 
 /* Debug infomation */
-#define ENABLE_DEBUG		0
+#define ENABLE_DEBUG		1
 
 
 

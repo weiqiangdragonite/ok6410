@@ -65,7 +65,9 @@ msleep(unsigned int milisecond)
 #if ENABLE_DEBUG
 	cpsr_t cpsr;
 	enter_critical();
-	uart_print("[time] sleep ");
+	uart_print("[time] Task ");
+	uart_print_int((int) os_tcb_current_ptr->tcb_prio);
+	uart_print(" sleep ");
 	uart_print_int(ticks);
 	uart_print(" ticks\n");
 	exit_critical();

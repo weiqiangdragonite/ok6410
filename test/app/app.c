@@ -1,160 +1,3 @@
-/*
-
-#define EAST_WEST	1
-#define WEST_EAST	2
-#define SOUTH_NORTH	3
-#define NORTH_SOUTH	4
-
-// 
-green_led_signal = 1;
-yellow_led_status = 0;
-
-south_north_status = 0;
-east_west_status = 0;
-
-// 绿灯和红灯默认时间为60秒，可通过按键中断来增加或减少时间
-green_time = 60;
-red_time = green_time;
-
-north_south_task()
-{
-	while (1) {
-		//
-		if (yellow_led_status) {
-			// 延时2个节拍
-			delay(2);
-			continue;
-		}
-
-		// 申请绿灯信号量
-		if (green_led_signal == 1) {
-			--green_led_signal;
-
-			// 南北向显示绿灯
-			lcd_display();
-
-		} else if (green_led_signal == 0) {
-			// 南北向显示红灯
-			lcd_display();
-
-			// 休眠红灯显示时间
-			south_north_status = 0;
-			sleep(red_time);
-			continue;
-		}
-
-		south_north_status = 1;
-		// 休眠绿灯显示时间，其中减3秒的时间为黄灯时间
-		sleep(green_time - 3);
-
-		// 显示3秒黄灯
-		yellow_led_status = 1;
-		lcd_display();
-		sleep(3);
-
-		// 释放绿灯信号量
-		++green_led_signal;
-		yellow_led_status = 0;
-
-		// 休眠4个节拍，让东西方向申请绿灯信号量
-		delay(4);
-	}
-}
-
-
-east_west_task()
-{
-	while (1) {
-		//
-		if (yellow_led_status) {
-			// 延时2个节拍
-			delay(2);
-			continue;
-		}
-
-		// 申请绿灯信号量
-		if (green_led_signal == 1) {
-			--green_led_signal;
-
-			// 东西向显示绿灯
-			lcd_display();
-
-		} else if (green_led_signal == 0) {
-			// 东西向显示红灯
-			lcd_display();
-
-			// 休眠红灯显示时间
-			east_west_status = 0;
-			sleep(red_time);
-			continue;
-		}
-
-		east_west_status = 1;
-		// 休眠绿灯显示时间，其中减3秒的时间为黄灯时间
-		sleep(green_time - 3);
-
-		// 显示3秒黄灯
-		yellow_led_status = 1;
-		lcd_display();
-		sleep(3);
-
-		// 释放绿灯信号量
-		++green_led_signal;
-		yellow_led_status = 0;
-
-		// 休眠4个节拍，让南北方向申请绿灯信号量
-		delay(4);
-	}
-}
-
-people_east_west_task()
-{
-	int flag = 0;
-	int old_flag = 1;
-
-	while (1) {
-		if (east_west_status) {
-			// 东西向通行，人行禁止
-			flag = 0;
-		} else {
-			// 东西向禁止，人行道通行
-			flag = 1;
-		}
-
-		if (old_flag != flag) {
-			lcd_display_people_line(SOUTH_NORTH, flag);
-			old_flag = flag;
-		}
-
-		sleep(1);
-	}
-}
-
-people_north_south_task()
-{
-	int flag = 0;
-	int old_flag = 1;
-
-	while (1) {
-		if (south_north_status) {
-			// 南北向通行，人行禁止
-			flag = 0;
-		} else {
-			// 南北向禁止，人行道通行
-			flag = 1;
-		}
-
-		if (old_flag != flag) {
-			lcd_display_people_line(WEST_EAST, flag);
-			old_flag = flag;
-		}
-
-		sleep(1);
-	}
-}
-
-
-*/
 
 
 #include "os.h"
@@ -166,37 +9,32 @@ people_north_south_task()
 #include "lcd.h"
 
 
-#define LED_TRAFFIC	1
+u8 memory[NUM_BLOCK][BLOCK_LEN];
+stk_t task_stk[256][STK_SIZE];
+
+struct os_mem *mem_buffer;
+
+u8 need_create_task;
+u8 need_delete_task;
+u8 user_prio = 99;
+u8 mem_prio = 49;
+u8 need_mem_task;
+u8 release_mem_task;
+prio_t old_prio, new_prio;
 
 
-#define EAST_WEST	1
-#define WEST_EAST	2
-#define SOUTH_NORTH	3
-#define NORTH_SOUTH	4
-
-
-
-u8 green_led_signal = 1;
-u8 yellow_led_status = 0;
-
-u8 south_north_status = 0;
-u8 east_west_status = 0;
-
-/* 绿灯和红灯默认时间为60秒，可通过按键中断来增加或减少时间 */
-int green_time = 60;
-int red_time = 60;
-int yellow_time = 3;
-
-
-
-void north_south_task(void *arg);
-void east_west_task(void *arg);
-void people_east_west_task(void *arg);
-void people_north_south_task(void *arg);
-void display_time_task(void *arg);
-
-
-stk_t task_stk[4][STK_SIZE];
+void main_task(void *arg);
+void create_user_task(void *arg);
+void delete_user_task(void *arg);
+void user_task(void *arg);
+void sus_task(void *arg);
+void res_task(void *arg);
+void prio_task(void *arg);
+void get_mem_task_1(void *arg);
+void get_mem_task_2(void *arg);
+void create_mem_task(void *arg);
+void delete_mem_task(void *arg);
+void get_mem_task(void *arg);
 
 
 int
@@ -204,209 +42,380 @@ main(void)
 {
 	init_os();
 
-	/* Init sys time */
-	init_sys_time();
+	create_task(main_task, NULL, &task_stk[0][STK_SIZE - 1], 0);
 
-
-	create_task(north_south_task, NULL, &task_stk[0][STK_SIZE - 1], 5);
-	create_task(east_west_task, NULL, &task_stk[1][STK_SIZE - 1], 6);
-
-	/*  */
-	//create_task(people_north_south_task, NULL, &task_stk[3][STK_SIZE - 1], 10);
-	//create_task(people_east_west_task, NULL, &task_stk[2][STK_SIZE - 1], 11;
-
-	create_task(display_time_task, NULL, &task_stk[2][STK_SIZE - 1], 10);
-
-
-	/**/
-	lcd_create_traffic_bg();
-	/* 全部先显示红灯 */
-	lcd_display_south_north_light(0);
-	lcd_display_east_west_light(0);
-	lcd_display_people_line(SOUTH_NORTH, 0);
-	lcd_display_people_line(EAST_WEST, 0);
-
-	/* 右下角显示红绿灯时间 */
-	lcd_display_int(16, 55, COLOR_BLUE, COLOR_WHITE, green_time);
-
-
+	uart_print("\nStart running tasks\n\n");
 	start_os();
 
 	return 0;
 }
 
+
 void
-north_south_task(void *arg)
+main_task(void *arg)
 {
+
+	/* clear background */
+	display_bg_color(COLOR_WHITE);
+
+	/* Init sys time */
+	init_sys_time();
+
+	/**/
+	init_stat();
+
+	/* Create memory */
+	mem_buffer = create_mem(memory, NUM_BLOCK, BLOCK_LEN);	
+
+	/* Create and delete other tasks */
+	create_task(create_user_task, NULL, &task_stk[5][STK_SIZE - 1], 5);
+	create_task(delete_user_task, NULL, &task_stk[6][STK_SIZE - 1], 6);
+
+	/* This two task used for suspend and resume task */
+	create_task(sus_task, NULL, &task_stk[10][STK_SIZE - 1], 10);
+	create_task(res_task, NULL, &task_stk[11][STK_SIZE - 1], 11);
+
+	/* This task will change prio */
+	create_task(prio_task, NULL, &task_stk[30][STK_SIZE - 1], 30);
+
+	/* This task will get and free memory */
+	create_task(create_mem_task, NULL, &task_stk[15][STK_SIZE - 1], 15);
+	create_task(delete_mem_task, NULL, &task_stk[16][STK_SIZE - 1], 16);
+	create_task(get_mem_task_1, NULL, &task_stk[17][STK_SIZE - 1], 17);
+	create_task(get_mem_task_2, NULL, &task_stk[18][STK_SIZE - 1], 18);
+
+
+
+
+	lcd_display_string(9,  0, COLOR_RED, COLOR_WHITE, "-------------------  Task   Information  -------------------");
+	lcd_display_string(10, 2, COLOR_RED, COLOR_WHITE, "App tasks: ");
+	lcd_display_string(10, 19, COLOR_RED, COLOR_WHITE, "Total tasks: ");
+	lcd_display_string(10, 38, COLOR_RED, COLOR_WHITE, "Current task: ");
+
+	lcd_display_string(12, 0, COLOR_RED, COLOR_WHITE, "-------------------  Memory Information  -------------------");
+	lcd_display_string(13, 2, COLOR_RED, COLOR_WHITE, "Total memory: ");
+	lcd_display_string(13, 22, COLOR_RED, COLOR_WHITE, "Free memory: ");
+	lcd_display_string(13, 42, COLOR_RED, COLOR_WHITE, "Used memory: ");
+
+
+	lcd_display_string(15, 0, COLOR_RED, COLOR_WHITE, "-------------------  System Information  -------------------");
+	lcd_display_string(16, 2, COLOR_RED, COLOR_WHITE, "CPU:    %");
+	lcd_display_string(16, 14, COLOR_RED, COLOR_WHITE, "Task switch/sec: ");
+	lcd_display_string(16, 36, COLOR_RED, COLOR_WHITE, "System time: ");
+
 	while (1) {
-		if (yellow_led_status) {
-			/* 延时2个节拍 */
-			delay(2);
-			continue;
-		}
+		uart_print_lcd("[app] Task 0 is refresh system info\n");
 
-		/* 申请绿灯信号量 */
-		if (green_led_signal == 1) {
-			--green_led_signal;
 
-			/* 南北向人行道显示红灯 */
-			lcd_display_people_line(SOUTH_NORTH, 0);
+		/* Task */
+		lcd_display_string(10, 13, COLOR_WHITE, COLOR_WHITE, "   ");
+		lcd_display_int(10, 13, COLOR_BLUE, COLOR_WHITE, os_task_counter - 2);
 
-			/* 南北向显示绿灯 */
-			lcd_display_south_north_light(1);
+		lcd_display_string(10, 32, COLOR_WHITE, COLOR_WHITE, "   ");
+		lcd_display_int(10, 32, COLOR_BLUE, COLOR_WHITE, os_task_counter);
 
-		} else if (green_led_signal == 0) {
-			/* 南北向显示红灯 */
-			lcd_display_south_north_light(0);
+		/* Memory */
+		lcd_display_string(13, 16, COLOR_WHITE, COLOR_WHITE, "   ");
+		lcd_display_int(13, 16, COLOR_BLUE, COLOR_WHITE, mem_buffer->num_blocks);
 
-			/* 南北向人行道显示绿灯 */
-			lcd_display_people_line(SOUTH_NORTH, 1);
+		lcd_display_string(13, 35, COLOR_WHITE, COLOR_WHITE, "   ");
+		lcd_display_int(13, 35, COLOR_BLUE, COLOR_WHITE, mem_buffer->num_free);
 
-			south_north_status = 0;
-			/* 休眠红灯显示时间 */
-			sleep(red_time);
-			continue;
-		}
+		lcd_display_string(13, 55, COLOR_WHITE, COLOR_WHITE, "   ");
+		lcd_display_int(13, 55, COLOR_BLUE, COLOR_WHITE, mem_buffer->num_blocks - mem_buffer->num_free);
 
-		south_north_status = 1;
-		/* 休眠绿灯显示时间 */
-		sleep(green_time - yellow_time);
+		/* System */
+		lcd_display_string(16, 7, COLOR_WHITE, COLOR_WHITE, "   ");
+		lcd_display_int(16, 7, COLOR_BLUE, COLOR_WHITE, os_cpu_usage);
 
-		/* 显示3秒黄灯 */
-		yellow_led_status = 1;
-		lcd_display_south_north_light(2);
-		sleep(yellow_time);
+		lcd_display_string(16, 31, COLOR_WHITE, COLOR_WHITE, "   ");
+		lcd_display_int(16, 31, COLOR_BLUE, COLOR_WHITE, os_switch_counter);
 
-		/* 释放绿灯信号量 */
-		++green_led_signal;
-		yellow_led_status = 0;
+		lcd_display_string(16, 49, COLOR_WHITE, COLOR_WHITE, "          ");
+		lcd_display_int(16, 49, COLOR_BLUE, COLOR_WHITE, get_os_time());
 
-		/* 休眠4个节拍，让东西方向申请绿灯信号量 */
-		delay(4);
+		os_switch_counter = 0;
+
+		msleep(1000);
 	}
 }
 
 
 void
-east_west_task(void *arg)
+create_user_task(void *arg)
 {
-	while (1) {
-		if (yellow_led_status) {
-			/* 延时2个节拍 */
-			delay(2);
-			continue;
-		}
-
-		/* 申请绿灯信号量 */
-		if (green_led_signal == 1) {
-			--green_led_signal;
-
-			/* 东西向人行道显示红灯 */
-			lcd_display_people_line(EAST_WEST, 0);
-
-			/* 东西向显示绿灯 */
-			lcd_display_east_west_light(1);
-
-		} else if (green_led_signal == 0) {
-			/* 东西向显示红灯 */
-			lcd_display_east_west_light(0);
-
-			/* 东西向人行道显示绿灯 */
-			lcd_display_people_line(EAST_WEST, 1);
-
-			east_west_status = 0;
-			/* 休眠红灯显示时间 */
-			sleep(red_time);
-			continue;
-		}
-
-		east_west_status = 1;
-		/* 休眠绿灯显示时间 */
-		sleep(green_time - yellow_time);
-
-		/* 显示3秒黄灯 */
-		yellow_led_status = 1;
-		lcd_display_east_west_light(2);
-		sleep(3);
-
-		/* 释放绿灯信号量 */
-		++green_led_signal;
-		yellow_led_status = 0;
-
-		/* 休眠4个节拍，让南北方向申请绿灯信号量 */
-		delay(4);
-	}
-}
-
-
-/*
- * 上下的人行道
- * 一开始，南北向通行，人行道继续禁止
- */
-void
-people_north_south_task(void *arg)
-{
-	int flag = 0;
-	int old_flag = 1;
+	need_create_task = 0;
 
 	while (1) {
-		if (south_north_status) {
-			/* 南北向通行，人行道禁止 */
-			flag = 0;
-		} else {
-			/* 南北向禁止，人行通行 */
-			flag = 1;
-		}
-
-		if (old_flag != flag) {
-			lcd_display_people_line(SOUTH_NORTH, flag);
-			old_flag = flag;
+		if (need_create_task) {
+			++user_prio;
+			create_task(user_task, &user_prio, &task_stk[user_prio][STK_SIZE - 1], user_prio);
+			need_create_task = 0;
 		}
 
 		sleep(1);
 	}
 }
 
-/*
- * 左右的人行道
- * 一开始，东西向禁行，所以人行道通行
- */
 void
-people_east_west_task(void *arg)
+delete_user_task(void *arg)
 {
-	int flag = 0;
-	int old_flag = 0;
-
+	need_delete_task = 0;
+	u8 curr_prio;
 	while (1) {
-		if (east_west_status) {
-			/* 东西向通行，人行禁止 */
-			flag = 0;
-		} else {
-			/* 东西向禁止，人行道通行 */
-			flag = 1;
+		curr_prio = user_prio;
+		if (curr_prio <= 99 && curr_prio > 250) {
+			need_delete_task = 0;
+			sleep(1);
+			continue;
 		}
 
-		if (old_flag != flag) {
-			lcd_display_people_line(EAST_WEST, flag);
-			old_flag = flag;
+		if (need_delete_task) {
+
+			while (delete_task_request(curr_prio) != -1) {
+				uart_print_lcd("[app] I am task 6, I am going to delete task ");
+				uart_print_int_lcd(curr_prio);
+				uart_print_lcd("\n");
+
+				sleep(2);
+			}
+			need_delete_task = 0;
 		}
 
 		sleep(1);
 	}
 }
 
-void display_time_task(void *arg)
+void
+user_task(void *arg)
+{
+	u8 prio = *(u8 *) arg;
+	while (1) {
+		uart_print_lcd("[app] I am task ");
+		uart_print_int_lcd(prio);
+
+
+		if (delete_task_request(OS_PRIO_SELF) == OS_TASK_DEL_REQ) {
+			uart_print_lcd(", I am going to delete myself\n");
+			--user_prio;
+			delete_task(OS_PRIO_SELF);
+		}
+		uart_print_lcd("\n");
+
+		sleep(2);
+	}
+}
+
+
+void
+sus_task(void *arg)
+{
+	while (1) {
+		uart_print_lcd("[app] I am task 10, I am waiting to suspend\n");
+
+		sleep(1);
+	}
+}
+
+void
+res_task(void *arg)
 {
 	int time = 0;
-	while (1) {
-		if (time == 0)
-			time = green_time;
 
-		/* 左下角显示 */
-		lcd_display_string(16, 5, COLOR_WHITE, COLOR_WHITE, "   ");
-		lcd_display_int(16, 5, COLOR_BLUE, COLOR_WHITE, time);
+	while (1) {
+		++time;
+		if (time == 10) {
+			uart_print_lcd("[app] I am task 11, I am going to suspend task 10\n");
+			suspend_task(10);
+		}
+
+		if (time == 20) {
+			uart_print_lcd("[app] I am task 11, I am going to resume task 10\n");
+			resume_task(10);
+			time = 0;
+		}
+
 		sleep(1);
-		--time;
 	}
 }
 
+
+void
+prio_task(void *arg)
+{
+	old_prio = os_tcb_current_ptr->tcb_prio;
+	new_prio = old_prio;
+	int res;
+
+	while (1) {
+		old_prio = os_tcb_current_ptr->tcb_prio;
+
+		uart_print_lcd("[app] I am task ");
+		uart_print_int_lcd(old_prio);
+
+		if (old_prio != new_prio && new_prio >= 0 && new_prio < TASK_STAT_PRIO) {
+			uart_print_lcd(", I will change to task ");
+			uart_print_int_lcd(new_prio);
+			uart_print_lcd("\n");
+
+			res = change_task_prio(old_prio, new_prio);
+			if (res == -1) {
+				uart_print_lcd("[app] I am task ");
+				uart_print_int_lcd(old_prio);
+				uart_print_lcd(", I cannot change to task ");
+				uart_print_int_lcd(new_prio);
+			} else {
+				uart_print_lcd("[app] I am task ");
+				uart_print_int_lcd(new_prio);
+				uart_print_lcd(", my old task prio is ");
+				uart_print_int_lcd(old_prio);
+			}
+		}
+		uart_print_lcd("\n");
+
+		sleep(1);
+	}
+}
+
+
+void
+get_mem_task_1(void *arg)
+{
+	int time = 0;
+	u32 *ptr;
+	while (1) {
+		++time;
+		if (time == 5) {
+			uart_print_lcd("[app] I am task ");
+			uart_print_int_lcd(os_tcb_current_ptr->tcb_prio);
+			uart_print_lcd(", I am going to get one memory\n");
+
+			ptr = get_mem(mem_buffer, mem_buffer->block_len);
+			*ptr = get_os_time();
+			uart_print_lcd("[app] Memory content is: ");
+			uart_print_int_lcd(*ptr);
+			uart_print_lcd("\n");
+		}
+
+		if (time == 20) {
+			uart_print_lcd("[app] I am task ");
+			uart_print_int_lcd(os_tcb_current_ptr->tcb_prio);
+			uart_print_lcd(", I am going to release one memory\n");
+
+			free_mem(mem_buffer, ptr);
+			time = 0;
+		}
+
+		sleep(1);
+	}
+}
+
+void
+get_mem_task_2(void *arg)
+{
+	int time = 0;
+	u32 *ptr;
+	while (1) {
+		++time;
+		if (time == 10) {
+			uart_print_lcd("[app] I am task ");
+			uart_print_int_lcd(os_tcb_current_ptr->tcb_prio);
+			uart_print_lcd(", I am going to get one memory\n");
+
+			ptr = get_mem(mem_buffer, mem_buffer->block_len);
+			*ptr = get_os_time();
+			uart_print_lcd("[app] Memory content is: ");
+			uart_print_int_lcd(*ptr);
+			uart_print_lcd("\n");
+		}
+
+		if (time == 30) {
+			uart_print_lcd("[app] I am task ");
+			uart_print_int_lcd(os_tcb_current_ptr->tcb_prio);
+			uart_print_lcd(", I am going to release one memory\n");
+
+			free_mem(mem_buffer, ptr);
+			time = 0;
+		}
+
+		sleep(1);
+	}
+}
+
+void
+create_mem_task(void *arg)
+{
+	need_mem_task = 0;
+	
+
+	while (1) {
+		if (need_mem_task) {
+			++mem_prio;
+			create_task(get_mem_task, &mem_prio, &task_stk[mem_prio][STK_SIZE - 1], mem_prio);
+			need_mem_task = 0;
+		}
+
+		sleep(1);
+	}
+}
+
+void
+delete_mem_task(void *arg)
+{
+	release_mem_task = 0;
+	u8 curr_prio;
+
+	while (1) {
+		curr_prio = mem_prio;
+		if (curr_prio <= 49 && curr_prio >= 100) {
+			release_mem_task = 0;
+			sleep(1);
+			continue;
+		}
+
+		if (release_mem_task) {
+
+			while (delete_task_request(curr_prio) != -1) {
+				//uart_print_lcd("[app] I am task 6, I am going to delete task ");
+				//uart_print_int_lcd(curr_prio);
+				//uart_print_lcd("\n");
+
+				sleep(2);
+			}
+			release_mem_task = 0;
+		}
+
+		sleep(1);
+	}
+}
+
+void
+get_mem_task(void *arg)
+{
+	u8 prio = *(u8 *) arg;
+
+	uart_print_lcd("[app] I am task ");
+	uart_print_int_lcd(prio);
+	uart_print_lcd(", I am going to get one memory\n");
+
+	u8 *ptr = get_mem(mem_buffer, mem_buffer->block_len);
+	if (ptr == NULL)
+		uart_print_lcd("[app] Cannot get memory\n");
+
+	while (1) {
+		uart_print_lcd("[app] I am task ");
+		uart_print_int_lcd(prio);
+		uart_print_lcd(", I am using one memory\n");
+
+		if (delete_task_request(OS_PRIO_SELF) == OS_TASK_DEL_REQ) {
+			uart_print_lcd("[app] I am task ");
+			uart_print_int_lcd(prio);
+			uart_print_lcd(", I am going to delete myself\n");
+			free_mem(mem_buffer, ptr);
+			--mem_prio;
+			delete_task(OS_PRIO_SELF);
+		}
+
+		sleep(2);
+	}
+}

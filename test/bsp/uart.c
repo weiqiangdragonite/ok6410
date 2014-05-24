@@ -192,6 +192,18 @@ uart_putc(unsigned char ch)
 	}
 
 	UTXH0 = ch;
+}
+
+void
+uart_putc_lcd(unsigned char ch)
+{
+	/* Wait for the transmit register empty */
+	while (1) {
+		if ((UTRSTAT0 & 6) == 6)
+			break;
+	}
+
+	UTXH0 = ch;
 
 #if ENABLE_LCD
 	if (ch >= 128)
@@ -224,21 +236,32 @@ uart_putc(unsigned char ch)
 		++curr_row;
 	}
 
-
-	/* 行数为 0 - 16，超过16行，从第1行起往上移一行 */
+/*
+	// 行数为 0 - 16，超过16行，从第1行起往上移一行 
 	if (curr_row >= 17) {
-		/* 1行总共有 480 * 16 * 4 = 30720 个字节，所以第1行的地址为
-		   (FRAME_BUFFER + 480 * 16)
-		   第1行到第16行总共有  480 * 16 * 16 * 4 = 491520 个字节 */
+		// 1行总共有 480 * 16 * 4 = 30720 个字节，所以第1行的地址为
+		//   (FRAME_BUFFER + 480 * 16)
+		//   第1行到第16行总共有  480 * 16 * 16 * 4 = 491520 个字节 
 
-		/* (dest, src, size) */
+		// (dest, src, size) 
 		lcd_memcpy((int *) FRAME_BUFFER, (int *) FRAME_BUFFER + lcd_cfg.width * FONT_HEIGHT,
 			480 * 16 * 16);
 
-		/* 然后最后一行清零 */
+		// 然后最后一行清零 
 		lcd_clear_line(16, COLOR_WHITE);
 
 		--curr_row;
+		curr_col = 0;
+	}
+*/
+
+	/* 行数为0 - 7， 超过第7行，清零后继续 */
+	if (curr_row > 7) {
+		int i;
+		for (i = 0; i <= 8; ++i)
+			lcd_clear_line(i, COLOR_WHITE);
+
+		curr_row = 0;
 		curr_col = 0;
 	}
 
@@ -259,6 +282,17 @@ uart_puts(char *str)
 	uart_putc('\n');
 }
 
+void
+uart_puts_lcd(char *str)
+{
+	int i;
+	for (i = 0; str[i] != '\0'; ++i) {
+		uart_putc_lcd(str[i]);
+	}
+
+	uart_putc_lcd('\n');
+}
+
 /*
  * print string, no '\n'
  */
@@ -268,6 +302,15 @@ uart_print(char *str)
 	int i;
 	for (i = 0; str[i] != '\0'; ++i) {
 		uart_putc(str[i]);
+	}
+}
+
+void
+uart_print_lcd(char *str)
+{
+	int i;
+	for (i = 0; str[i] != '\0'; ++i) {
+		uart_putc_lcd(str[i]);
 	}
 }
 
@@ -527,6 +570,28 @@ uart_print_int(int data)
 
 	for (i -= 1; i >= 0; --i) {
 		uart_putc(num[i]);
+	}
+}
+
+void
+uart_print_int_lcd(int data)
+{
+	char num[80];
+	int i;
+
+	if (data < 0)
+		uart_putc_lcd('-');
+
+	i = 0;
+	while (1) {
+		num[i++] = data % 10 + '0';
+		data /= 10;
+		if (data == 0)
+			break;
+	}
+
+	for (i -= 1; i >= 0; --i) {
+		uart_putc_lcd(num[i]);
 	}
 }
 

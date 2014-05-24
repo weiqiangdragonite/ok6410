@@ -9,6 +9,7 @@
 #include "uart.h"
 #include "memory.h"
 #include "time.h"
+#include "lcd.h"
 
 
 static void init_variable(void);
@@ -196,10 +197,12 @@ init_tcb(prio_t prio, stk_t *stk_ptr)
 		++os_task_counter;
 
 #if ENABLE_DEBUG
-		uart_print("Init tcb[");
+		uart_print("[core] Init tcb[");
 		uart_print_int((int) tcb_ptr->tcb_prio);
 		uart_print("] done\n");
 #endif
+
+			
 
 		exit_critical();
 		return 0;
@@ -237,8 +240,19 @@ sched(void)
 			/* Increate the context switch counter */
 			++os_switch_counter;
 
+#if ENABLE_DEBUG
+			uart_print("[core] Task ");
+			uart_print_int((int) os_tcb_current_ptr->tcb_prio);
+			uart_print(" switch to task ");
+			uart_print_int((int) os_tcb_ready_ptr->tcb_prio);
+			uart_print("\n");
+#endif
+
 			/* Context switch */
 			switch_task();
+
+			lcd_display_string(10, 52, COLOR_WHITE, COLOR_WHITE, "   ");
+			lcd_display_int(10, 52, COLOR_BLUE, COLOR_WHITE, os_tcb_current_ptr->tcb_prio);
 		}
 		
 	}
@@ -263,12 +277,12 @@ sched_new(void)
 				os_prio_high_ready = index;
 
 #if ENABLE_DEBUG
-				cpsr_t cpsr;
-				enter_critical();
-				uart_print("sched_new(): high prio = ");
-				uart_print_int((int) os_prio_high_ready);
-				uart_print("\n");
-				exit_critical();
+				//cpsr_t cpsr;
+				//enter_critical();
+				//uart_print("[core] sched_new(): high prio = ");
+				//uart_print_int((int) os_prio_high_ready);
+				//uart_print("\n");
+				//exit_critical();
 #endif
 
 				return;
@@ -339,10 +353,10 @@ void exit_interrupt(void)
 				interrupt_switch_task();
 			}
 #if ENABLE_DEBUG
-			uart_print("highe ready == current\n"
-				"interrupt counter = ");
-			uart_print_int((int) os_interrupt_counter);
-			uart_print("\n");
+			//uart_print("[core] highe ready == current\n"
+			//	"interrupt counter = ");
+			//uart_print_int((int) os_interrupt_counter);
+			//uart_print("\n");
 #endif
 		}
 		exit_critical();
@@ -371,17 +385,17 @@ time_tick(void)
 	while (tcb_ptr != NULL) {
 		enter_critical();
 #if ENABLE_DEBUG
-		uart_print("Go through tcb: ");
-		uart_print_int((int) tcb_ptr->tcb_prio);
-		uart_print("\n");
+		//uart_print("Go through tcb: ");
+		//uart_print_int((int) tcb_ptr->tcb_prio);
+		//uart_print("\n");
 #endif
 		if (tcb_ptr->tcb_delay != 0) {
 			/* Decrement number of ticks to end of delay */
 			--(tcb_ptr->tcb_delay);
 #if ENABLE_DEBUG
-			uart_print("now have ");
-			uart_print_int(tcb_ptr->tcb_delay);
-			uart_print(" ticks\n");
+			//uart_print("now have ");
+			//uart_print_int(tcb_ptr->tcb_delay);
+			//uart_print(" ticks\n");
 #endif
 			if (tcb_ptr->tcb_delay == 0)
 				change_task_status(tcb_ptr);
@@ -399,9 +413,9 @@ static void
 change_task_status(struct os_tcb *tcb_ptr)
 {
 #if ENABLE_DEBUG
-	uart_print("prio ");
-	uart_print_int((int) tcb_ptr->tcb_prio);
-	uart_print(" change task status\n");
+	//uart_print("prio ");
+	//uart_print_int((int) tcb_ptr->tcb_prio);
+	//uart_print(" change task status\n");
 #endif
 
 
@@ -471,6 +485,7 @@ unlock_schedule(void)
 static void
 init_idle_task(void)
 {
+	uart_print("[core] Create system idle task:\n");
 	create_task(idle_task, 0, &os_idle_task_stk[IDLE_TASK_STK_SIZE - 1],
 			TASK_IDLE_PRIO);
 }
@@ -482,7 +497,7 @@ idle_task(void *arg)
 
 	while (1) {
 		enter_critical();
-		//uart_print("os_idle_counter++\n");
+		//uart_print("[core] idle task plus one\n");
 		++os_idle_counter;
 		exit_critical();
 	}
@@ -491,6 +506,7 @@ idle_task(void *arg)
 static void
 init_stat_task(void)
 {
+	uart_print("[core] Create system statistics task:\n");
 	create_task(stat_task, 0, &os_stat_task_stk[STAT_TASK_STK_SIZE - 1],
 			TASK_STAT_PRIO);
 	os_stat_task_ready = FALSE;
@@ -524,6 +540,8 @@ init_stat(void)
 
 /*
  * Calculate the CPU usage.
+ *
+ * CPUUsage(%) = 100 * (1 - os_idle_ctr / os_idle_max)
  */
 void
 stat_task(void *arg)
@@ -540,7 +558,7 @@ stat_task(void *arg)
 		os_idle_counter = 0;
 		exit_critical();
 		os_cpu_usage =
-			(u8) (100 * os_idle_counter_run / os_idle_counter_max);
+			(u8) (100 - 100 * os_idle_counter_run / os_idle_counter_max);
 		/* Wait for next second */
 		sleep(1);
 	}

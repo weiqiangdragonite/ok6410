@@ -181,6 +181,8 @@ void change_bg_color(void)
     }
     
     if (++index == 5) index = 0;
+
+
     
     return;
 }
@@ -196,6 +198,9 @@ void display_bg_color(unsigned int color)
             ptr[addr++] = color;
         }
     }
+
+	curr_row = 0;
+	curr_col = 0;
     
     return;
 }
@@ -356,36 +361,9 @@ lcd_memcpy(void *dest, const void *src, size_t n)
 	return dest;	
 }
 
+
+
 /*
-
-480 x 272
-+-------------++-------------------------------------------------------------
-|             ||
-|             ||
-|             ||
-|             ||
-+=============++(120,68)
-|                                   |
-|                                   |
-|                                   |
-|   -------                         |
-|               +--+                |
-|   -------     |  |                |
-|               |  |                |
-|   -------     +--+                |
-|                                   |
-|                                   |
-|                                   |(240,136)
-+-----------------------------------+--------------------------------------
-
-
-
-
------------------------------------------------------------------------------
-
-*/
-
-
 void
 lcd_create_traffic_bg(void)
 {
@@ -394,7 +372,7 @@ lcd_create_traffic_bg(void)
 
 	int x, y;
 
-	/* 横 */
+	// 横 
 	for (x = 0; x < 170; ++x) {
 		lcd_write_pixel(x, 66, COLOR_BLACK);
 		lcd_write_pixel(x, 136, COLOR_BLACK);
@@ -407,7 +385,7 @@ lcd_create_traffic_bg(void)
 		lcd_write_pixel(x, 206, COLOR_BLACK);
 	}
 
-	/* 竖 */
+	// 竖 
 	for (y = 0; y < 66; ++y) {
 		lcd_write_pixel(170, y, COLOR_BLACK);
 		lcd_write_pixel(240, y, COLOR_BLACK);
@@ -427,18 +405,18 @@ lcd_display_south_north_light(u8 status)
 	int x, y, z;
 	unsigned int color;
 
-	/* 显示绿灯 */
+	// 显示绿灯 
 	if (status == 1)
 		color = COLOR_GREEN;
-	/* 显示红灯 */
+	// 显示红灯 
 	else if (status == 0)
 		color = COLOR_RED;
-	/* 显示黄灯 */
+	// 显示黄灯 
 	else if (status == 2)
 		color = COLOR_YELLOW;
 
 
-	/* 显示灯 */
+	// 显示灯 
 	for (y = 66; y < 86; ++y) {
 		for (x = 250; x < 300; ++x)
 			lcd_write_pixel(x, y, color);
@@ -449,7 +427,7 @@ lcd_display_south_north_light(u8 status)
 			lcd_write_pixel(x, y, color);
 	}
 
-	/* 线 */
+	// 线 
 	if (status == 1) {
 		for (y = 70; y < 160; ++y)
 			lcd_write_pixel(205, y, COLOR_GREEN);
@@ -464,7 +442,7 @@ lcd_display_south_north_light(u8 status)
 			lcd_write_pixel(275, y, COLOR_WHITE);
 	}
 
-	/* 箭头 */
+	// 箭头 
 	if (status == 1) {
 		for (x = 196, z = 214, y = 150; y < 160; ++y, ++x, --z) {
 			lcd_write_pixel(x, y, COLOR_GREEN);
@@ -494,18 +472,18 @@ lcd_display_east_west_light(u8 status)
 	int x, y, z;
 	unsigned int color;
 
-	/* 显示绿灯 */
+	// 显示绿灯 
 	if (status == 1)
 		color = COLOR_GREEN;
-	/* 显示红灯 */
+	// 显示红灯 
 	else if (status == 0)
 		color = COLOR_RED;
-	/* 显示黄灯 */
+	// 显示黄灯 
 	else if (status == 2)
 		color = COLOR_YELLOW;
 
 
-	/* 显示灯 */
+	// 显示灯 
 	for (y = 76; y < 126; ++y) {
 		for (x = 170; x < 190; ++x)
 			lcd_write_pixel(x, y, color);
@@ -516,7 +494,7 @@ lcd_display_east_west_light(u8 status)
 			lcd_write_pixel(x, y, color);
 	}
 
-	/* 线 */
+	// 线 
 	if (status == 1) {
 		for (x = 210; x < 300; ++x)
 			lcd_write_pixel(x, 101, COLOR_GREEN);
@@ -531,7 +509,7 @@ lcd_display_east_west_light(u8 status)
 			lcd_write_pixel(x, 171, COLOR_WHITE);
 	}
 
-	/* 箭头 */
+	// 箭头 
 	if (status == 1) {
 		for (x = 210, y = z = 101; x < 220; ++y, ++x, --z) {
 			lcd_write_pixel(x, y, COLOR_GREEN);
@@ -562,16 +540,16 @@ lcd_display_people_line(u8 direction, u8 status)
 	int x, y;
 	unsigned int color;
 
-	/* 显示绿灯 */
+	// 显示绿灯 
 	if (status == 1)
 		color = COLOR_GREEN;
-	/* 显示红灯 */
+	// 显示红灯 
 	else if (status == 0)
 		color = COLOR_RED;
 
-	/* 东西的斑马线 */
+	// 东西的斑马线 
 	if (direction == 1 || direction == 2) {
-		/* 画斑马线 */
+		// 画斑马线 
 		for (x = 120; x < 160; ++x) {
 			lcd_write_pixel(x, 76, color);
 			lcd_write_pixel(x, 86, color);
@@ -604,7 +582,7 @@ lcd_display_people_line(u8 direction, u8 status)
 			lcd_write_pixel(x, 196, color);
 		}
 
-	/* 南北的斑马线 */
+	// 南北的斑马线
 	} else {
 		for (y = 20; y < 60; ++y) {
 			lcd_write_pixel(180, y, color);
@@ -640,6 +618,7 @@ lcd_display_people_line(u8 direction, u8 status)
 	}
 
 }
+*/
 
 
 void

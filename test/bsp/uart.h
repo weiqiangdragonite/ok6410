@@ -23,18 +23,22 @@ void set_uart_baud_rate(int uart, int baud_rate);
 void uart_0_isr(void);
 
 void uart_putc(unsigned char ch);
+void uart_putc_lcd(unsigned char ch);
+
 void uart_puts(char *str);
+void uart_puts_lcd(char *str);
 
 unsigned char uart_getc(void);
 void uart_gets(char *str);
 
 
 void uart_print(char *str);
-void uart_scanf(char *type, int *addr);
+void uart_print_lcd(char *str);
 
 
 int uart_get_int(void);
 void uart_print_int(int data);
+void uart_print_int_lcd(int data);
 
 
 void uart_print_hex(unsigned int data);

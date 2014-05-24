@@ -26,7 +26,7 @@ create_task(void (*task)(void *arg), void *arg, stk_t *stk_top, prio_t prio)
 	/* Make sure the priority is in allowable range */
 	if (prio > OS_LOWEST_PRIO) {
 #if ENABLE_DEBUG
-		uart_print("\n[Error] Task's priority is invalid.\n");
+		uart_print("\n[Error] Task's priority is invalid\n");
 #endif
 		errno = ERR_PRIO_INVALID;
 		return -1;
@@ -39,7 +39,7 @@ create_task(void (*task)(void *arg), void *arg, stk_t *stk_top, prio_t prio)
 	if (os_interrupt_counter > 0) {
 		/* Restore */
 #if ENABLE_DEBUG
-		uart_print("\n[Error] Create task in the ISR.\n");
+		uart_print("\n[Error] Cannot create task in the ISR\n");
 #endif
 		errno = ERR_TASK_CREATE_ISR;
 		exit_critical();
@@ -50,6 +50,16 @@ create_task(void (*task)(void *arg), void *arg, stk_t *stk_top, prio_t prio)
 	if (os_tcb_prio_table[prio] == NULL) {
 		/* Mark this prio and prevent other to use */
 		os_tcb_prio_table[prio] = (struct os_tcb *) 1;
+
+#if ENABLE_DEBUG
+		uart_print("[task] Task prio: ");
+		uart_print_int((int) prio);
+		uart_print("\n[task] Task's stack address: ");
+		uart_print_hex((unsigned int) stk_top);
+		uart_print("\n[task] Task address: ");
+		uart_print_hex((unsigned int) task);
+		uart_print("\n");
+#endif
 
 		exit_critical();
 
@@ -70,7 +80,7 @@ create_task(void (*task)(void *arg), void *arg, stk_t *stk_top, prio_t prio)
 
 #if ENABLE_DEBUG
 		enter_critical();
-		uart_print("Create prio ");
+		uart_print("[task] Create prio ");
 		uart_print_int((int) prio);
 		uart_print(" task done\n");
 		exit_critical();
@@ -83,7 +93,7 @@ create_task(void (*task)(void *arg), void *arg, stk_t *stk_top, prio_t prio)
 		return 0;
 	}
 #if ENABLE_DEBUG
-	uart_print("\n[Error] Task's priority already exist.\n");
+	uart_print("\n[Error] Task's priority already exist\n");
 #endif
 	errno = ERR_PRIO_EXIST;
 	exit_critical();
@@ -112,16 +122,6 @@ init_task_stack(void (*task)(void *arg), void *arg, stk_t *stk_top)
 	/* Task entery point (store in PC) */
 	*stk_ptr = (stk_t) task;
 
-#if ENABLE_DEBUG
-	cpsr_t cpsr;
-	enter_critical();
-	uart_print("[task] stk_top address: ");
-	uart_print_hex((unsigned int) stk_top);
-	uart_print("\n[task] task address: ");
-	uart_print_hex(*stk_ptr);
-	uart_print("\n");
-	exit_critical();
-#endif
 
 	/* R14 (LR) */
 	*(--stk_ptr) = (u32) 0x14141414;
@@ -186,6 +186,13 @@ suspend_task(prio_t prio)
 
 	/* Make task status to suspend */
 	tcb_ptr->task_status |= TASK_SUSPEND;
+
+#if ENABLE_DEBUG
+	uart_print("[task] Task ");
+	uart_print_int(tcb_ptr->tcb_prio);
+	uart_print(" is suspend\n");
+#endif
+
 	exit_critical();
 
 	if (self == TRUE)
@@ -251,11 +258,13 @@ change_task_prio(prio_t old_prio, prio_t new_prio)
 	/* task_idle_prio == os_lowest_prio */
 	if (old_prio >= OS_LOWEST_PRIO && old_prio != OS_PRIO_SELF) {
 		errno = ERR_PRIO_INVALID;
+		uart_print("[task] Invalid task prio\n");
 		return -1;
 	}
 
 	if (new_prio >= OS_LOWEST_PRIO) {
 		errno = ERR_PRIO_INVALID;
+		uart_print("[task] Invalid task prio\n");
 		return -1;
 	}
 
@@ -263,6 +272,7 @@ change_task_prio(prio_t old_prio, prio_t new_prio)
 
 	if (os_tcb_prio_table[new_prio] != NULL) {
 		errno = ERR_PRIO_EXIST;
+		uart_print("[task] Task prio is exist\n");
 		exit_critical();
 		return -1;
 	}
@@ -380,11 +390,13 @@ delete_task_request(prio_t prio)
 
 	if (prio == TASK_IDLE_PRIO) {
 		errno = ERR_TASK_DEL_IDLE;
+		uart_print("[task] Cannot delete idle task\n");
 		return -1;
 	}
 
 	if (prio >= OS_LOWEST_PRIO && prio != OS_PRIO_SELF) {
 		errno = ERR_PRIO_INVALID;
+		uart_print("[task] Invalid task prio\n");
 		return -1;
 	}
 

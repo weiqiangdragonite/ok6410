@@ -193,6 +193,7 @@ int suspend_task(prio_t prio);
 int resume_task(prio_t prio);
 int delete_task(prio_t prio);
 int delete_task_request(prio_t prio);
+int change_task_prio(prio_t old_prio, prio_t new_prio);
 
 extern void init_mem_list(void);
 
