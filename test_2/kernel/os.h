@@ -21,6 +21,8 @@
 /* Number of system tasks */
 #define OS_SYS_TASKS		2
 
+#define OS_MAX_USR_TASKS	250
+
 /* Defines the lowest priority that can be assigned */
 #define OS_LOWEST_PRIO		((OS_USR_TASKS) + (OS_SYS_TASKS) - 1)
 
@@ -151,8 +153,11 @@ struct os_tcb	*os_tcb_free_list;
 
 
 
-struct os_mem	*os_mem_free_list;
-struct os_mem	os_mem_table[OS_MAX_MEM_NUM];
+//struct os_mem	*os_mem_free_list;
+//struct os_mem	os_mem_table[OS_MAX_MEM_NUM];
+
+u8 os_memory[NUM_BLOCK][BLOCK_LEN];
+struct os_mem *os_mem_ptr;
 
 
 
@@ -186,8 +191,12 @@ void lock_schedule(void);
 void unlock_schedule(void);
 
 void idle_task(void *arg);
+
+
+#if ENABLE_STAT_TASK
 void init_stat(void);
 void stat_task(void *arg);
+#endif
 
 
 int suspend_task(prio_t prio);

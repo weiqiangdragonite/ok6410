@@ -12,7 +12,7 @@
    priority is OS_USR_TASKS and (OS_USR_TASKS + 1)
    Because system tasks + user tasks <= 255, and for some reason, personaly,
    we can have 250 user tasks, 0 ~ 249, and plus two system task, 250 and 251 */
-#define OS_USR_TASKS		250
+#define OS_USR_TASKS		200
 
 
 /* Enable statistics task */
@@ -38,7 +38,6 @@
 
 
 /* Memory */
-#define OS_MAX_MEM_NUM		10
 
 #define NUM_BLOCK		32
 #define BLOCK_LEN		32

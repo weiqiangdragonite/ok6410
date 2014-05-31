@@ -9,10 +9,9 @@
 #include "lcd.h"
 
 
-u8 memory[NUM_BLOCK][BLOCK_LEN];
-stk_t task_stk[250][STK_SIZE];
 
-struct os_mem *mem_buffer;
+stk_t task_stk[OS_USR_TASKS][STK_SIZE];
+
 
 u8 need_create_task;
 u8 need_delete_task;
@@ -42,7 +41,14 @@ main(void)
 {
 	init_os();
 
-	create_task(main_task, NULL, &task_stk[0][STK_SIZE - 1], 0);
+	//create_task(main_task, NULL, &task_stk[0][STK_SIZE - 1], 0);
+
+	/* Init sys time */
+	init_sys_time();
+
+	/* Create and delete other tasks */
+	create_task(create_user_task, NULL, &task_stk[5][STK_SIZE - 1], 5);
+	create_task(delete_user_task, NULL, &task_stk[6][STK_SIZE - 1], 6);
 
 	uart_print("\nStart running tasks\n\n");
 	start_os();
@@ -62,27 +68,25 @@ main_task(void *arg)
 	init_sys_time();
 
 	/**/
-	init_stat();
-
-	/* Create memory */
-	mem_buffer = create_mem(memory, NUM_BLOCK, BLOCK_LEN);	
+	//init_stat();
+	
 
 	/* Create and delete other tasks */
 	create_task(create_user_task, NULL, &task_stk[5][STK_SIZE - 1], 5);
-	create_task(delete_user_task, NULL, &task_stk[6][STK_SIZE - 1], 6);
+	//create_task(delete_user_task, NULL, &task_stk[6][STK_SIZE - 1], 6);
 
 	/* This two task used for suspend and resume task */
-	create_task(sus_task, NULL, &task_stk[10][STK_SIZE - 1], 10);
-	create_task(res_task, NULL, &task_stk[11][STK_SIZE - 1], 11);
+	//create_task(sus_task, NULL, &task_stk[10][STK_SIZE - 1], 10);
+	//create_task(res_task, NULL, &task_stk[11][STK_SIZE - 1], 11);
 
 	/* This task will change prio */
-	create_task(prio_task, NULL, &task_stk[30][STK_SIZE - 1], 30);
+	//create_task(prio_task, NULL, &task_stk[30][STK_SIZE - 1], 30);
 
 	/* This task will get and free memory */
-	create_task(create_mem_task, NULL, &task_stk[15][STK_SIZE - 1], 15);
-	create_task(delete_mem_task, NULL, &task_stk[16][STK_SIZE - 1], 16);
-	create_task(get_mem_task_1, NULL, &task_stk[17][STK_SIZE - 1], 17);
-	create_task(get_mem_task_2, NULL, &task_stk[18][STK_SIZE - 1], 18);
+	//create_task(create_mem_task, NULL, &task_stk[15][STK_SIZE - 1], 15);
+	//create_task(delete_mem_task, NULL, &task_stk[16][STK_SIZE - 1], 16);
+	//create_task(get_mem_task_1, NULL, &task_stk[17][STK_SIZE - 1], 17);
+	//create_task(get_mem_task_2, NULL, &task_stk[18][STK_SIZE - 1], 18);
 
 
 
@@ -116,13 +120,13 @@ main_task(void *arg)
 
 		/* Memory */
 		lcd_display_string(13, 16, COLOR_WHITE, COLOR_WHITE, "   ");
-		lcd_display_int(13, 16, COLOR_BLUE, COLOR_WHITE, mem_buffer->num_blocks);
+		lcd_display_int(13, 16, COLOR_BLUE, COLOR_WHITE, os_mem_ptr->num_blocks);
 
 		lcd_display_string(13, 35, COLOR_WHITE, COLOR_WHITE, "   ");
-		lcd_display_int(13, 35, COLOR_BLUE, COLOR_WHITE, mem_buffer->num_free);
+		lcd_display_int(13, 35, COLOR_BLUE, COLOR_WHITE, os_mem_ptr->num_free);
 
 		lcd_display_string(13, 55, COLOR_WHITE, COLOR_WHITE, "   ");
-		lcd_display_int(13, 55, COLOR_BLUE, COLOR_WHITE, mem_buffer->num_blocks - mem_buffer->num_free);
+		lcd_display_int(13, 55, COLOR_BLUE, COLOR_WHITE, os_mem_ptr->num_blocks - os_mem_ptr->num_free);
 
 		/* System */
 		lcd_display_string(16, 7, COLOR_WHITE, COLOR_WHITE, "   ");
@@ -144,14 +148,36 @@ main_task(void *arg)
 void
 create_user_task(void *arg)
 {
-	need_create_task = 0;
+	prio_t prio;
+	u32 *ptr;
 
 	while (1) {
-		if (need_create_task) {
-			++user_prio;
-			create_task(user_task, &user_prio, &task_stk[user_prio][STK_SIZE - 1], user_prio);
-			need_create_task = 0;
+		prio = os_tcb_current_ptr->tcb_prio;
+
+		if (get_os_time() == 10) {
+			ptr = get_mem(BLOCK_LEN);
+			if (ptr != NULL) {
+				uart_print("[app] Task ");
+				uart_print_int(prio);
+				uart_print(" used one memory, content is: ");
+				*ptr = get_os_time();
+				uart_print_int(*ptr);
+				uart_print("\n");
+			}
+		} else if (get_os_time() == 50) {
+			uart_print("[app] Task ");
+			uart_print_int(prio);
+			uart_print(" release one memory\n");
+			free_mem(ptr);
 		}
+
+		uart_print("[app] Task ");
+		uart_print_int(prio);
+		uart_print("    - Free memory: ");
+		uart_print_int( os_mem_ptr->num_free);
+		uart_print("  Used memory: ");
+		uart_print_int(os_mem_ptr->num_blocks - os_mem_ptr->num_free);
+		uart_print("\n");
 
 		sleep(1);
 	}
@@ -160,27 +186,36 @@ create_user_task(void *arg)
 void
 delete_user_task(void *arg)
 {
-	need_delete_task = 0;
-	u8 curr_prio;
+	prio_t prio;
+	u32 *ptr;
+
 	while (1) {
-		curr_prio = user_prio;
-		if (curr_prio <= 99 && curr_prio > 250) {
-			need_delete_task = 0;
-			sleep(1);
-			continue;
-		}
+		prio = os_tcb_current_ptr->tcb_prio;
 
-		if (need_delete_task) {
-
-			while (delete_task_request(curr_prio) != -1) {
-				uart_print_lcd("[app] I am task 6, I am going to delete task ");
-				uart_print_int_lcd(curr_prio);
-				uart_print_lcd("\n");
-
-				sleep(2);
+		if (get_os_time() == 20) {
+			ptr = get_mem(BLOCK_LEN);
+			if (ptr != NULL) {
+				uart_print("[app] Task ");
+				uart_print_int(prio);
+				uart_print(" used one memory, content is: ");
+				*ptr = get_os_time();
+				uart_print_int(*ptr);
+				uart_print("\n");
 			}
-			need_delete_task = 0;
+		} else if (get_os_time() == 50) {
+			uart_print("[app] Task ");
+			uart_print_int(prio);
+			uart_print(" release one memory\n");
+			free_mem(ptr);
 		}
+
+		uart_print("[app] Task ");
+		uart_print_int(prio);
+		uart_print("    - Free memory: ");
+		uart_print_int( os_mem_ptr->num_free);
+		uart_print("  Used memory: ");
+		uart_print_int(os_mem_ptr->num_blocks - os_mem_ptr->num_free);
+		uart_print("\n");
 
 		sleep(1);
 	}
@@ -189,20 +224,16 @@ delete_user_task(void *arg)
 void
 user_task(void *arg)
 {
-	u8 prio = *(u8 *) arg;
+	prio_t prio;
 	while (1) {
-		uart_print_lcd("[app] I am task ");
-		uart_print_int_lcd(prio);
+		prio = os_tcb_current_ptr->tcb_prio;
+
+		uart_print("[app] I am task ");
+		uart_print_int(prio);
+		uart_print("\n");
 
 
-		if (delete_task_request(OS_PRIO_SELF) == OS_TASK_DEL_REQ) {
-			uart_print_lcd(", I am going to delete myself\n");
-			--user_prio;
-			delete_task(OS_PRIO_SELF);
-		}
-		uart_print_lcd("\n");
-
-		sleep(2);
+		sleep(1);
 	}
 }
 
@@ -290,7 +321,7 @@ get_mem_task_1(void *arg)
 			uart_print_int_lcd(os_tcb_current_ptr->tcb_prio);
 			uart_print_lcd(", I am going to get one memory\n");
 
-			ptr = get_mem(mem_buffer, mem_buffer->block_len);
+			ptr = get_mem(BLOCK_LEN);
 			*ptr = get_os_time();
 			uart_print_lcd("[app] Memory content is: ");
 			uart_print_int_lcd(*ptr);
@@ -302,7 +333,7 @@ get_mem_task_1(void *arg)
 			uart_print_int_lcd(os_tcb_current_ptr->tcb_prio);
 			uart_print_lcd(", I am going to release one memory\n");
 
-			free_mem(mem_buffer, ptr);
+			free_mem(ptr);
 			time = 0;
 		}
 
@@ -322,7 +353,7 @@ get_mem_task_2(void *arg)
 			uart_print_int_lcd(os_tcb_current_ptr->tcb_prio);
 			uart_print_lcd(", I am going to get one memory\n");
 
-			ptr = get_mem(mem_buffer, mem_buffer->block_len);
+			ptr = get_mem(BLOCK_LEN);
 			*ptr = get_os_time();
 			uart_print_lcd("[app] Memory content is: ");
 			uart_print_int_lcd(*ptr);
@@ -334,7 +365,7 @@ get_mem_task_2(void *arg)
 			uart_print_int_lcd(os_tcb_current_ptr->tcb_prio);
 			uart_print_lcd(", I am going to release one memory\n");
 
-			free_mem(mem_buffer, ptr);
+			free_mem(ptr);
 			time = 0;
 		}
 
@@ -398,7 +429,7 @@ get_mem_task(void *arg)
 	uart_print_int_lcd(prio);
 	uart_print_lcd(", I am going to get one memory\n");
 
-	u8 *ptr = get_mem(mem_buffer, mem_buffer->block_len);
+	u8 *ptr = get_mem(BLOCK_LEN);
 	if (ptr == NULL)
 		uart_print_lcd("[app] Cannot get memory\n");
 
@@ -411,7 +442,7 @@ get_mem_task(void *arg)
 			uart_print_lcd("[app] I am task ");
 			uart_print_int_lcd(prio);
 			uart_print_lcd(", I am going to delete myself\n");
-			free_mem(mem_buffer, ptr);
+			free_mem(ptr);
 			--mem_prio;
 			delete_task(OS_PRIO_SELF);
 		}
