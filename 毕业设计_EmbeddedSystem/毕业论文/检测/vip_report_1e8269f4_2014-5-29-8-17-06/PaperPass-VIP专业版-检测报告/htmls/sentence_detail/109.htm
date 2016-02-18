@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+demo_padding {
+line-height: 30px;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:scroll;
+}
+.liebiao {
+border-bottom-width: 1px;
+border-bottom-style: dashed;
+border-bottom-color: #CCCCCC;
+height: 0px;
+margin-top:10px;
+margin-bottom:10px;
+float: left;
+width: 90%;
+}
+.liebiao ul {
+list-style-type: none;
+display: block;
+margin: 0px;
+clear: none;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px dashed #999999;
+padding-right: 10px;
+padding-left: 10px;
+}
+.shubu{
+float: left;
+height: 15px;
+width: 15px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+}
+.kuang {
+border: 1px solid #999999;
+}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+.green{color:#008000}
+
+a:hover {color:#000000}
+a:active {color:#000000}
+
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+<div class="zhengwen">综合&nbsp;&nbsp;|&nbsp;&nbsp;<a href="109_local.htm">本地库</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="109_net.htm">网络库</a><br /></div>
+<div class="zhengwen">
+语句：<span class='red' >当ARM处理器发生异常后，除了复位异常立即中止当前运行指令外，其余的异常处理器都是尽量完成当前指令后，再去处理异常。</span><br><br>
+在本地库和网络库共找出相似内容：6个
+</div>
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">1</div>
+<font color="#666666">相似度：</font><span class='red' >62</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">外部中断请求当发生异常时，除了复位异常立即中止当前指令外，处理器尽量完成当前指令，然后脱离当前的指令处理序列去处理异常。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……中断请求时，且CPSR中的I控制位被清零时，产生外部中断请求(IRQ)异常中断，Irq系统的外设可以通过该异常中断请求处理器服务。当处理器的快速中断请求引脚有效快速中断请求时，并且CPSR中的F控制位被清(FIQ)零时，处理器产生<span class='green'>外部中断请求当发生异常时，除了复位异常立即中止当前指令外，处理器尽量完成当前指令，然后脱离当前的指令处理序列去处理异常。</span>ARM处理器对异常中断的响应过程如下：①将CPSR的内容保存到将要执行的异常中断对应的SPSR中，以实现对处理器当前状态、……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于μcos-Ⅱ嵌入式实时操作系统的内核分析及研究》<br>作者：周岩<br>出处：《长春工业大学》&nbsp;2007
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">2</div>
+<font color="#666666">相似度：</font><span class='orange' >47</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">模式Dx000000l0除了复位异常外，当异常发生时，ARM处理器尽可能完成当前指令(除了复位异常)后，再去处理异常。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……而且CPSR寄存器的F控制位被清除时，处理器产生快速中断请求(FIQ)异常中断1291。表5．1异常模式类型及地址异常类型模式正常地址复位管理模式0xoooooooo未定义指令未定义模式OxOOOOO004软件中断管理模式Ox00000008预取中止中止模式0x0000000C数据中止中止<span class='green'>模式Dx000000l0除了复位异常外，当异常发生时，ARM处理器尽可能完成当前指令(除了复位异常)后，再去处理异常。</span>并执行如下动作：(1)将引起异常指令的下一条指令的地址保存到新模式的R14中，若异常是从ARM状态进入。LR……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于ARM平台的GDB远程调试环境的研究与移植》<br>作者：程君<br>出处：《青岛大学》&nbsp;2007
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">3</div>
+<font color="#666666">相似度：</font><span class='orange' >47</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">3异常的响应过程除了复位异常外，当异常发生时，ARM处理器尽可能完成当前指令(除了复位异常)后，再去处理异常。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……寄存器的I控制位被清除时，处理器产生外部中断请求异常中断。系统中个外设通过该异常中断请求处理服务。(7)快速中断请求(FIQ)当处理器的外部快速中断请求引脚有效，而且CPSR的F控制位被清除时，处理器产生外部中断请求异常中断。<span class='green'>3异常的响应过程除了复位异常外，当异常发生时，ARM处理器尽可能完成当前指令(除了复位异常)后，再去处理异常。</span>并执行如下动作：(1)将引起异常指令的下一条指令的地址保存到新模式的R14中，若异常是从ARM状态进入，LR……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于虚拟化技术的智能手机软件平台》<br>作者：周昌<br>出处：《浙江大学》&nbsp;2007
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">4</div>
+<font color="#666666">相似度：</font><span class='orange' >43</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">ARM即便完成当前指令相应除了复位异常当即中止当前指﻿哈尔滨下业大学工学硕士学位论文令），然后脱离当前的指令序列去相应异常。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……Ox0004004C数据中止2中止模式「｝4x00000014异常；系统复位、IRQ．FIQ属于外部产生的与指令流无关的异常。这些事件以是都被归为异常，是禁止在处理器中它们都使用同样的处理机制。当发生异常时，<span class='green'>ARM即便完成当前指令相应除了复位异常当即中止当前指﻿哈尔滨下业大学工学硕士学位论文令），然后脱离当前的指令序列去相应异常。</span>转移或外部事件引起的异常将占据当前序列中的立即一条指令。直接异常在产生时就按按次处理。处理步骤将执行下列动作：……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《小卫星星务管理硬件平台软件仿真的研究》<br>作者：张利兵<br>出处：《哈尔滨工业大学》&nbsp;2005
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">5</div>
+<font color="#666666">相似度：</font><span class='orange' >43</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">当发生异常时处理器尽量完成当前指令除了复位异常立即中止当前指令然后脱离当前的指令序列去处理异常间接或外部事件引起的异常将占据</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……3异常的处理与实现MRISC在处理这些异常时将这7种异常又分为三类1指令执行引起的直接异常软件中断未定义指令和预取指中止属于这一类2指令执行引起的简介异常数据中止属于这一类3外部产生的与指令流无关的异常复位IRQ和FIQ属于这一类<span class='green'>当发生异常时处理器尽量完成当前指令除了复位异常立即中止当前指令然后脱离当前的指令序列去处理异常间接或外部事件引起的异常将占据</span>当前序列中的下一条指令直接异常在产生时就按顺序处理处理器主要执行以下动作l进入与特定的异常相应的操作模式l将引起异常……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《嵌入式32位RISC微处理器的设计与实现及其控制逻辑的改进》<br>作者：周骥伟<br>出处：《上海交通大学》&nbsp;2003
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">6</div>
+<font color="#666666">相似度：</font><span class='orange' >42</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">(即出栈)。当发生异常时，除了复位异常立即中止当前指令2．将SPSR_mode寄存器内容复制到CPSR中，使外，</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……的用户状态。从异常中数据中止(在读取和存储数据时的存储器故障)断处理程序中返回时，需要执行以下四个基本操作：属于这一类。1．所有修改过的用户寄存器必须从处理程序的保3．外部产生的与指令流无关的异常。护堆栈中恢复<span class='green'>(即出栈)。当发生异常时，除了复位异常立即中止当前指令2．将SPSR_mode寄存器内容复制到CPSR中，使外，</span>处理器会尽量完成当前指令，然后脱离当前的指得CPSR从相应的SPSR中恢复，即恢复被中断的程令处理序列去处理异常。ARM……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《基于ARM7TDMI内核的S3C44B0异常处理分析》<br>作者：季振华等<br>出处：《微计算机信息》&nbsp;2006年5期
+</td>
+</tr>
+</table>
+
+
+
+
+<div style="margin-bottom:100px"></div>
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

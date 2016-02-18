@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+demo_padding {
+line-height: 30px;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:scroll;
+}
+.liebiao {
+border-bottom-width: 1px;
+border-bottom-style: dashed;
+border-bottom-color: #CCCCCC;
+height: 0px;
+margin-top:10px;
+margin-bottom:10px;
+float: left;
+width: 90%;
+}
+.liebiao ul {
+list-style-type: none;
+display: block;
+margin: 0px;
+clear: none;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px dashed #999999;
+padding-right: 10px;
+padding-left: 10px;
+}
+.shubu{
+float: left;
+height: 15px;
+width: 15px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+}
+.kuang {
+border: 1px solid #999999;
+}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+.green{color:#008000}
+
+a:hover {color:#000000}
+a:active {color:#000000}
+
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+<div class="zhengwen">综合&nbsp;&nbsp;|&nbsp;&nbsp;<a href="346_local.htm">本地库</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="346_net.htm">网络库</a><br /></div>
+<div class="zhengwen">
+语句：<span class='orange' >即处于系统工作模式并打开外部中断，这样当系统产生中断时，就会跳转到相应的中断处理函数。</span><br><br>
+在本地库和网络库共找出相似内容：3个
+</div>
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">1</div>
+<font color="#666666">相似度：</font><span class='orange' >44</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">处理函数：IRQ先建立IRQ向量表，IRQ中断产生后，通过查表的方式跳转到相应的中断处理函数。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……中的是普通中断(IRQ)。定义一个指针型数组IsrHandler[64]做IRQ向量表。以下是向量表的初始化函数，其中形参vector标志的是哪个中断源产生的中断，形参handler对应着该中断的<span class='green'>处理函数：IRQ先建立IRQ向量表，IRQ中断产生后，通过查表的方式跳转到相应的中断处理函数。</span>下面给出向量表的查询过程：a.通过读中断偏移寄存器INTOFFSET，查到当前IRQ的中断源；b.……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《面向嵌入式应用的动态加载机制研究》<br>作者：宁涛<br>出处：《重庆大学》&nbsp;2008
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">2</div>
+<font color="#666666">相似度：</font><span class='orange' >43</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">处理。若中断没有被线程化，当中断到来时需要立即进行中断的处理，转入相应的中断处理函数。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……完成处理。2)无论采用何种调度策略，若中断已被线程化，一旦当前正在运行任务的优先级current->rt_piorrity不大于中断线程的优先级desc->thread->rt_priority，则应立即进行中断<span class='green'>处理。若中断没有被线程化，当中断到来时需要立即进行中断的处理，转入相应的中断处理函数。</span>3)若当前的调度策略是SCHED_FIFO或SCHED_RR，即采用实时调度策略，如果中断被线程化，……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《Linux操作系统实时性研究与应用》<br>作者：赵德志<br>出处：《南京航空航天大学》&nbsp;2011
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">3</div>
+<font color="#666666">相似度：</font><span class='orange' >42</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">，只要在对应地址上设置一条到中断服务程序的跳转指令，CPU自动跳转到响应的中断处理函数。和</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……会判断哪一个中断将会被执行，同时，硬件逻辑自动执行由Oxl8地址到各个中断源向量地址的跳转指令，然后再由中断源向量进入相应中断处理程序。简单的说，每个中断源对应一个内存地址<span class='green'>，只要在对应地址上设置一条到中断服务程序的跳转指令，CPU自动跳转到响应的中断处理函数。和</span>原来的软件实现方式相比，这种方式可显著缩短中断响应时间。内蒙古大学硕士学位论文之所以被称为矢量中断……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于以太网接口的ARM-JTAG仿真器设计》<br>作者：王石磊<br>出处：《内蒙古大学》&nbsp;2009
+</td>
+</tr>
+</table>
+
+
+
+
+<div style="margin-bottom:100px"></div>
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

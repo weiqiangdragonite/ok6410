@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+demo_padding {
+line-height: 30px;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:scroll;
+}
+.liebiao {
+border-bottom-width: 1px;
+border-bottom-style: dashed;
+border-bottom-color: #CCCCCC;
+height: 0px;
+margin-top:10px;
+margin-bottom:10px;
+float: left;
+width: 90%;
+}
+.liebiao ul {
+list-style-type: none;
+display: block;
+margin: 0px;
+clear: none;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px dashed #999999;
+padding-right: 10px;
+padding-left: 10px;
+}
+.shubu{
+float: left;
+height: 15px;
+width: 15px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+}
+.kuang {
+border: 1px solid #999999;
+}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+.green{color:#008000}
+
+a:hover {color:#000000}
+a:active {color:#000000}
+
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+<div class="zhengwen">综合&nbsp;&nbsp;|&nbsp;&nbsp;<a href="114_local.htm">本地库</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="114_net.htm">网络库</a><br /></div>
+<div class="zhengwen">
+语句：<span class='orange' >给程序计数器PC强行赋值，跳到对应的异常向量地址处执行相应的处理程序。</span><br><br>
+在本地库和网络库共找出相似内容：8个
+</div>
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">1</div>
+<font color="#666666">相似度：</font><span class='orange' >48</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">程序的转移指令，从而可跳转到相应的异常中断处理程序处执行异常中断处理程序</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……后能正确返回原程序。给程序计数器强制赋值，使程序从表1中给出的相应的矢量地址开始执行中断处理程序，一般地说，矢量地址处将包含一条指向相应<span class='green'>程序的转移指令，从而可跳转到相应的异常中断处理程序处执行异常中断处理程序</span>。ARM处理器对异常的响应过程可以用伪代码描述如下：CPSR[5]=O严……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《基于ARM7TDMI内核的S3C44B0异常处理分析》<br>作者：季振华等<br>出处：《微计算机信息》&nbsp;2006年5期
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">2</div>
+<font color="#666666">相似度：</font><span class='orange' >46</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">程序计数器PC将PC值设为相应的中断向量的地址从而实现跳转以执行中断程序</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……器模式按要求屏蔽中断通常应该屏蔽IRQ中断在FIQ中断时屏蔽FIQ中断3设置Lr寄存器将中断相应模式的Lr寄存器的值设置为异常中断的返回地址4处理<span class='green'>程序计数器PC将PC值设为相应的中断向量的地址从而实现跳转以执行中断程序</span>当处理器执行完以上流程之后处理器已经自中断向量进入异常中断的处理状态异常……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《ARM S3C4510B系统中的异常中断技术》<br>作者：钟石磊等<br>出处：《今日电子》&nbsp;2004年9期
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">3</div>
+<font color="#666666">相似度：</font><span class='orange' >45</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">。当异常发生时，CPU跳转到相应的异常向量地址处执行。这里，中断也被</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……向量表的初始化是通过excVecSet（）和excVeclnit（）两个函数来完成的。先由excVecSet（）设定异常向量表的基地址，然后由excVeclnit（）完成向量表的构造工作<span class='green'>。当异常发生时，CPU跳转到相应的异常向量地址处执行。这里，中断也被</span>看作是一种异常，中断只有先通过异常向量表才能跳转到中断向量表。中断向量表存放……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于RSC S3C2440A平台的VxWorks BSP开发》<br>作者：闫航<br>出处：《西安电子科技大学》&nbsp;2007
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">4</div>
+<font color="#666666">相似度：</font><span class='orange' >45</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">四步，程序计数器Pc总是跳转到相应的固定地址。从异常中断处理程序中返回</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……计数器(Pc)值设置成该异常中断的中断向量地址，从而眺转到相应的异常中断处理程序处执行；⑤在接收到中断请求以后，删处理器内核会自动执行以上<span class='green'>四步，程序计数器Pc总是跳转到相应的固定地址。从异常中断处理程序中返回</span>包括下面两个基本操作：·恢复被屏蔽的程序的处理器状态；·返回到发生异常中断……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《两款基于ARM7TDMI典型芯片启动流程的分析与比较》<br>作者：李凌宇等<br>出处：《办公自动化（综合版）》&nbsp;2007年11期
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">5</div>
+<font color="#666666">相似度：</font><span class='orange' >45</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">程序计数器PC。将PC值设为相应的中断向量的地址，从而实现跳转以执行</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……应该屏蔽IRQ中断，在FIQ中断时屏蔽FIQ中断。(3)设置连接寄存器LR。将中断相应模式的LR寄存器的值设置为异常中断的返回地址。(4)处理<span class='green'>程序计数器PC。将PC值设为相应的中断向量的地址，从而实现跳转以执行</span>中断程序。(5)处理器已经自中断向量进入异常中断的处理状第24页国防科学……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《OMAP平台的开发及其在便携式仪器中的应用》<br>作者：黄飞<br>出处：《国防科学技术大学研究生院》&nbsp;2004
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">6</div>
+<font color="#666666">相似度：</font><span class='orange' >41</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">即将异常处理程序的返回地址保存到LR对应的异常模式寄存器中。异常处理程序完成</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……即可实现子程序的返回。江苏大学工程硕士学位论文’②当一个异常中断发生时，应注意保证异常处理程序不会破坏LR，因为LR保存的是异常处理程序的返回地址，<span class='green'>即将异常处理程序的返回地址保存到LR对应的异常模式寄存器中。异常处理程序完成</span>后的返回是通过将LR的值写入PC，同时从SPSR寄存器中恢复CPSR来实现的……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于ARM-Linux的嵌入式教学实验平台构建》<br>作者：朱丽霞<br>出处：《江苏大学》&nbsp;2009
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">7</div>
+<font color="#666666">相似度：</font><span class='orange' >40</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">中断的中断向量地址，从而跳转到相应的异常中断处理程序执行。从异常中断处理程序</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……进入FIQ模式时，禁止FIQ中断。丁雷：硕士研究生(3)将寄存器lr_mode设置成返回地址。(4)将程序计数器值(PC)，设置成该异常<span class='green'>中断的中断向量地址，从而跳转到相应的异常中断处理程序执行。从异常中断处理程序</span>中返回包括下面两个基本操作：(1)恢复被中断的程序的处理器状态，即将SP……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《ARM S3C2410X系统中断编程机制的研究与应用》<br>作者：丁雷等<br>出处：《微计算机信息》&nbsp;2006年32期
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">8</div>
+<font color="#666666">相似度：</font><span class='orange' >40</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">是，在响应中断时，将程序转到响应的中断向量地址处执行。通过中断嵌套，</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……x64浮点下溢出26Ox68浮点无效270x6c用户自定义280x70用户自定义290x74用户自定义30Ox78用户自定义310x7e中断控制器的任务<span class='green'>是，在响应中断时，将程序转到响应的中断向量地址处执行。通过中断嵌套，</span>高优先级的中断可以中断正在执行的低优先级的中断服务程序，而且不需要额外的……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《32位浮点DSP控制通路设计》<br>作者：马亚奇<br>出处：《西北工业大学》&nbsp;2006
+</td>
+</tr>
+</table>
+
+
+
+
+<div style="margin-bottom:100px"></div>
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

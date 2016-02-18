@@ -1,0 +1,719 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_4.htm">上一页</a>
+<a class="pagelink" href="paper_6.htm">下一页</a>
+<a class="pagelink" href="paper_10.htm">尾页</a>
+页码：5/10页
+]
+</div>
+
+<br><div style="margin-left:25px">
+
+<img src="../../images/guanwang.gif"></div><br><br>
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">134</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>时钟定时器主要是完成系统在每个时钟节拍需要做的工作，我们首先需要设置系统时钟的节拍，比如系统时钟节拍为10ms，即每秒中断10次。</span><span class='green'>这里需要根据S3C6410芯片手册，设置相应的时钟寄存器，把设置的值写入到相应的位即可。</span><span class='green'>由于 ARM11采用的中断向量的方式来设置中断，所以中断设置比较简单，只需把中断的处理函数地址写到对应的向量位，</span><a href='../sentence_detail/363.htm' target='right' class='orange' >那么当中断发生时，就会自动进如入中断处理函数，进行中断处理。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">135</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/364.htm' target='right' class='orange' >时钟定时器的中断处理函数主要完成的工作为：</a><span class='green'>给系统的时钟计数器加1，然后遍历任务控制链表，把所有延时任务的延时器减1，如果延时任务的延时器变为0，还要将该任务的延时状态清零。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">136</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/366.htm' target='right' class='orange' >当退出中断处理函数后，系统会进行一次任务调度，从而运行最高优先级就绪的任务，因此并不一定继续运行刚才被中断的任务。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">137</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>处理中断的函数基本都是使用ARM汇编来完成，主要是进入中断前，需要保存CPU的寄存器数据到当前任务的栈空间中，然后在进入中断处理函数。</span><a href='../sentence_detail/368.htm' target='right' class='orange' >退出中断后，需要把任务栈中的寄存器数据恢复到CPU中，从而使得任务能继续运行。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">138</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>按键中断也是首先设置好相应的中断位，然后设置中断处理函数的地址，当有按键按下时，系统就会跳到对应的按键的中断处理函数。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">139</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.8 时间管理模块的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">140</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/371.htm' target='right' class='orange' >时间管理模块可以提供任务的延时和系统的运行时间。</a><span class='green'>任务的延时主要根据时钟节拍来计算出任务所需延时的时钟节拍数，本系统的时钟节拍为10，即1秒会进行10次中断，时间片为100ms。</span><span class='green'>如果任务需要延时1秒，那么延时的节拍数即为10。</span><span class='green'>任务进入延时后，系统应当重新引发一次调度，运行下一个就绪任务。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">141</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>每次时钟中断，系统都会检查任务块，对于有延时的任务块，系统会减去1个延时节拍数，当延时节拍数变为0，那么任务块的延时状态就会清零。</span><a href='../sentence_detail/376.htm' target='right' class='orange' >如果任务没有被挂起，那么该任务就会进入就绪状态。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">142</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>此外，还需记录系统从开始运行到至今已经经过多少个时钟节拍，因此，系统还有一个时钟计数器，每次时钟节拍中断时都会加1。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">143</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.9 内存管理模块的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">144</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/379.htm' target='right' class='orange' >内存管理功能是操作系统内核中一个重要的功能，本小型嵌入式操作系统提供一个比较简单的动态内存管理功能。</a><a href='../sentence_detail/380.htm' target='right' class='orange' >任务能在运行时动态申请内存空间，当任务不需要这些空间时，可以释放归还给操作系统。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">145</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>内存管理的技术比较多，从操作系统教程就可知道有地址空间与重定位、分区管理、分页技术、虚拟存储管理等等。</span><a href='../sentence_detail/382.htm' target='right' class='orange' >其中分区的管理算法简单，易于实现，但碎片问题严重，内存利用率低[11]。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">146</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本系统采用比较简单的固定分区法来实现内存的管理。</span><a href='../sentence_detail/384.htm' target='right' class='red' >固定分区法就是内存中分区的个数固定不变，各个分区的大小固定不变，根据大小的不同还可分为等分方式和差分方式。</a><a href='../sentence_detail/385.htm' target='right' class='orange' >所谓等分，就是各个分区大小相同，所谓差分，就是分区具有不同大小[12]。</a><span class='green'>利用等分方式，实现方法简单，需要处理的开销也很小，但缺点也很明显，任务申请的内存空间一定要在分区的大小之内，否则将会引起灾难性的结果。</span><span class='green'>对于更好的分区方法，将留到下阶段的改进。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">147</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>采用固定分区法，我们可以通过定义一个二维数组就能实现内存分区，比如一个8位的数组 MxN，</span><a href='../sentence_detail/389.htm' target='right' class='orange' >内存分区的大小为8* M* N个字节，总共可以分为 M个内存块，每个内存块有 N个字节，</a><a href='../sentence_detail/390.htm' target='right' class='orange' >每次任务申请的内存空间必须小于 N个字节。</a><span class='green'>如下图所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">148</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-8 固定分区</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">149</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>这种分区方法虽然比较粗糙，内存的利用率低，但实现简单，开销小，实时性也较好。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">150</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/394.htm' target='right' class='orange' >有了内存分区后，我们还需要一个内存控制块来管理内存分区里的内存块，实现真正的内存分配。</a><a href='../sentence_detail/395.htm' target='right' class='red' >内存控制块需要基本的信息，比如内存分区的起始地址、内存块的大小、内存块的数量，已经分配出去的内存块数量等。</a><span class='green'>对于各个内存块，我们需要把它们连接成一个链表，那么分配内存时，就可直接在链表中取出该内存块给任务，</span><a href='../sentence_detail/397.htm' target='right' class='orange' >任务释放内存时，只需将该内存块连接回链表中即可。</a><span class='green'>如下图所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">151</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/399.htm' target='right' class='red' >图3-9 内存控制块和内存分区的关系</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">152</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.10 本章小结</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">153</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/401.htm' target='right' class='orange' >本章首先介绍了整个嵌入式操作系统的设计目标和一个总体的结构，把整个系统功能划分成4个模块，</a><a href='../sentence_detail/402.htm' target='right' class='orange' >引导模块、系统更新模块、串口通信模块和操作系统模块，然后阐述了各个模块的设计思路。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">154</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>系统实现</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">155</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.1 系统开发环境的搭建</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">156</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/405.htm' target='right' class='orange' >嵌入式应用的开发一般都是采用主机与开发板结合的交叉开发模式，因为嵌入式设备大多没有操作系统，</a><span class='green'>即使是配有操作系统，一般情况下也是没有相应的编译和开发工具，不足以用来开发软件，</span><span class='green'>也就是说开发板上不能自行编译软件程序后运行。</span><span class='green'>因此，需要在主机（PC机）上先为开发板搭建对应的开发环境，然后编译出对应的应用程序，最后烧写到开发板上，才能正常运行。</span><span class='green'>所以一般用到的交叉开发模式为：</span><span class='green'>在主机上编辑程序代码、编译成对应开发板上的应用程序，然后烧写到开发板上，最后在开发板上运行和验证应用程序。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">157</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在本设计里，主机是指 PC机，开发板也就是 OK6410开发板，所开发的嵌入式操作系统首先也是在主机上进行编写程序，</span><span class='green'>然后通过交叉编译后再把目标程序烧写到 OK6410开发板上，最后是验证该系统的正确性。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">158</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>嵌入式的开发环境既能在 Windows下搭建，又能在 Mac OS或 Linux下搭建，</span><a href='../sentence_detail/414.htm' target='right' class='orange' >由于本设计使用 Linux操作系统作为开发的平台，因此这里只讲解在 Linux下如何搭建相应的开发环境，</a><a href='../sentence_detail/415.htm' target='right' class='orange' >对于其它操作系统也是类似，这里就不讲解了。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">159</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本设计里搭建的嵌入式开发环境只要配置相应的交叉开发工具链即可，因为平常在 PC上所使用的编译工具一般都是 gcc、 ld等，</span><span class='green'>它们编译出来的程序一般都是运行在 x86平台上的，对于 ARM平台上的嵌入式设备来讲，是不能运行 x86的应用程序，</span><a href='../sentence_detail/418.htm' target='right' class='orange' >因此需要使用交叉编译工具来生成 ARM平台上的目标程序，这里的交叉编译工具就是 arm- linux- gcc、 arm- linux- ld等。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">160</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本设计里所使用的主机操作系统为Fedora 20 Xfce，所使用的交叉编译工具链是Sourcery CodeBench Lite 2013.11-24（GCC版本号为4.8.1）。</span><span class='green'>可以到http:</span><span class='green'>//www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/ 处下载最新的ARM交叉编译工具链。</span><a href='../sentence_detail/422.htm' target='right' class='orange' >注意，这里ARM的交叉工具链有两个版本：</a><span class='green'>EABI和 GNU/ Linux，这里的 GNU/ Linux版本是用来编译嵌入式 Linux内核或 Linux应用的，</span><a href='../sentence_detail/424.htm' target='right' class='orange' > EABI版本适用于编译自己的嵌入式操作系统或应用，不能用于编译 Linux应用，由于本文设计的嵌入式操作系统不涉及 Linux，</a><span class='green'>因此本设计选择 EABI版本来作为工具链。</span><span class='green'>此处下载到的安装包格式为.tar.bz2。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">161</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/427.htm' target='right' class='orange' >在Fedora 20里安装交叉编译工具链的推荐步骤为：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">162</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>首先在/usr/local/目录里创建一个名为CodeSourcery的文件夹（非必须，只是推荐）。</span><span class='green'>命令为：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">163</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>mkdir /usr/local/CodeSourcery</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">164</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>解压下载的安装包。</span><span class='green'>命令分为2步，第一条命令将把.tar.bz2解压为tar包，然后再使用第二条命令解压tar包得到安装的文件夹：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">165</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>bunzip2 arm-2013.11-24-arm-none-eabi-i686-pc-linux-gnu.tar.bz2</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">166</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>tar -xf arm-2013.11-24-arm-none-eabi-i686-pc-linux-gnu.tar</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">167</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>解压后得到arm-2013.11的文件夹，本课题里把它重命名为arm-none-eabi，并移到第一步所创建的文件夹CodeSourcery下，命令为：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">168</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>mv arm-2013.11 /usr/local/CodeSourcery/arm-none-eabi</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">169</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/437.htm' target='right' class='orange' >把交叉工具链的目录添加到系统环境变量中，具体为编辑用户目录下的.bashrc文件，命令为：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">170</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>vim ~/.bashrc</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">171</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>然后添加bin目录的路径和lib目录的路径，如下：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">172</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>PATH=$PATH:</span><span class='green'>/usr/local/CodeSourcery/arm-none-eabi/bin</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">173</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>LD_LIBRARY_PATH=$LD_LIBRARY_PATH:</span><span class='green'>/usr/local/CodeSourcery/arm-none-eabi/lib</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">174</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/444.htm' target='right' class='orange' >最后是输出环境变量，保存修改的.bashrc文件即可：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">175</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>export PATH</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">176</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/446.htm' target='right' class='orange' >至此，交叉编译链就配置好了，可以使用命令让修改的环境变量立即生效：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">177</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>source ~/.bashrc</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">178</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/448.htm' target='right' class='orange' >最后可以使用下面命令测试一下交叉编译工具链是否安装正确：</a>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_4.htm">上一页</a>
+<a class="pagelink" href="paper_6.htm">下一页</a>
+<a class="pagelink" href="paper_10.htm">尾页</a>
+页码：5/10页
+]
+</div>
+
+</div>
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

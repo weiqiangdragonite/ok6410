@@ -1,0 +1,849 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_4.htm">上一页</a>
+<a class="pagelink" href="paper_6.htm">下一页</a>
+<a class="pagelink" href="paper_8.htm">尾页</a>
+页码：5/8页
+]
+</div>
+
+<br><div style="margin-left:25px">
+
+<img src="../../images/guanwang.gif"></div><br><br>
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">151</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/387.htm' target='right' class='orange' >本章首先介绍了整个嵌入式操作系统的设计目标和一个总体的结构，把整个系统功能划分成4个模块，</a><a href='../sentence_detail/388.htm' target='right' class='orange' >引导模块、系统更新模块、串口通信模块和操作系统模块，然后阐述了各个模块的设计思路。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">152</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>系统实现</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">153</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.1 系统开发环境的搭建</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">154</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>嵌入式应用的开发一般都是采用主机与开发板结合的交叉开发模式，因为嵌入式设备大多没有操作系统，</span><span class='green'>即使是配有操作系统，一般情况下也是没有相应的编译和开发工具，不足以用来开发软件，</span><span class='green'>也就是说开发板上不能自行编译软件程序后运行。</span><span class='green'>因此，需要在主机（PC机）上先为开发板搭建对应的开发环境，然后编译出对应的应用程序，最后烧写到开发板上，才能正常运行。</span><span class='green'>所以一般用到的交叉开发模式为：</span><span class='green'>在主机上编辑程序代码、编译成对应开发板上的应用程序，然后烧写到开发板上，最后在开发板上运行和验证应用程序。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">155</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在本设计里，主机是指 PC机，开发板也就是 OK6410开发板，所开发的嵌入式操作系统首先也是在主机上进行编写程序，</span><span class='green'>然后通过交叉编译后再把目标程序烧写到 OK6410开发板上，最后是验证该系统的正确性。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">156</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>嵌入式的开发环境既能在 Windows下搭建，又能在 Mac OS或 Linux下搭建，</span><span class='green'>由于本设计使用 Linux操作系统作为开发的平台，因此这里只讲解在 Linux下如何搭建相应的开发环境，</span><a href='../sentence_detail/401.htm' target='right' class='orange' >对于其它操作系统也是类似，这里就不讲解了。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">157</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本设计里搭建的嵌入式开发环境只要配置相应的交叉开发工具链即可，因为平常在 PC上所使用的编译工具一般都是 gcc、 ld等，</span><span class='green'>它们编译出来的程序一般都是运行在 x86平台上的，对于 ARM平台上的嵌入式设备来讲，是不能运行 x86的应用程序，</span><a href='../sentence_detail/404.htm' target='right' class='orange' >因此需要使用交叉编译工具来生成 ARM平台上的目标程序，这里的交叉编译工具就是 arm- linux- gcc、 arm- linux- ld等。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">158</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本设计里所使用的主机操作系统为Fedora 20 Xfce，所使用的交叉编译工具链是Sourcery CodeBench Lite 2013.11-24（GCC版本号为4.8.1）。</span><span class='green'>可以到http:</span><span class='green'>//www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/ 处下载最新的ARM交叉编译工具链。</span><a href='../sentence_detail/408.htm' target='right' class='orange' >注意，这里ARM的交叉工具链有两个版本：</a><span class='green'>EABI和 GNU/ Linux，这里的 GNU/ Linux版本是用来编译嵌入式 Linux内核或 Linux应用的，</span><a href='../sentence_detail/410.htm' target='right' class='orange' > EABI版本适用于编译自己的嵌入式操作系统或应用，不能用于编译 Linux应用，由于本文设计的嵌入式操作系统不涉及 Linux，</a><span class='green'>因此本设计选择 EABI版本来作为工具链。</span><span class='green'>此处下载到的安装包格式为.tar.bz2。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">159</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/413.htm' target='right' class='orange' >在Fedora 20里安装交叉编译工具链的推荐步骤为：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">160</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>首先在/usr/local/目录里创建一个名为CodeSourcery的文件夹（非必须，只是推荐）。</span><span class='green'>命令为：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">161</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>mkdir /usr/local/CodeSourcery</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">162</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>解压下载的安装包。</span><span class='green'>命令分为2步，第一条命令将把.tar.bz2解压为tar包，然后再使用第二条命令解压tar包得到安装的文件夹：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">163</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>bunzip2 arm-2013.11-24-arm-none-eabi-i686-pc-linux-gnu.tar.bz2</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">164</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>tar -xf arm-2013.11-24-arm-none-eabi-i686-pc-linux-gnu.tar</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">165</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>解压后得到arm-2013.11的文件夹，本课题里把它重命名为arm-none-eabi，并移到第一步所创建的文件夹CodeSourcery下，命令为：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">166</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>mv arm-2013.11 /usr/local/CodeSourcery/arm-none-eabi</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">167</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/423.htm' target='right' class='orange' >把交叉工具链的目录添加到系统环境变量中，具体为编辑用户目录下的.bashrc文件，命令为：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">168</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>vim ~/.bashrc</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">169</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>然后添加bin目录的路径和lib目录的路径，如下：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">170</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>PATH=$PATH:</span><span class='green'>/usr/local/CodeSourcery/arm-none-eabi/bin</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">171</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>LD_LIBRARY_PATH=$LD_LIBRARY_PATH:</span><span class='green'>/usr/local/CodeSourcery/arm-none-eabi/lib</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">172</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>最后是输出环境变量，保存修改的.bashrc文件即可：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">173</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>export PATH</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">174</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/432.htm' target='right' class='orange' >至此，交叉编译链就配置好了，可以使用命令让修改的环境变量立即生效：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">175</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>source ~/.bashrc</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">176</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/434.htm' target='right' class='orange' >最后可以使用下面命令测试一下交叉编译工具链是否安装正确：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">177</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>arm-none-eabi-gcc -v</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">178</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>如果出现如下图2-7的GCC版本号，那么基本的开发环境就搭建好了，可以开始编写和编译ARM应用程序了。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">179</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/437.htm' target='right' class='red' >图4-1 ARM交叉编译工具链版本号</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">180</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.2 任务管理模块的实现</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">181</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/439.htm' target='right' class='orange' >4.2.1 任务控制块的定义及初始化</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">182</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/440.htm' target='right' class='orange' >根据第3章任务控制块的设计，具体的代码实现如下图所示。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">183</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-2 任务控制块的定义</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">184</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/442.htm' target='right' class='orange' >其中tcb_stk_ptr就是每个任务的栈指针，该栈指针指向每个任务的栈地址；</a><a href='../sentence_detail/443.htm' target='right' class='orange' > tcb_ prio是任务的优先级号，即任务号， tcb_ next和 tcb_ prev分别指向下一个和前一个任务控制块，</a><span class='green'>task_ status是任务的状态， tcb_ delay为任务的延时节拍， tcb_ del_ req是任务的删除标志。</span><span class='green'>其中定义了3种任务状态，就绪、延时和挂起，定义如下图所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">185</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-3 任务状态的定义</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">186</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/447.htm' target='right' class='orange' >任务控制定义好后，还需要定义任务控制块的链表指针、任务块的变量，当前运行任务块的指针、最高优先级就绪任务的指针，</a><a href='../sentence_detail/448.htm' target='right' class='red' >优先级有序表等，如下图所示。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">187</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/449.htm' target='right' class='orange' >图4-4 任务控制块的相关变量</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">188</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/450.htm' target='right' class='orange' >当定义好任务控制块的所有变量后，需要把空任务块连接成空任务块控制链表，主要代码如下图所示。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">189</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/451.htm' target='right' class='orange' >图4-5 空任务块链表</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">190</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3.2 任务的创建</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">191</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/453.htm' target='right' class='orange' >任务控制块初始化后，系统会创建系统任务，然后才会创建开发者定义的普通任务。</a><a href='../sentence_detail/454.htm' target='right' class='orange' >系统和普通任务都是通过create_task()函数来创建。</a><a href='../sentence_detail/455.htm' target='right' class='orange' >create_task()需要四个参数，分别是任务函数的入口地址，任务函数的参数，栈顶地址和任务的优先级号。</a><a href='../sentence_detail/456.htm' target='right' class='orange' >首先函数会判断任务的优先级号是否在正常范围内，即0到最小优先级号之间，接着判断该任务号是否已经被其它任务申请了，</a><span class='green'>这里是通过 os_ tcb_ prio_ table[ prio]来判断，如果为 NULL，则说明此任务号还没被使用，</span><a href='../sentence_detail/458.htm' target='right' class='orange' >接着会初始化该任务的栈和任务块，代码如下图所示。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">192</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-6 create_task()函数部分代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">193</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>其中 init_ task_ stack()和 init_ tcb()是创建任务的重点函数，</span><span class='green'>init_ task_ stack()用来初始化任务的栈空间，即从栈顶地址分配寄存器空间，</span><a href='../sentence_detail/462.htm' target='right' class='orange' >用于保存任务调度时的任务现场数据，代码如下图所示。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">194</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-7 init_task_stack()函数代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">195</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/464.htm' target='right' class='orange' > init_ tcb()函数主要是从 os_ tcb_ free_ list里取出一个空任务块，把它连接到任务控制块链表中，</a><a href='../sentence_detail/465.htm' target='right' class='orange' >接着设置任务相应的值后，该任务就处于就绪运行的状态了，代码如下。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">196</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-8 init_tcb()函数部分代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">197</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>当创建的任务进入就绪状态后，会返回到 create_ task()函数中继续运行，此时 create_ task()函数会判断系统是否已经在运行，</span><a href='../sentence_detail/468.htm' target='right' class='orange' >如果系统已经运行，则会进入任务调度函数进行任务调度。</a><span class='green'>如果系统还没有开始运行，则会返回，直到start_os()函数运行后才开始调度多任务。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">198</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3.3 多任务的调度</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">199</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>系统开始运行前，会执行start_os()函数，才会开始执行多任务的调度。</span><a href='../sentence_detail/472.htm' target='right' class='orange' >start_os()函数首先从优先级有序表找出就绪的最高优先级任务，然后开始运行就绪任务，代码如下。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">200</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-9 start_os()函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">201</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/474.htm' target='right' class='orange' >其中，sched_new()函数负责找出最高优先级就绪的任务，代码如下。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">202</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-10 sched_new()函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">203</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/476.htm' target='right' class='orange' >查找最高优先级就绪任务的算法比较简单，直接从 os_ tcb_ prio_ table开始从0往下找，</a><a href='../sentence_detail/477.htm' target='right' class='orange' >因为优先级越高的任务，其任务号越低，所以，只要 os_ tcb_ prio_ table[ prio]不为 NULL，</a><span class='green'>就能知道该任务号是存在的，所以我们就可以通过该任务的 task_ status来判断是否为就绪，</span><span class='green'>如果就绪，则把 os_ prio_ high_ ready设为该任务号。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">204</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>start_task()函数运行就绪任务，将任务从栈寄存器中恢复数据，就可以开始运行了，本函数通过ARM汇编来编写，代码如下图4-11和4-12所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">205</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-11 start_task()函数</span>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_4.htm">上一页</a>
+<a class="pagelink" href="paper_6.htm">下一页</a>
+<a class="pagelink" href="paper_8.htm">尾页</a>
+页码：5/8页
+]
+</div>
+
+</div>
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

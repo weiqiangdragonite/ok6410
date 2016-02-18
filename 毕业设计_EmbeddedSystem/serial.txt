@@ -1,0 +1,531 @@
+
+
+***** Bootloader Menu *****
+[a] Update program
+[b] Reboot
+[c] Run OS
+***************************
+>>> c
+
+
+
+_start = 0x50000000, bss_start = 0x50023EA4, bss_end = 0x50023EA4
+
+[core] os_tcb_table address: 0x50005BC0
+[core] os_tcb_prio_table address: 0x500071E0
+[core] Create system idle task:
+[task] Create task, prio = 201
+[task] Task's stack address: 0x50005794
+[task] Task address: 0x50005068
+[core] Init tcb[201] done
+[task] Create prio 201 task done
+[core] Create system statistics task:
+[task] Create task, prio = 200
+[task] Task's stack address: 0x50005594
+[task] Task address: 0x50005160
+[core] Init tcb[200] done
+[task] Create prio 200 task done
+[task] Create task, prio = 0
+[task] Task's stack address: 0x50009C80
+[task] Task address: 0x50008940
+[core] Init tcb[0] done
+[task] Create prio 0 task done
+
+Start running tasks
+
+[core] Task 0 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 0
+[core] Task 200 switch to task 201
+[time] Task 0 sleep 10 ticks    - SYS Time: 2
+[core] Task 0 switch to task 201
+[time] Task 200 sleep 10 ticks    - SYS Time: 10
+[core] Task 200 switch to task 201
+[task] Create task, prio = 5
+[task] Task's stack address: 0x5000A680
+[task] Task address: 0x50008E68
+[core] Init tcb[5] done
+[task] Create prio 5 task done
+[task] Create task, prio = 6
+[task] Task's stack address: 0x5000A880
+[task] Task address: 0x50008F00
+[core] Init tcb[6] done
+[task] Create prio 6 task done
+[task] Create task, prio = 10
+[task] Task's stack address: 0x5000B080
+[task] Task address: 0x50009050
+[core] Init tcb[10] done
+[task] Create prio 10 task done
+[task] Create task, prio = 11
+[task] Task's stack address: 0x5000B280
+[task] Task address: 0x50009078
+[core] Init tcb[11] done
+[task] Create prio 11 task done
+[task] Create task, prio = 15
+[task] Task's stack address: 0x5000BA80
+[task] Task address: 0x50009308
+[core] Init tcb[15] done
+[task] Create prio 15 task done
+[task] Create task, prio = 16
+[task] Task's stack address: 0x5000BC80
+[task] Task address: 0x500093D0
+[core] Init tcb[16] done
+[task] Create prio 16 task done
+[task] Create task, prio = 17
+[task] Task's stack address: 0x5000BE80
+[task] Task address: 0x500090F0
+[core] Init tcb[17] done
+[task] Create prio 17 task done
+[task] Create task, prio = 18
+[task] Task's stack address: 0x5000C080
+[task] Task address: 0x500091FC
+[core] Init tcb[18] done
+[task] Create prio 18 task done
+
+[status] Task: 11, Free memory: 32, Used memory: 0
+[time] Task 0 sleep 10 ticks    - SYS Time: 17
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 17
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 17
+[core] Task 6 switch to task 10
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 18
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 18
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 18
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 18
+[core] Task 16 switch to task 17
+[time] Task 17 sleep 10 ticks    - SYS Time: 18
+[core] Task 17 switch to task 18
+[time] Task 18 sleep 10 ticks    - SYS Time: 18
+[core] Task 18 switch to task 201
+[time] Task 200 sleep 10 ticks    - SYS Time: 20
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 32, Used memory: 0
+[time] Task 0 sleep 10 ticks    - SYS Time: 27
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 27
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 27
+[core] Task 6 switch to task 201
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 28
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 28
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 28
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 28
+[core] Task 16 switch to task 17
+[time] Task 17 sleep 10 ticks    - SYS Time: 29
+[core] Task 17 switch to task 18
+[time] Task 18 sleep 10 ticks    - SYS Time: 29
+[core] Task 18 switch to task 201
+[time] Task 200 sleep 10 ticks    - SYS Time: 30
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 32, Used memory: 0
+[time] Task 0 sleep 10 ticks    - SYS Time: 37
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 37
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 37
+[core] Task 6 switch to task 201
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 38
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 38
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 38
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 38
+[core] Task 16 switch to task 201
+[time] Task 17 sleep 10 ticks    - SYS Time: 39
+[core] Task 17 switch to task 18
+[time] Task 18 sleep 10 ticks    - SYS Time: 39
+[core] Task 18 switch to task 201
+[time] Task 200 sleep 10 ticks    - SYS Time: 40
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 32, Used memory: 0
+[time] Task 0 sleep 10 ticks    - SYS Time: 47
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 47
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 47
+[core] Task 6 switch to task 201
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 48
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 48
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 48
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 48
+[core] Task 16 switch to task 201
+[time] Task 17 sleep 10 ticks    - SYS Time: 49
+[core] Task 17 switch to task 18
+[time] Task 18 sleep 10 ticks    - SYS Time: 49
+[core] Task 18 switch to task 201
+[time] Task 200 sleep 10 ticks    - SYS Time: 50
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 32, Used memory: 0
+[time] Task 0 sleep 10 ticks    - SYS Time: 57
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 57
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 57
+[core] Task 6 switch to task 201
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 58
+[core] Task 10 switch to task 11
+-- Task 11, going to suspend task 10
+[task] Task 10 is suspend
+[time] Task 11 sleep 10 ticks    - SYS Time: 59
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 59
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 59
+[core] Task 16 switch to task 17
+-- Task 17, going to get one memory
+-- Task 17, memory content is: 60
+
+[status] Task: 11, Free memory: 31, Used memory: 1
+[time] Task 0 sleep 10 ticks    - SYS Time: 67
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 67
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 67
+[core] Task 6 switch to task 17
+-- Task 17, using one me[time] Task 11 sleep 10 ticks    - SYS Time: 69
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 69
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 69
+[core] Task 16 switch to task 17
+mory
+[time] Task 17 sleep 10 ticks    - SYS Time: 69
+[core] Task 17 switch to task 18
+[time] Task 18 sleep 10 ticks    - SYS Time: 69
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 69
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 31, Used memory: 1
+[time] Task 0 sleep 10 ticks    - SYS Time: 77
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 77
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 77
+[core] Task 6 switch to task 201
+[time] Task 11 sleep 10 ticks    - SYS Time: 79
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 79
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 79
+[core] Task 16 switch to task 17
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 79
+[core] Task 17 switch to task 18
+[time] Task 18 sleep 10 ticks    - SYS Time: 80
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 80
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 31, Used memory: 1
+[time] Task 0 sleep 10 ticks    - SYS Time: 87
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 87
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 87
+[core] Task 6 switch to task 201
+[time] Task 11 sleep 10 ticks    - SYS Time: 89
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 89
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 89
+[core] Task 16 switch to task 17
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 89
+[core] Task 17 switch to task 201
+[time] Task 18 sleep 10 ticks    - SYS Time: 90
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 90
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 31, Used memory: 1
+[time] Task 0 sleep 10 ticks    - SYS Time: 97
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 97
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 97
+[core] Task 6 switch to task 201
+[time] Task 11 sleep 10 ticks    - SYS Time: 99
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 99
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 99
+[core] Task 16 switch to task 17
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 99
+[core] Task 17 switch to task 201
+[time] Task 18 sleep 10 ticks    - SYS Time: 100
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 100
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 31, Used memory: 1
+[time] Task 0 sleep 10 ticks    - SYS Time: 107
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 107
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 107
+[core] Task 6 switch to task 201
+-- Task 11, going to resume task 10
+[task] Task 10 is resume
+[core] Task 11 switch to task 10
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 110
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 110
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 110
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 110
+[core] Task 16 switch to task 17
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 111
+[core] Task 17 switch to task 18
+[time] Task 18 sleep 10 ticks    - SYS Time: 111
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 111
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 31, Used memory: 1
+[time] Task 0 sleep 10 ticks    - SYS Time: 117
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 117
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 117
+[core] Task 6 switch to task 201
+-- Task 10, waiting to suspend
+
+[status] Task: 11, Free memory: 31, Used memory: 1
+[time] Task 0 sleep 10 ticks    - SYS Time: 127
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 127
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 127
+[core] Task 6 switch to task 10
+[time] Task 10 sleep 10 ticks    - SYS Time: 128
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 128
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 128
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 128
+[core] Task 16 switch to task 17
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 129
+[core] Task 17 switch to task 18
+-- Task 18, going to get one memory
+-- Task 18, memory content is: 129
+-- Task 18, using one memory
+[time] Task 18 sleep 10 ticks    - SYS Time: 130
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 130
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 137
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 137
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 137
+[core] Task 6 switch to task 201
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 138
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 138
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 138
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 138
+[core] Task 16 switch to task 201
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 139
+[core] Task 17 switch to task 201
+-- Task 18, using one memory
+[time] Task 18 sleep 10 ticks    - SYS Time: 140
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 140
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 147
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 147
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 147
+[core] Task 6 switch to task 201
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 155
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 155
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 155
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 155
+[core] Task 16 switch to task 17
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 156
+[core] Task 17 switch to task 18
+-- Task 18, using one memory
+[time] Task 18 sleep 10 ticks    - SYS Time: 156
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 156
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 157
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 157
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 157
+[core] Task 6 switch to task 201
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 165
+[core] Task 10 switch to task 11
+[time] Task 11 sleep 10 ticks    - SYS Time: 165
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 165
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 165
+[core] Task 16 switch to task 201
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 166
+[core] Task 17 switch to task 18
+-- Task 18, using one memor
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 167
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 167
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 167
+[core] Task 6 switch to task 18
+y
+[time] Task 18 sleep 10 ticks    - SYS Time: 168
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 168
+[core] Task 200 switch to task 201
+-- Task 10, waiting to suspend
+[time] Task 10 sleep 10 ticks    - SYS Time: 175
+[core] Task 10 switch to task 11
+-- Task 11, going to suspend task 10
+[task] Task 10 is suspend
+[time] Task 11 sleep 10 ticks    - SYS Time: 176
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 176
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 176
+[core] Task 16 switch to task 17
+-- Task 17, using one memory
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 177
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 177
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 177
+[core] Task 6 switch to task 17
+
+[time] Task 17 sleep 10 ticks    - SYS Time: 185
+[core] Task 17 switch to task 18
+-- Task 18, using one memory
+[time] Task 18 sleep 10 ticks    - SYS Time: 185
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 185
+[core] Task 200 switch to task 201
+[time] Task 11 sleep 10 ticks    - SYS Time: 186
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 186
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 186
+[core] Task 16 switch to task 201
+
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 187
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 187
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 187
+[core] Task 6 switch to task 201
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 195
+[core] Task 17 switch to task 18
+-- Task 18, using one memor[time] Task 11 sleep 10 ticks    - SYS Time: 196
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 196
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 196
+[core] Task 16 switch to task 18
+y
+[time] Task 18 sleep 10 ticks    - SYS Time: 196
+[core] Task 18 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 196
+[core] Task 200 switch to task 201
+
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 197
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 197
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 197
+[core] Task 6 switch to task 201
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 205
+[core] Task 17 switch to task 201
+[time] Task 11 sleep 10 ticks    - SYS Time: 206
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 206
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 206
+[core] Task 16 switch to task 18
+-- Task 18, using one memory
+[time] Task 18 sleep 10 ticks    - SYS Time: 206
+[core] Task 18 switch to task 200
+
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 207
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 207
+[core] Task 5 switch to task 6
+[time] Task 6 sleep 10 ticks    - SYS Time: 207
+[core] Task 6 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 208
+[core] Task 200 switch to task 201
+-- Task 17, using one memory
+[time] Task 17 sleep 10 ticks    - SYS Time: 215
+[core] Task 17 switch to task 201
+[time] Task 11 sleep 10 ticks    - SYS Time: 216
+[core] Task 11 switch to task 15
+[time] Task 15 sleep 10 ticks    - SYS Time: 216
+[core] Task 15 switch to task 16
+[time] Task 16 sleep 10 ticks    - SYS Time: 216
+[core] Task 16 switch to task 18
+-- Task 18, using one memory
+[time] Task 18 sleep 10 ticks    - SYS Time: 216
+[core] Task 18 switch to task 201
+
+[status] Task: 11, Free memory: 30, Used memory: 2
+[time] Task 0 sleep 10 ticks    - SYS Time: 217
+[core] Task 0 switch to task 5
+[time] Task 5 sleep 10 ticks    - SYS Time: 217
+[core] Task 5 switch to task 201
+[time] Task 6 sleep 10 ticks    - SYS Time: 218
+[core] Task 6 switch to task 200
+[time] Task 200 sleep 10 ticks    - SYS Time: 218
+[core] Task 200 switch to task 201

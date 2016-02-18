@@ -1,0 +1,549 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../img/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+	<p style="font-size:16px;">
+		<table>
+			<tr>
+				<td>标注颜色图示：</td>
+				<td><span style="font-size:40px;color:#FF0000;">•</span></td>
+				<td width="120"><font color=#FF0000>红字表示严重抄袭</font></td>
+				<td><span style="font-size:40px;color:#FF9900;">•</span></td>
+				<td width="120"><font color=#FF9900>橙字表示轻度抄袭</font></td>
+				<td><span style="font-size:40px;color:#006600;">•</span></td>
+				<td width="120"><font color=#006600>绿字表示引用</font></td>
+				<td><span style="font-size:40px;color:gray;">•</span></td>
+				<td width="120"><font color=gray>灰色表示不参与检测</font></td>
+				<td><span style="font-size:40px;">•</span></td>
+				<td width="120">黑色表示原创</td>
+			</tr>
+		</table>
+	</p>
+	<div class="paper">
+		    		<p>摘    要</p>
+    		<p></p>
+    		<p>　　近年来，嵌入式应用越来越广泛，物联网、智能家居、可穿戴式设备等也慢慢走入人们的生活中，嵌入式应用在我们的生活中扮演着越来越重要的角色。</p>
+    		<p><a href="results/1.html" target="resultFrame"><span class="light_autotype">　　嵌入式操作系统是嵌入式应用的核心，制作一个嵌入式操作系统，能加深对操作系统基本原理的理解和基本的实现过程。</span></a>本课题基于ARM11微处理器的开发板，按照软件工程的基本流程，实现了一个简单可用的小型嵌入式操作系统。<a href="results/3.html" target="resultFrame"><span class="light_autotype">该小型操作系统具有基本的多任务管理、中断服务、时间管理和内存管理功能，采用按优</span><span class="light_autotype">先级抢占式的调度机制来进行多任务调度，提高系统的实时性，还有使用固定分区的内存管理来分配内存。</span></a><a href="results/4.html" target="resultFrame"><span class="light_autotype">此外，该系统还有任务延时、挂起、删除等基本操作。</span></a><a href="results/5.html" target="resultFrame"><span class="light_autotype">最后对该系统进行了测试，验证系统设计的正确性，并提出系统的不足和改进。</span></a></p>
+    		<p></p>
+    		<p><a href="results/6.html" target="resultFrame"><span class="autotype">关键词  嵌入式操作系统；</span></a>多任务调度；内存管理；优先级抢占式调度</p>
+    		<p></p>
+    		<p>绪论</p>
+    		<p></p>
+    		<p>1.<a href="results/7.html" target="resultFrame"><span class="autotype">1 课题来源及研究目的与意义</span></a></p>
+    		<p><a href="results/8.html" target="resultFrame"><span class="light_autotype">　　嵌入式开发无疑是当下热门的开发领域之一，嵌入式所涉及的领域非常广泛。</span></a>学习嵌入式开发，大多选择51单片机或者ARM芯片来进行学习开发，由于ARM芯片是大多数嵌入式设备的主要开发平台，而且ARM芯片具有高性能、低功耗、体积小等特点，因此学习ARM嵌入式开发具有一定的优势。</p>
+    		<p><a href="results/10.html" target="resultFrame"><span class="light_autotype">　　学习嵌入式开发，一般可分为三个方向：嵌入式应用开发、嵌入式操作系统系统开发和嵌入式硬件开发。</span></a>嵌入式应用开发和嵌入式操作系统开发一般都紧密结合，而当下嵌入式操作系统虽多，但即使是像μC/OS-Ⅱ或者QNX这些小巧的嵌入式操作系统内核，其代码量也是非常多的，而像嵌入式Linux的，其代码量就更加庞大了。<a href="results/12.html" target="resultFrame"><span class="light_autotype">对于学习操作系统的学生来说，由于缺少对操作系统的设计和实现的经验，在没有一个比</span><span class="light_autotype">较清晰的思路和逻辑的情况下，去阅读内核代码是非常徒劳无用的。</span></a>因此，我们需要自己动手，实际去编写一个嵌入式操作系统，哪怕这个操作系统只能进行简单的任务调度，这也能加深我们对操作系统原理的理解，激发我们的热情和兴趣，继续去为这个内核添加更多的功能。</p>
+    		<p><a href="results/14.html" target="resultFrame"><span class="light_autotype">　　选择制作嵌入式操作系统这个题目，意义重大而深远。</span></a><a href="results/15.html" target="resultFrame"><span class="light_autotype">操作系统是计算机系统里面最核心的部分，通过学习和实现操作系统的过程，能加深我们</span><span class="light_autotype">对操作系统的基本原理的理解，对计算机系统的工作过程也会更加清晰。</span></a><a href="results/16.html" target="resultFrame"><span class="light_autotype">虽然嵌入式操作系统和通用的计算机系统具有一定的差别，但其基本的工作原理都是一样</span><span class="light_autotype">的，而嵌入式操作系统相对通用的计算机系统，其内核更加小巧，非常适合学习和开发。</span></a>因此本论文所写的小型嵌入式操作系统，其内核功能也是相对简单，但主要还是以加强对操作系统的理解，并运用基本的原理来设计开发一个能正常运行和工作的操作系统。</p>
+    		<p>1.<a href="results/18.html" target="resultFrame"><span class="autotype">2 嵌入式操作系统的现状与分析</span></a></p>
+    		<p><span class="quote">　　嵌入式系统是从20世纪70年代微处理器出现后发展起来的，当时的系统结构和功能相对单一，主要用于工业控制[1]。</span><a href="results/20.html" target="resultFrame"><span class="light_autotype">如今，嵌入式系统已经广泛的应用于各个领域中，如通信设备、工业控制、消费电子、航空航天等都存在着嵌入式设备的身影。</span></a>近年来，嵌入式技术的发展越来越突飞猛进，移动设备、平板电脑等已成为人们生活中不可或缺的电子产品，现在物联网、智能家居、可穿戴式设备等嵌入式技术也正大力发展中。</p>
+    		<p>　　嵌入式操作系统（Embedded Operating System，EOS）是嵌入式系统的核心组成部分，与通用计算机操作系统相比，具有专用性、可裁剪、易移植、高可靠等特点。如今，已经拥有相当多的主流嵌入式操作系统，比如VxWorks、Windows CE、FreeRTOS、μC/OS-Ⅱ/Ⅲ、嵌入式Linux、eCOS、QNX等等，还有应用于移动设备上的操作系统也属于嵌入式操作系统，像Android、iOS、Windows Phone、Firefox OS等等。<a href="results/24.html" target="resultFrame"><span class="light_autotype">这些嵌入式操作系统既有商业付费的，也有开源免费的，都是当前广泛应用于各种设备上的嵌入式操作系统。</span></a></p>
+    		<p><a href="results/25.html" target="resultFrame"><span class="light_autotype">　　虽然低端的嵌入式设备一般都不需要嵌入式操作系统，但大多数嵌入式设备都由嵌入式操作系统来管理其相应的软件和硬件资源。</span></a>不同的嵌入式操作系统包含不同的基本功能组件，但都具备一个基本的内核，这个内核主要的功能就是提供多任务的管理、时间的管理、事件的管理、内存的管理和设备的管理等，实现既有简单也有复杂，像μC/OS-Ⅱ的内核就相对简单，而嵌入式Linux就和桌面版的Linux差不多了，因此功能也相对更强大。</p>
+    		<p>　　目前，大多数嵌入式操作系统的技术大都以国外为主，国内嵌入式的发展技术与美国等发达国家相比还存在着一定的差距，但总体的发展趋势还是相当好的，像智能家居、可穿戴式设备等国内也搞得很火热。<a href="results/28.html" target="resultFrame"><span class="light_autotype">而自主的嵌入式操作系统也是有的，只不过没有用得那么广泛，因此，我国不论是嵌入式</span><span class="light_autotype">系统还是相关的嵌入式技术发展，还是有比较大的发展空间，国内的嵌入式开发前景还是非常有前景的。</span></a></p>
+    		<p>1.3 本论文的主要工作</p>
+    		<p><a href="results/29.html" target="resultFrame"><span class="light_autotype">　　本论文所写的小型嵌入式操作系统主要完成的工作和解决的难点有以下：</span></a></p>
+    		<p><a href="results/30.html" target="resultFrame"><span class="light_autotype">　　查阅国内外有关嵌入式系统的文献资料，包括嵌入式发展的历史与现状、应用领域、嵌入式系统的基本设计和实现等。</span></a></p>
+    		<p>　　学习ARM的体系结构和基本汇编，掌握S3C6410的硬件结构和ARM嵌入式的开发，并编写开发板上相应的引导程序和硬件驱动。其中的主要难点是向开发板的NAND Flash写入操作系统的引导程序，中断服务程序的编写，系统更新程序的编写等。</p>
+    		<p><a href="results/33.html" target="resultFrame"><span class="light_autotype">　　利用学习的操作系统的基本原理，在开发板上实现一个简单的操作系统，该系统是采用了</span><span class="light_autotype">按优先级抢占式的调度方法来调度任务，并拥有简单的内存管理功能。</span></a><a href="results/34.html" target="resultFrame"><span class="autotype">其中设计的难点主要是任务控制块的设计，任务调度的设计等。</span></a></p>
+    		<p><a href="results/35.html" target="resultFrame"><span class="light_autotype">　　本系统还实现了基本的时间管理功能，能让任务进行休眠和恢复等操作，同时任务还有挂起、恢复、删除等操作。</span></a></p>
+    		<p>　　最后在本嵌入式操作系统的基础上设计测试应用来验证该系统的功能，并在最后对该系统提出一些能继续进行开发的功能。</p>
+    		<p><a href="results/37.html" target="resultFrame"><span class="light_autotype">ARM技术及开发板介绍</span></a></p>
+    		<p></p>
+    		<p>2.1 ARM体系结构</p>
+    		<p>2.1.<a href="results/38.html" target="resultFrame"><span class="light_autotype">1 ARM处理器的简介</span></a></p>
+    		<p>　　嵌入式系统的核心硬件就是嵌入式处理器，嵌入式处理器的体系结构如果按不同的内核系列可以分为51、AVR、MIPS、PowerPC、ARM等，像51单片机采用的就是51系列的内核芯片，Arduino采用的就是AVR的芯片，而ARM就是目前最广泛使用的嵌入式处理器芯片。<span class="quote">从1991年到2014年，ARM处理器的历史出货量已经超过了500亿颗，广泛的应用于移动领域、嵌入式领域、企业和家用等市场[2]。</span></p>
+    		<p><a href="results/41.html" target="resultFrame"><span class="light_autotype">　　ARM既可以认为是一家公司的名字，也可以认为是一系列处理器的名称。</span></a>ARM的全称是Advanced RISC Machine，由此可看出ARM处理器的指令集是精简指令集（Reduced Instruction Set Computer，RISC）。ARM处理器的主要特点是功耗低、省电、性能强大、成本低，拥有16位Thumb、32位ARM和Thumb-2双指令集，最重要的是ARM拥有许多领域方面的合作伙伴，像苹果、三星、高通等，因此使得ARM处理器能全面广泛的应用于多个领域。</p>
+    		<p><a href="results/44.html" target="resultFrame"><span class="light_autotype">　　ARM处理器多数为哈佛结构，拥有16/32位指令集，多处理器状态模式等设计技术。</span></a>ARM处理器不同的内核采用不同的体系结构，像经典处理器的ARM7采用的是ARMV4T的结构，Cortex-A采用的是ARMV7-A的结构，具体可到ARM公司的官网查看ARM内核采用的体系结构版本。目前市场上主要使用的内核有ARM7、ARM9的老架构，还有近年来比较流行的Cortex-A和Cortex-M系列的架构芯片。</p>
+    		<p>2.1.<a href="results/47.html" target="resultFrame"><span class="light_autotype">2 ARM处理器的工作状态和工作模式</span></a></p>
+    		<p><a href="results/48.html" target="resultFrame"><span class="light_autotype">　　ARM处理器一般由2种工作状态和7种工作模式。</span></a>因为ARM处理器拥有16/32位指令集，因此ARM处理器可以在ARM和Thumb及Thumb-2这两种工作状态间切换。<a href="results/50.html" target="resultFrame"><span class="light_autotype">ARM状态就是ARM处理器完全工作在32位指令下的状态，因此在此状态下的指令均为32位。</span></a><a href="results/51.html" target="resultFrame"><span class="light_autotype">Thumb状态就是工作在16位指令下的状态，这时的指令代码只有16位，占用内存空间减小，代码密度变大，能提供比32位程序代码更好的性能。</span></a>Thumb-2状态是ARM处理器新的状态，首次出现在ARM11系列的芯片。Thumb-2同时具有16位和32位的指令，能提供更高性能、功耗更小和占用内存更小的优点。ARM处理器复位后只处于ARM状态，可通过相应的指令集在ARM状态和Thumb状态下进行切换。</p>
+    		<p><a href="results/55.html" target="resultFrame"><span class="light_autotype">　　ARM体系结构可以工作在7种工作模式下，分别是用户模式、快速中断模式、外部中断模式、管理模式、中止模式、未定义指令模式和系统模式。</span></a><a href="results/56.html" target="resultFrame"><span class="light_autotype">当处理器工作在用户模式时，除非发生异常，否则处理器将不能改变当前的工作模式，其它的工作模式之间能进行互相切换。</span></a>通过相应的指令可以向程序状态寄存器CPSR的第0到第4位，即[M4:M0]写入相应的值即可进入对应的工作模式。<a href="results/58.html" target="resultFrame"><span class="autotype">具体的工作模式如下表2-1所示。</span></a></p>
+    		<p></p>
+    		<p><a href="results/59.html" target="resultFrame"><span class="light_autotype">　　表2-1 ARM处理器的工作模式</span></a></p>
+    		<p>工作模式	功能说明	CPSR[M4:M0]</p>
+    		<p><a href="results/61.html" target="resultFrame"><span class="autotype">用户模式 USR	ARM处理器正常的工作模式	10000</span></a></p>
+    		<p><a href="results/62.html" target="resultFrame"><span class="autotype">快速中断模式 FIQ	处理高速中断，用于高速数据传输或通道处理	10001</span></a></p>
+    		<p><a href="results/63.html" target="resultFrame"><span class="autotype">外部中断模式 IRQ	用于普通的中断处理	10010</span></a></p>
+    		<p><a href="results/64.html" target="resultFrame"><span class="light_autotype">管理模式 SVC	操作系统使用的保护模式，处理软中断SWI	10011</span></a></p>
+    		<p><a href="results/65.html" target="resultFrame"><span class="autotype">中止模式 ABT	当数据或指令预取中止时进入该模式，用于虚拟存储和存储保护	10111</span></a></p>
+    		<p><a href="results/66.html" target="resultFrame"><span class="autotype">未定义指令模式 UND	处理未定义的指令陷阱，可用于支持硬件协处理器的软件仿真	11011</span></a></p>
+    		<p><a href="results/67.html" target="resultFrame"><span class="autotype">系统模式 SYS	运行具有特权级的操作系统任务	11111</span></a></p>
+    		<p>2.1.<a href="results/68.html" target="resultFrame"><span class="light_autotype">3 ARM处理器的寄存器</span></a></p>
+    		<p><a href="results/69.html" target="resultFrame"><span class="light_autotype">　　ARM处理器拥有37个32位的寄存器，其中有31个为通用寄存器，剩下的6个寄存器为状态寄存器。</span></a><a href="results/70.html" target="resultFrame"><span class="light_autotype">ARM状态下不同工作模式下的寄存器如下表2-2所示。</span></a></p>
+    		<p><a href="results/71.html" target="resultFrame"><span class="light_autotype">　　表2-2 ARM状态下的寄存器</span></a></p>
+    		<p>寄存器</p>
+    		<p><a href="results/72.html" target="resultFrame"><span class="autotype">工作模式	用户模式	系统模式	管理模式	中止模式	未定义模式	外部中断模式	快速中断模式</span></a></p>
+    		<p></p>
+    		<p></p>
+    		<p>通用寄存器	R0</p>
+    		<p>	R1</p>
+    		<p>	R2</p>
+    		<p>	R3</p>
+    		<p>	R4</p>
+    		<p>	R5</p>
+    		<p>	R6</p>
+    		<p>	R7</p>
+    		<p>	R8	R8_FIQ</p>
+    		<p>	R9	R9_FIQ</p>
+    		<p>	R10	R10_FIQ</p>
+    		<p>	R11	R11_FIQ</p>
+    		<p>	R12	R12_FIQ</p>
+    		<p>	R13(SP)	R13_SVC	R13_ABT	R13_UND	R13_IRQ	R13_FIQ</p>
+    		<p>	R14(LR)	R14_SVC	R14_ABT	R14_UND	R14_IRQ	R14_FIQ</p>
+    		<p>程序计数器	R15(PC)</p>
+    		<p><a href="results/76.html" target="resultFrame"><span class="autotype">状态寄存器	CPSR</span></a></p>
+    		<p>	无	SPSR_SVC	SPSR_ABT	SPSR_UND	SPSR_IRQ	SPSR_FIQ</p>
+    		<p><a href="results/78.html" target="resultFrame"><span class="light_autotype">　　从表2-2可看出，ARM处理器工作在不同工作模式下所使用的寄存器是不同的。</span></a><a href="results/79.html" target="resultFrame"><span class="autotype">通用寄存器R0到R7是7种模式下共用的；</span></a><a href="results/80.html" target="resultFrame"><span class="light_autotype">快速中断模式下有自己专用的R8到R12寄存器；</span></a><a href="results/81.html" target="resultFrame"><span class="light_autotype">R13和R14除了用户模式和系统模式使用相同的堆栈指针（Stack Pointer，SP）和程序链接寄存器</span><span class="light_autotype">（Link Register，LR）外，其它模式都有自己特定的寄存器。</span></a><a href="results/82.html" target="resultFrame"><span class="light_autotype">最后一个通用寄存器是程序计数器R15，总共有31个通用寄存器。</span></a></p>
+    		<p><a href="results/83.html" target="resultFrame"><span class="light_autotype">　　状态寄存器有1个当前程序状态寄存器CPSR，5个备份程序状态寄存器SPSR，分别用于5种工作模式，用户模式和系统模式没有备份程序状态寄存器。</span></a><a href="results/84.html" target="resultFrame"><span class="autotype">程序状态寄存器的格式如下表2-3所示。</span></a></p>
+    		<p><a href="results/85.html" target="resultFrame"><span class="autotype">　　表2-3 程序状态寄存器格式</span></a></p>
+    		<p><a href="results/86.html" target="resultFrame"><span class="autotype">31	30	29	28	27	26 -- 8	7	6	5	4	3	2	1	0</span></a></p>
+    		<p><a href="results/87.html" target="resultFrame"><span class="autotype">N	Z	C	V	Q	保留	I	F	T	M4	M3	M2	M1	M0</span></a></p>
+    		<p><a href="results/88.html" target="resultFrame"><span class="light_autotype">　　M4-M0为模式选择位，决定处理器工作于哪种模式。</span></a><a href="results/89.html" target="resultFrame"><span class="autotype">T位为ARM与Thumb指令切换，T为1时执行Thumb指令，为0时执行ARM指令。</span></a><a href="results/90.html" target="resultFrame"><span class="light_autotype">F位为快速中断控制位，F为1时禁止FIQ中断，为0时允许快速中断。</span></a><a href="results/91.html" target="resultFrame"><span class="light_autotype">I位为中断控制位，I为1时允许外部IRQ中断，为0时禁止IRQ中断。</span></a>第27位到31位为条件码标志，详细可参考ARM手册。</p>
+    		<p>　　由于本论文所写的嵌入式操作系统是工作在ARM状态下的，因此只简单介绍ARM状态下的寄存器情况，对于Thumb及Thumb-2状态下的寄存器情况并没有做相关的介绍。</p>
+    		<p>2.1.<a href="results/94.html" target="resultFrame"><span class="light_autotype">4 ARM处理器的异常处理</span></a></p>
+    		<p><a href="results/95.html" target="resultFrame"><span class="autotype">　　ARM处理器拥有7种不同类型的异常，分别是复位、未定义指令、软件中断、指令预取中止</span><span class="light_autotype">、数据访问中止、外部中断请求、快速中断请求，它们的优先级及对应的异常向量地址如下表2-4所示。</span></a></p>
+    		<p><a href="results/96.html" target="resultFrame"><span class="light_autotype">　　表2-4 ARM异常类型、优先级及向量地址</span></a></p>
+    		<p><a href="results/97.html" target="resultFrame"><span class="autotype">异常类型	优先级	工作模式	异常向量地址</span></a></p>
+    		<p><a href="results/98.html" target="resultFrame"><span class="light_autotype">复位 RESET	1	管理模式	0x00000000</span></a></p>
+    		<p><a href="results/99.html" target="resultFrame"><span class="autotype">未定义指令 UND	6	未定义模式	0x00000004</span></a></p>
+    		<p><a href="results/100.html" target="resultFrame"><span class="autotype">软件中断 SWI	6	管理模式	0x00000008</span></a></p>
+    		<p><a href="results/101.html" target="resultFrame"><span class="light_autotype">指令预取中止 PABT	5	中止模式	0x0000000C</span></a></p>
+    		<p><a href="results/102.html" target="resultFrame"><span class="autotype">数据访问中止 DABT	2	中止模式	0x00000010</span></a></p>
+    		<p><a href="results/103.html" target="resultFrame"><span class="autotype">外部中断请求 IRQ	4	外部中断模式	0x00000018</span></a></p>
+    		<p><a href="results/104.html" target="resultFrame"><span class="light_autotype">快速中断请求 FIQ	3	快速中断模式	0x0000001C</span></a></p>
+    		<p><a href="results/105.html" target="resultFrame"><span class="light_autotype">　　7种类型的异常可分为6级，其中复位的级别最高，未定义指令和软件中断的级别最低，而</span><span class="light_autotype">且这两个异常是互斥的，不可能同时发生，所以它们的优先级是相同的。</span></a>当复位的引脚有效时，系统便无条件的进入管理模式，并把PC指向0x00000000处开始执行指令。</p>
+    		<p><a href="results/107.html" target="resultFrame"><span class="light_autotype">　　当ARM处理器发生异常后，除了是复位异常立即中止当前运行指令外，其余的处理器都是尽量完成当前指令后，再去处理异常。</span></a><a href="results/108.html" target="resultFrame"><span class="light_autotype">ARM处理器对异常的响应过程如下：</span></a></p>
+    		<p>　　将当前工作模式下的CPSR的值保存到执行异常工作模式下的SPSR中，以便对当前处理器的状态、中断屏蔽和各标志位的保护。</p>
+    		<p><a href="results/110.html" target="resultFrame"><span class="light_autotype">　　设置当前状态寄存器的工作模式位来进入相应的异常工作模式，而且禁止IRQ外部中断，如果进入的是复位模式或快速中断模式，还要禁止FIQ快速中断。</span></a></p>
+    		<p><a href="results/111.html" target="resultFrame"><span class="light_autotype">　　将引起异常指令的下一条地址保存到异常工作模式下的R14（LR）中，这样能使异常处理程序执行完后能返回原来的程序处继续向下执行指令。</span></a></p>
+    		<p><a href="results/112.html" target="resultFrame"><span class="autotype">　　给程序计数器PC强行赋值，跳转到相应的异常向量地址处执行相应的处理程序。</span></a></p>
+    		<p><a href="results/113.html" target="resultFrame"><span class="light_autotype">　　每种异常模式下都有自己对应的SP和LR两个寄存器，分别用来存放堆栈指针和断点地址。</span></a>以上的4步工作都是由ARM处理器的硬件自动完成的，我们只能做的是设计异常处理程序，并从异常处理程序中返回到原来的程序处。</p>
+    		<p><a href="results/115.html" target="resultFrame"><span class="light_autotype">　　由于ARM处理器采用了多级流水线的技术，因此在实际编程时，第3步将引起异常指令的下</span><span class="light_autotype">一条地址保存到异常工作模式下的R14中，该地址往往不是正确的返回地址。</span></a>因此我们通常在进入异常处理程序后，修改LR的值，以保证返回时是正确的地址。</p>
+    		<p><a href="results/117.html" target="resultFrame"><span class="light_autotype">　　ARM处理器从异常程序返回到原来的程序处继续向下执行的过程如下：</span></a></p>
+    		<p><a href="results/118.html" target="resultFrame"><span class="light_autotype">　　将异常模式下的SPSR值复制到CPSR中，使得原来的CPSR的状态从相应的SPSR中恢复，回到被中断前的工作状态。</span></a></p>
+    		<p><a href="results/119.html" target="resultFrame"><span class="light_autotype">　　将LR的值装入到程序计数器PC中，使得程序能返回原来的程序处，这里LR的值为返回地址值。</span></a></p>
+    		<p><a href="results/120.html" target="resultFrame"><span class="light_autotype">　　清除CPSR中的中断屏蔽位，开放IRQ外部中断和FIQ快速中断。</span></a></p>
+    		<p>　　这里的异常中断的返回顺序不能混乱，只能是先恢复CPSR的值，再从LR中恢复断点地址，返回原来的程序。<a href="results/122.html" target="resultFrame"><span class="autotype">如果顺序错了，程序就会发生错误了。</span></a></p>
+    		<p>2.2 Ok6410开发板的介绍</p>
+    		<p>　　本论文所写的嵌入式操作系统是在飞凌公司的OK6410开发板下所完成的，OK6410开发板是基于三星公司的ARM11处理器S3C6410。</p>
+    		<p>2.2.1 S3C6410芯片简介</p>
+    		<p>　　由S3C6410芯片手册介绍[3][4]可知，S3C6410是一个16/32位的RISC处理器，用来提供一种有经济效益的、低功耗的、高性能，能适用于移动电话和一般应用的处理器解决方案。S3C6410采用61/32位的内部总线架构，为2.<a href="results/126.html" target="resultFrame"><span class="light_autotype">5G和3G通信服务提供了优化的H/W性能。</span></a><a href="results/127.html" target="resultFrame"><span class="light_autotype">该64/32位的内部总线架构是由AXI、AHB和APB总线组成的。</span></a><a href="results/128.html" target="resultFrame"><span class="autotype">它还包括许多强大的硬件加速器，比如运动视频处理、音频处理、2D图像处理，图形显示和缩放处理等。</span></a>一个集成的多格式编解码器（Multi Format Codec，MFC）和MPEG4/H.263/H.<a href="results/130.html" target="resultFrame"><span class="light_autotype">264编解码器和VC1解码器。</span></a><a href="results/131.html" target="resultFrame"><span class="light_autotype">这种H/W编解码器能支持实时视频会议和电视输出的NTSC和PAL两种模式。</span></a>此外，该处理器含有一个3D加速器，支持OpenGL ES 1.1/2.0的图形渲染。<a href="results/133.html" target="resultFrame"><span class="autotype">这种3D引擎包括两个可编程着色器：一个顶点着色器和一个像素着色器。</span></a></p>
+    		<p><a href="results/134.html" target="resultFrame"><span class="autotype">　　S3C6410具有一个优化的接口连接到外部存储器。</span></a><a href="results/135.html" target="resultFrame"><span class="light_autotype">这种优化的接口，外部存储器是能在高速通信服务上维持高内存带宽。</span></a>内存系统具有双重外部存储器端口，DRAM和Flash/ROM。在DRAM端口可以配置为支持mobile DDR、DDR、mobile SDRAM和SDRAM内存。在Flash/ROM端口可以支持NOR Flash、NAND Flash、OneNand、CF和ROM等类型的外部存储器。</p>
+    		<p>　　为了降低系统的总体成本和提高整体功能，S3C6410包含了许多硬件外设，例如相机接口、TFT 24位真彩色LCD控制器、系统管理器（电源管理等）、4个的UART、32个DMA、5个32位定时器（其中有2个是PWM输出）、通用I/O接口（GPIO），I2S总线接口、I2C总线接口、USB主设备、USB OTG设备高速传输（480Mbps）、3通道SD/MMC主机控制器和PLL时钟发生器。</p>
+    		<p>　　S3C6410的ARM子系统是基于ARM1176JZF-S内核。它包括独立的16KB指令和16KB的数据缓存、16KB指令和16KB的数据TCM。<a href="results/142.html" target="resultFrame"><span class="light_autotype">它还包括一个完整的MMU来处理虚拟内存管理。</span></a>ARM1176JZF-S是一款单芯片的微控制器，其中包括JAVA加速器。ARM1176JZF-S包括一个专用的矢量浮点协处理器，允许高效的实现各种加密方案和3D图形应用程序。S3C6410采用实际标准的AMBA总线架构。这种强大的、行业标准的特点让S3C6410能够支持许多工业标准的操作系统。下图2-5就是S3C6410的芯片架构图。</p>
+    		<p>　　</p>
+    		<p>　　图2-5 S3C6410芯片架构</p>
+    		<p>2.2.2 Ok6410开发板简介</p>
+    		<p>　　OK6410开发板采用S3C6410芯片，拥有强大的内部资源和视频处理能力，可以稳定运行在667MHz主频上，支持Mobile DDR和多种NAND Flash。<a href="results/149.html" target="resultFrame"><span class="autotype">OK6410开发板上集成了多种高端接口，如复合视频信号、摄像头、USB、SD卡、液晶屏、以太网，并配备温度传感器和红外接收头等。</span></a><a href="results/150.html" target="resultFrame"><span class="autotype">这些接口可作为应用参考帮助用户实现高端的产品设计。</span></a></p>
+    		<p>　　该开发板拥有256MB Mobile DDR内存和MLC 4GB NAND Flash外存，主频为533MHz/667MHz。总共有4个串口，包括1个五线RS-232电平串口（DB9母座）和3个三线TTL电平串口。<a href="results/153.html" target="resultFrame"><span class="light_autotype">1个RTC实时时钟，4个LED，6个按键，1个蜂鸣器。</span></a>还有其它的硬件资源，详细可参考开发板硬件手册[5]，下图2-6就是OK6410开发板的实物图。</p>
+    		<p></p>
+    		<p>　　图2-6 OK6410开发板</p>
+    		<p>2.3 本章小结</p>
+    		<p><a href="results/155.html" target="resultFrame"><span class="light_autotype">　　本章主要简单介绍了ARM的体系结构，比如ARM的工作状态、工作模式、寄存器和异常处理。</span></a>然后简单介绍了所使用的OK6410的开发板的简单情况，包括S3C6410的芯片，最后详细介绍了如何在Linux下搭建基本的交叉开发环境。</p>
+    		<p>系统分析与设计</p>
+    		<p></p>
+    		<p>3.1 系统的设计目标</p>
+    		<p>　　本论文所写的嵌入式操作系统是基于ARM开发平台，具备基本的多任务调度，也就是说应用开发者能创建多个任务来进行工作，每个任务间通过本系统的调度算法来进行分配任务的运行，同时本系统具有简单的内存管理功能，开发者可以在任务里随时进行申请内存和释放内存的操作。<a href="results/158.html" target="resultFrame"><span class="light_autotype">经过分析，本嵌入式操作系统具有以下的基本功能：</span></a></p>
+    		<p>　　任务的基本操作功能。<a href="results/159.html" target="resultFrame"><span class="autotype">这里包括用户任务和系统任务的创建、任务的挂起和恢复、任务的删除等。</span></a><a href="results/160.html" target="resultFrame"><span class="autotype">开发者可以使用相应的任务函数进行操作管理。</span></a></p>
+    		<p>　　中断服务功能。<a href="results/161.html" target="resultFrame"><span class="autotype">中断服务的功能模块是本操作系统的重点，也是难点之一。</span></a>中断服务涉及开发板相关的底层操作，大部分采用ARM汇编来编写中断服务的进入和退出。<a href="results/163.html" target="resultFrame"><span class="light_autotype">而中断服务子程序（Interrupt Service Routines，ISR）一般都是采用简单的C语言来编写，主要完成在中断时进行的操作。</span></a><a href="results/164.html" target="resultFrame"><span class="light_autotype">同时任务的调度也是由中断服务来完成，包括任务数据的保存和恢复。</span></a>可以说，只要把中断服务功能设计好，多任务的调度已经不成问题了，一个操作系统的基本雏形已经做好了。</p>
+    		<p>　　时间管理功能。<a href="results/166.html" target="resultFrame"><span class="light_autotype">这里的时间管理功能主要用于系统的时间节拍，可以用来对任务进行延时，也可用来获取系统运行的总节拍数。</span></a></p>
+    		<p>　　内存管理功能。这里是比较简单的内存管理，主要采用预先分配好的二维数组来进行空间的分配。<a href="results/168.html" target="resultFrame"><span class="autotype">开发者可以在任务里随时申请和释放内存。</span></a></p>
+    		<p>3.2 系统的总体结构</p>
+    		<p><a href="results/169.html" target="resultFrame"><span class="light_autotype">　　系统的总体结构主要包括整个嵌入式操作系统的引导启动、硬件的初始化、操作系统的运行等。</span></a><a href="results/170.html" target="resultFrame"><span class="light_autotype">本论文主要把整个系统分割成4个模块：引导启动模块、系统更新模块、串口通信模块、操作系统模块。</span></a><a href="results/171.html" target="resultFrame"><span class="light_autotype">其中操作系统模块根据系统的基本功能又细分为任务管理模块、时间管理模块、中断服务模块和内存管理模块。</span></a><a href="results/172.html" target="resultFrame"><span class="autotype">总体的结构模块如图3-1所示。</span></a></p>
+    		<p>　　引导启动模块。这个模块的主要功能是引导开发板的启动，主要是以ARM汇编为主。<a href="results/174.html" target="resultFrame"><span class="light_autotype">主要包括设置ARM异常向量的地址、设置外设接口的地址、关闭看门狗、设置CPU的主频、初</span><span class="autotype">始化SDRAM和NAND Flash、把代码复制到SDRAM中等。</span></a></p>
+    		<p>　　系统更新模块。由于操作系统不可能一次编写，就能成功运行所有功能，因此需要不停的往开发板重复烧写新的操作系统程序。由于每次烧写目标程序时都需要使用u-boot在Windows下才能把程序写进NAND Flash上，比较麻烦，而且在Linux下没有相关的Linux驱动，因此，本课题里设计了一段能自行更新NAND Flash上目标程序的代码，并集合到系统上。这个系统更新模块主要采用串口通信来获取新的目标程序，系统引导启动后就能直接选择更新系统或者运行系统，即方便又简单。</p>
+    		<p>　　串口通信模块。<a href="results/178.html" target="resultFrame"><span class="light_autotype">这里的串口通信模块主要方便调试，开发板通过串口与主机进行通信，可以让开发板输出</span><span class="light_autotype">相关的信息，然后在主机上显示，而且这个串口通信模块还包括主机上的串口通信软件。</span></a>这个通信软件是本课题里自行编写的软件，其中串口通信方面采用了第三方写的插件，而且这个软件结合系统更新模块，主要是通过串口来传输二进制文件来更新开发板上的系统程序代码。</p>
+    		<p>　　操作系统模块。<a href="results/180.html" target="resultFrame"><span class="autotype">这个就是本嵌入式操作系统的实现，具体的就是任务管理模块、中断服务模块、时间管理模块和内存管理模块。</span></a></p>
+    		<p></p>
+    		<p><a href="results/181.html" target="resultFrame"><span class="autotype">　　图3-1 嵌入式操作系统的总体模块图</span></a></p>
+    		<p>3.<a href="results/182.html" target="resultFrame"><span class="autotype">3 引导启动模块的设计</span></a></p>
+    		<p><a href="results/183.html" target="resultFrame"><span class="light_autotype">　　引导启动模块是整个嵌入式系统的首要模块，主要功能就是引导并启动操作系统，跟平常所见的bootloader并无区别。</span></a>整个引导启动模块所完成的功能就是初始化相关的硬件，然后跳转到系统启动界面。</p>
+    		<p>　　引导启动模块往往与芯片和开发板紧密结合，因此不同的开发板其实现过程往往不同，但其思路基本是一样的，下面就以OK6410开发板为例，讲解其引导模块的设计过程。</p>
+    		<p><a href="results/186.html" target="resultFrame"><span class="autotype">　　设置异常处理函数的入口地址。</span></a>根据ARM的体系结构可知，地址0x0000000到0x0000001F是ARM异常向量的入口地址，当ARM芯片启动或复位后，系统会自动从0x00000000的地址处开始执行程序，因此我们需要在0x00000000处设置一条跳转指令，跳转到程序的初始化处，其余的异常向量入口地址需要填写相应的异常处理函数的入口地址，以便异常发生时，系统跳转到相应的处理函数处。</p>
+    		<p>　　初始化相关的硬件。<a href="results/188.html" target="resultFrame"><span class="light_autotype">当系统跳转到初始化处后，就可以开始设置相关的硬件了。</span></a>这里首先要禁止所有的IRQ和FIQ中断，然后根据S3C6410的芯片手册[4]，还需设置外设寄存器的地址后才能设置相关寄存器的值。接着是关闭看门狗，大多数嵌入式芯片都有看门狗的功能，因此需要关闭看门狗，不然系统会每隔一段时间就会自动重启。然后初始化其它的硬件，比如CPU的频率，SDRAM和NAND Flash，这些寄存器的设置只需根据相关的芯片手册来进行初始化即可。</p>
+    		<p><a href="results/192.html" target="resultFrame"><span class="light_autotype">　　（3）初始化CPU频率、SDRAM和NAND Flash后，还需要重定位代码。</span></a>由于S3C6410芯片启动后会自动从NAND Flash中复制8KB的数据到芯片的SRAM中运行，但往往一个操作系统的大小会超过8KB，因此，我们需要把程序复制到内存SDRAM上，然后从SRAM跳到SDRAM中继续运行，这一步骤就是重定位。重定位只需将NAND Flash中的代码段TEXT和数据段DATA复制到SDRAM中，最后清零BSS段即可。</p>
+    		<p>　　重定位后，就准备跳到SDRAM中继续执行代码了。这里一般是跳到main函数开始执行主程序，但在本系统中，由于存在系统更新模块，因此是首先跳入到更新函数，然后再执行main函数。</p>
+    		<p><a href="results/197.html" target="resultFrame"><span class="autotype">　　最后是进入异常处理程序的代码编写。</span></a><a href="results/198.html" target="resultFrame"><span class="autotype">由于发生异常后，会跳到异常向量地址处，执行异常向量地址处的函数。</span></a>在准备处理异常前，首先要保存用户现场，即将CPU相应的寄存器入栈。由于ARM存在流水线的问题，因此寄存器LR的返回地址不一定是正确的返回地址，需要根据哪种异常来进行修改。<a href="results/201.html" target="resultFrame"><span class="autotype">接着跳入到异常处理程序。</span></a><a href="results/202.html" target="resultFrame"><span class="autotype">异常处理完毕后，恢复用户现场。</span></a></p>
+    		<p>　　ARM有7种异常，由于复位异常不需编写异常处理程序，所以实际只需编写6个异常处理的函数。但因为本系统中只用到外部中断IRQ，所以只编写了IRQ的处理函数，其余5个异常处理程序，开发者可根据实际需要进行编写。</p>
+    		<p>3.<a href="results/205.html" target="resultFrame"><span class="autotype">4 串口通信模块的设计</span></a></p>
+    		<p>　　串口通信模块对于嵌入式系统的调试是非常重要的，本模块可分为主机和开发板两部分，开发板将相关的信息通过串口发送到主机上，主机通过串口接收到信息后显示出来。<a href="results/207.html" target="resultFrame"><span class="autotype">同时主机可向开发板发送数据，开发板也可接收主机发来的数据。</span></a></p>
+    		<p>　　绝大多数的开发板都有一个串口插座，OK6410开发板有一个DB9的串口母座，可直接与计算机的串口进行连接通信。<a href="results/209.html" target="resultFrame"><span class="light_autotype">要进行串口的通信，首先需要设置开发板的串口信息，比如串口波特率，数据位，停止位，校验位等。</span></a><a href="results/210.html" target="resultFrame"><span class="autotype">相关的设置可根据芯片手册来设置相应的寄存器。</span></a>要通过开发板的串口发送数据，只需将该数据逐位写到相应的寄存器便可发送到PC的串口上，接收数据也是类似，从相应的寄存器去读取数据。</p>
+    		<p>　　开发板上实现基本的串口通信比较简单，而在主机上，比如Windows系统，往往有较多的串口通信软件，但由于本系统存在系统更新模块，而系统的更新，是通过串口来获取新的程序代码来实现的，因此，本系统还实现了一个能够发送二进制文件的串口通信软件。该软件基于Qt来开发，串口通信的实现主要通过第三方的插件来实现，除了基本的串口通信外，还能配合系统的更新模块来发送更新系统的程序，简单方便。</p>
+    		<p>3.<a href="results/214.html" target="resultFrame"><span class="autotype">5 系统更新模块的设计</span></a></p>
+    		<p><a href="results/215.html" target="resultFrame"><span class="light_autotype">　　当程序进入系统更新模块后，就可以选择更新系统程序代码或者运行系统。</span></a><a href="results/216.html" target="resultFrame"><span class="light_autotype">系统更新模块主要用到串口通信，利用串口通信来接收主机的系统更新代码，把代码复制</span><span class="autotype">到NAND Flash上，然后重启系统，就能运行新的系统程序了。</span></a></p>
+    		<p>　　系统更新模块的难点主要在于接收新的代码和把代码写入到NAND Flash上。本系统从内存地址0x5FC00000（离内存尾端4MB）处开始存放系统的更新代码，当接收完代码数据后，然后在将数据写入到NAND Flash上。<a href="results/219.html" target="resultFrame"><span class="light_autotype">NAND Flash上的数据读写需要根据NAND Flash的芯片手册来操作。</span></a>这里还要注意S3C6410上的NAND Flash陷阱，OK6410开发板的NAND FLash是以页为单位进行读写的，每页有4KB是用来存储数据，218个字节来存放校验和等信息。按照原理，S3C6410处理器是从前两页读取8KB的数据到SRAM中，但其实并不是这样的。S3C6410会从前4页，每页读取2KB，总共8KB的数据到SRAM中，所以，当把系统代码更新时，并不能直接把数据从NAND Flash的第一页开始写下去，而是需要把8KB数据写到4页里，第2到第5页的前2KB数据与前一页的后2KB数据相同，如下图所示。</p>
+    		<p>　　</p>
+    		<p><a href="results/223.html" target="resultFrame"><span class="light_autotype">图3-2 NAND Flash前4页的数据写法</span></a></p>
+    		<p>　　至此，关于开发板从启动到准备运行操作系统，本设计把这一阶段分为了三个模块来讲解，其中串口通信模块和系统更新模块并不是必须的，但对于系统的调试和更新是非常方便的，如果到了应用正式部署的时候，可以选择性的删除。这三个模块与开发板的硬件紧密结合，不同的开发板其实现过程也是不同的，因此这里只是简单的介绍了在OK6410下的设计过程，其它的需要根据实际的开发板进行相应的移植和修改。<a href="results/226.html" target="resultFrame"><span class="light_autotype">当系统的环境准备好后，就可以开始载入操作系统内核并开始运行了。</span></a></p>
+    		<p>3.<a href="results/227.html" target="resultFrame"><span class="autotype">6 任务管理模块的设计</span></a></p>
+    		<p>3.6.<a href="results/228.html" target="resultFrame"><span class="light_autotype">1 任务的定义及其结构</span></a></p>
+    		<p><a href="results/229.html" target="resultFrame"><span class="autotype">　　人们在实际生活中解决一个大而复杂的问题时，往往会把这个大问题分解成多个简单和容易解决的小问题。</span></a>在实际编程中，当面对大的应用程序时，我们也会把它编写成一个个小程序来完成目的。<a href="results/231.html" target="resultFrame"><span class="light_autotype">这种方法即能提高CPU的利用率，同时又加快了程序的执行速度。</span></a>由于嵌入式系统都是与具体的应用紧密结合的，都是针对解决某一类问题，因此可以把这一类问题分解成许多小问题，再交给操作系统来进行处理。利用这种思路，在嵌入式操作系统里，就可以把每个大问题转化为多个任务，每个任务都有自己相应的工作函数，由操作系统来进行调度和管理，这样就能实现一个多任务的操作系统了。</p>
+    		<p><a href="results/234.html" target="resultFrame"><span class="autotype">　　一个任务，也称作一个线程，是一段简单的程序，该程序可以任务CPU完全只属于该程序自己。</span></a><span class="quote">当某个问题分解成多个任务后，每个任务都是属于整个应用的某一部分，每个任务都被赋予一定的优先级，有自己独立的栈空间，彼此独立运行[6]。</span><a href="results/236.html" target="resultFrame"><span class="light_autotype">典型的任务都是一个无限循环的函数[7]，由任务控制块来进行管理，一般都包括任务的栈地址，任务的优先级，任务的状态等信息。</span></a></p>
+    		<p><a href="results/237.html" target="resultFrame"><span class="light_autotype">　　本论文设计的嵌入式操作系统由任务控制块链表来管理各个任务，任务的基本模型如下所示。</span></a></p>
+    		<p></p>
+    		<p>图3-3 任务链表</p>
+    		<p>　　任务可以分为普通任务和系统任务，系统任务有两个，一个为空闲任务，另一个为统计任务，空闲任务是必须存在的，当系统没有其它任务可以运行时，空闲任务就会运行，这样CPU就不会没事可做了，统计任务用于统计CPU的利用率。<a href="results/239.html" target="resultFrame"><span class="autotype">普通任务即为开发者创建的任务。</span></a></p>
+    		<p><a href="results/240.html" target="resultFrame"><span class="autotype">　　每个任务都有5种状态，分别是就绪态、运行态、等待态、休眠态、中断态。</span></a><a href="results/241.html" target="resultFrame"><span class="autotype">当任务控制块设置完后，任务就进入就绪态了。</span></a><a href="results/242.html" target="resultFrame"><span class="light_autotype">当任务得到CPU而运行后，处于运行态。</span></a><a href="results/243.html" target="resultFrame"><span class="autotype">当任务进入休眠后，就处于休眠态，当任务被挂起后就进入等待态，被中断的任务处于中断态。</span></a><a href="results/244.html" target="resultFrame"><span class="autotype">各种状态的转换图如下所示。</span></a></p>
+    		<p></p>
+    		<p>图3-4 任务状态转换图</p>
+    		<p>3.6.2 任务的调度机制</p>
+    		<p><a href="results/245.html" target="resultFrame"><span class="light_autotype">　　在嵌入式操作系统里，任务的调度是非常关键的，操作系统的实时性和多任务的能力主要取决于所采用的调度策略。</span></a><a href="results/246.html" target="resultFrame"><span class="autotype">从操作系统的调度策略角度来看，可分为基于优先级的调度策略和基于时间片的轮转调度策略；</span></a><a href="results/247.html" target="resultFrame"><span class="autotype">从调度方式上来讲，可分为抢占式调度、非抢占式调度以及可选择抢占式调度等；</span></a><span class="quote">从时间片上来看，可分为固定与时间片可变的调度[8]。</span><span class="quote">在一般的嵌入式操作系统里，为了能使系统能够快速响应外部突发事件，一般都采用基于优先级的调度算法[6]。</span>至于抢占式调度和非抢占式调度，由于在抢占式调度中，只要最高优先级的任务一旦就绪，就能得到CPU的使用权，而非抢占式调度中，当前任务会一直占用CPU，直到其运行完成。<a href="results/251.html" target="resultFrame"><span class="autotype">因此，为了保证任务的实时性，本设计的嵌入式操作系统是采用基于优先级的抢占式调度机制。</span></a></p>
+    		<p><a href="results/252.html" target="resultFrame"><span class="autotype">　　采用按优先级的抢占式调度策略，任何时刻都运行着最高优先级的就绪任务。</span></a><a href="results/253.html" target="resultFrame"><span class="autotype">当一个运行的任务使一个更高优先级的任务进入了就绪状态，当前运行任务的CPU使用权就</span><span class="light_autotype">会被更高优先级就绪任务所抢占，如果是中断服务使一个更高优先级的任务进入就绪状态</span><span class="light_autotype">，那么当中断完成后，被中断的任务将会被挂起，优先级更高的任务就会开始运行。</span></a></p>
+    		<p><span class="quote">　　如下图所示，两个不同优先级任务和一个中断服务的执行情况，当低优先级任务被中断后，系统进入中断服务子程序ISR，中断服务子程序ISR同时使一个更高优先级的任务进入就绪状态，当中断服务程序执行完后，调度器会选择更高优先级的就绪任务来运行，而不是恢复被中断了的任务继续运行[9][10]。</span></p>
+    		<p></p>
+    		<p><a href="results/255.html" target="resultFrame"><span class="autotype">图3-5 优先级抢占式调度</span></a></p>
+    		<p><a href="results/256.html" target="resultFrame"><span class="light_autotype">　　基于优先级的调度策略，每个任务都拥有一个由设计者按照任务的重要性来编排的优先级号。</span></a><a href="results/257.html" target="resultFrame"><span class="light_autotype">任务的优先级设计是十分重要的，可以分为支持同优先级和不同优先级两种。</span></a><a href="results/258.html" target="resultFrame"><span class="light_autotype">支持同优先级任务即多个任务可以拥有相同的优先级，而不同优先级是每个任务必须分配各不相同的优先级。</span></a>采用支持同优先级的方式比较适合现实情况，每个任务的优先级高低并不是绝对的，每个任务的地位基本相同，并有一定的周期性[8]，但采用这种方式，任务的调度和任务的控制块就会变得相对复杂，对于初做系统，可以采用相对简单的方式，更好的改进方式可以留到下一阶段来继续完成。因此，本设计采用不同优先级的方式，虽然这种设计方法比较简单，但也是有比较多的问题，其中就有优先级反转的问题，本设计里没有设计出针对此问题的解决方案，但已经有许多参考资料提出来了解决的方法，这一部分也是留到下一阶段继续改进的地方。</p>
+    		<p><a href="results/261.html" target="resultFrame"><span class="light_autotype">　　采用不同优先级的方式，每个任务都拥有一个不同的优先级，因此，可以把任务的ID号等同于优先级号。</span></a><a href="results/262.html" target="resultFrame"><span class="autotype">这里优先级号采用整数来表示，0为最高优先级，数字越大，优先级越低。</span></a><a href="results/263.html" target="resultFrame"><span class="autotype">优先级高的任务先运行，优先级底的任务后运行。</span></a>当系统进行调度时，可以在任务控制块链表中查找最高优先级就绪的任务来运行，由于创建任务时，并不一定是按照任务的优先级来分别创建的，因此，如果在任务控制块链表中来查询，其效率比较低，对系统的实时性造成影响。所以，这里可以采用一个有序表，即一个一维数组，数组0表示0号任务，数组1表示1号任务，以此类推，每个数组指向对应的任务控制块地址，即数组0是执行0号任务的任务控制块。当进行查询时，就可以从数组0开始往下查找，如果数组N为空，表明不存在N号任务；<a href="results/267.html" target="resultFrame"><span class="light_autotype">如果数组N存在，那么数组N所指向的任务控制块就是最高优先级就绪任务了。</span></a>模型图如下所示。</p>
+    		<p></p>
+    		<p>图3-6 优先级有序表</p>
+    		<p><a href="results/268.html" target="resultFrame"><span class="light_autotype">　　这里采用顺序查找的算法虽然比较简单，但并不是最优。</span></a>我们可以在创建任务时，根据任务的优先级顺序插入到任务控制块链表中相应的位置，这样每次查找时就能更加快捷，但创建任务所花费的时间也会相对增加，特别是当任务比较多的时候，这些改进也可留到下阶段改进。</p>
+    		<p>3.6.3 任务的创建</p>
+    		<p><a href="results/270.html" target="resultFrame"><span class="light_autotype">　　每个任务都由任务控制块链表中的任务块进行管理，当系统运行后，会把每个空的任务控</span><span class="light_autotype">制块连接成一个链表，称为空任务块控制链表，当需要创建任务时，便可从这个链表中拿出一个空的任务控制块，来设置任务的相关信息。</span></a><a href="results/271.html" target="resultFrame"><span class="light_autotype">所有创建好的任务控制块会连接到另外一个任务控制块链表中，当系统进行调度时，便会从这一链表中选出任务块来运行任务。</span></a></p>
+    		<p>　　任务的创建最关键就是设置任务的栈，本系统中每个任务都拥有一个固定的栈，栈空间的大小由开发者定义，毕竟不同开发板其内存资源也是不同的。<a href="results/273.html" target="resultFrame"><span class="light_autotype">栈空间主要用于切换任务时，保存当前任务在CPU上寄存器的数据，以便将来恢复当前任务继续运行。</span></a><a href="results/274.html" target="resultFrame"><span class="light_autotype">当任务首次创建时，PC寄存器会指向当前任务的函数入口地址，当函数被调度运行时，便可跳到对应的函数，开始执行程序。</span></a></p>
+    		<p>　　当设置好任务的栈后，还需要把任务块连接到任务控制块链表中，这样任务的状态就可以设置为就绪，等待系统调度运行了。</p>
+    		<p><a href="results/276.html" target="resultFrame"><span class="autotype">　　任务链表和任务块的基本模型如下所示。</span></a></p>
+    		<p></p>
+    		<p>图3-7 任务链表图</p>
+    		<p>3.6.4 任务的挂起和恢复</p>
+    		<p>　　每个普通任务都可以挂起任务自身或者其它任务，当任务被挂起时，就会处于挂起态，这时，不论任务的优先级是什么，都不会得到系统的调度运行。</p>
+    		<p>　　被挂起的任务只能通过其它任务来恢复，只要把被挂起任务的状态清掉，那么该任务就可继续参与到系统的调度中。</p>
+    		<p>3.6.5 任务删除</p>
+    		<p>　　任务删除操作可以删除其它任务或者删除任务自身，为了让被删除的任务能够释放自身所占用的资源，我们可以先发送一个删除任务的消息给对方，当对方收到这个消息后，就可以进行适当的步骤后再删除自身，这种方法要比直接删除任务更安全、灵活。</p>
+    		<p>3.<a href="results/280.html" target="resultFrame"><span class="autotype">7 中断服务模块的设计</span></a></p>
+    		<p>　　中断服务模块主要为操作系统提供中断响应机制，当系统接收到外部中断请求后，会停止当前正在运行的任务，从而转到中断服务子程序进行中断处理。本系统暂时只需要外部中断请求IRQ，因此只讲解外部中断的请求过程，对于其它中断比如快速中断FIQ等可以参考S3C6410芯片手册进行编写。</p>
+    		<p>　　每个任务需要打开中断后才能响应中断，在任务堆栈的初始化时，应当把每个任务的状态寄存器即CPSR设为0x0000001F，即处于系统工作模式并打开IRQ中断。<a href="results/284.html" target="resultFrame"><span class="autotype">这样当有中断时，系统就会自动跳转到中断处理函数。</span></a><a href="results/285.html" target="resultFrame"><span class="autotype">本系统的主要中断处理函数有时钟定时器中断处理和按键中断处理。</span></a></p>
+    		<p><a href="results/286.html" target="resultFrame"><span class="light_autotype">　　时钟定时器主要是完成系统在每个时钟节拍需要做的工作，我们首先需要设置系统时钟的节拍，比如系统时钟节拍为10ms，即每秒中断10次。</span></a>这里需要根据S3C6410芯片手册，设置相应的时钟寄存器，把设置的值写入到相应的位即可。由于ARM11采用的中断向量的方式来设置中断，所以中断设置比较简单，只需把中断的处理函数地址写到对应的向量位，那么当中断发生时，就会自动进如入中断处理函数，进行中断处理。</p>
+    		<p>　　时钟定时器的中断处理函数主要完成的工作为：给系统的时钟计数器加1，然后遍历任务控制链表，把所有延时任务的延时器减1，如果延时任务的延时器变为0，还要将该任务的延时状态清零。</p>
+    		<p><a href="results/290.html" target="resultFrame"><span class="light_autotype">　　当退出中断处理函数后，系统会进行一次任务调度，从而运行最高优先级就绪的任务，因此并不一定继续运行刚才被中断的任务。</span></a></p>
+    		<p>　　处理中断的函数基本都是使用ARM汇编来完成，主要是进入中断前，需要保存CPU的寄存器数据到当前任务的栈空间中，然后在进入中断处理函数。退出中断后，需要把任务栈中的寄存器数据恢复到CPU中，从而使得任务能继续运行。</p>
+    		<p><a href="results/293.html" target="resultFrame"><span class="light_autotype">　　按键中断也是首先设置好相应的中断位，然后设置中断处理函数的地址，当有按键按下时，系统就会跳到对应的按键的中断处理函数。</span></a></p>
+    		<p>3.<a href="results/294.html" target="resultFrame"><span class="autotype">8 时间管理模块的设计</span></a></p>
+    		<p><a href="results/295.html" target="resultFrame"><span class="autotype">　　时间管理模块可以提供任务的延时和系统的运行时间。</span></a>任务的延时主要根据时钟节拍来计算出任务所需延时的时钟节拍数，本系统的时钟节拍为10，即1秒会进行10次中断，时间片为100ms。<a href="results/297.html" target="resultFrame"><span class="light_autotype">如果任务需要延时1秒，那么延时的节拍数即为10。</span></a><a href="results/298.html" target="resultFrame"><span class="light_autotype">任务进入延时后，系统应当重新引发一次调度，运行下一个就绪任务。</span></a></p>
+    		<p>　　每次时钟中断，系统都会检查任务块，对于有延时的任务块，系统会减去1个延时节拍数，当延时节拍数变为0，那么任务块的延时状态就会清零。<a href="results/300.html" target="resultFrame"><span class="autotype">如果任务没有被挂起，那么该任务就会进入就绪状态。</span></a></p>
+    		<p>　　此外，还需记录系统从开始运行到至今已经经过多少个时钟节拍，因此，系统还有一个时钟计数器，每次时钟节拍中断时都会加1。</p>
+    		<p>3.<a href="results/302.html" target="resultFrame"><span class="autotype">9 内存管理模块的设计</span></a></p>
+    		<p><a href="results/303.html" target="resultFrame"><span class="light_autotype">　　内存管理功能是操作系统内核中一个重要的功能，本小型嵌入式操作系统提供一个比较简单的动态内存管理功能。</span></a>任务能在运行时动态申请内存空间，当任务不需要这些空间时，可以释放归还给操作系统。</p>
+    		<p><a href="results/305.html" target="resultFrame"><span class="light_autotype">　　内存管理的技术比较多，从操作系统教程就可知道有地址空间与重定位、分区管理、分页技术、虚拟存储管理等等。</span></a><span class="quote">其中分区的管理算法简单，易于实现，但碎片问题严重，内存利用率低[11]。</span></p>
+    		<p><a href="results/307.html" target="resultFrame"><span class="light_autotype">　　本系统采用比较简单的固定分区法来实现内存的管理。</span></a><a href="results/308.html" target="resultFrame"><span class="autotype">固定分区法就是内存中分区的个数固定不变，各个分区的大小固定不变。</span></a><a href="results/309.html" target="resultFrame"><span class="autotype">根据大小的不同还可分为等分方式和差分方式。</span></a><span class="quote">所谓等分，就是各个分区大小相同，所谓差分，就是分区具有不同大小[12]。</span>利用等分方式，实现方法简单，需要处理的开销也很小，但缺点也很明显，任务申请的内存空间一定要在分区的大小之内，否则将会引起灾难性的结果。对于更好的分区方法，将留到下阶段的改进。</p>
+    		<p>　　采用固定分区法，我们可以通过定义一个二维数组就能实现内存分区，比如一个8位的数组MxN，内存分区的大小为8*M*N个字节，总共可以分为M个内存块，每个内存块有N个字节，每次任务申请的内存空间必须小于N个字节。如下图所示。</p>
+    		<p></p>
+    		<p>图3-8 固定分区</p>
+    		<p>　　这种分区方法虽然比较粗糙，内存的利用率低，但实现简单，开销小，实时性也较好。</p>
+    		<p><a href="results/315.html" target="resultFrame"><span class="light_autotype">　　有了内存分区后，我们还需要一个内存控制块来管理内存分区里的内存块，实现真正的内存分配。</span></a>内存控制块需要基本的信息，比如内存分区的起始地址、内存块的大小、内存块的数量，已经分配出去的内存块数量等。对于各个内存块，我们需要把它们连接成一个链表，那么分配内存时，就可直接在链表中取出该内存块给任务，任务释放内存时，只需将该内存块连接回链表中即可。如下图所示。</p>
+    		<p></p>
+    		<p><a href="results/318.html" target="resultFrame"><span class="light_autotype">图3-9 内存控制块和内存分区的关系</span></a></p>
+    		<p>3.10 本章小结</p>
+    		<p><a href="results/319.html" target="resultFrame"><span class="light_autotype">　　本章首先介绍了整个嵌入式操作系统的设计目标和一个总体的结构，把整个系统功能划分</span><span class="light_autotype">成4个模块，引导模块、系统更新模块、串口通信模块和操作系统模块，然后阐述了各个模块的设计思路。</span></a></p>
+    		<p>系统实现</p>
+    		<p></p>
+    		<p>4.<a href="results/320.html" target="resultFrame"><span class="autotype">1 系统开发环境的搭建</span></a></p>
+    		<p>　　嵌入式应用的开发一般都是采用主机与开发板结合的交叉开发模式，因为嵌入式设备大多没有操作系统，即使是配有操作系统，一般情况下也是没有相应的编译和开发工具，不足以用来开发软件，也就是说开发板上不能自行编译软件程序后运行。因此，需要在主机（PC机）上先为开发板搭建对应的开发环境，然后编译出对应的应用程序，最后烧写到开发板上，才能正常运行。所以一般用到的交叉开发模式为：在主机上编辑程序代码、编译成对应开发板上的应用程序，然后烧写到开发板上，最后在开发板上运行和验证应用程序。</p>
+    		<p>　　在本设计里，主机是指PC机，开发板也就是OK6410开发板，所开发的嵌入式操作系统首先也是在主机上进行编写程序，然后通过交叉编译后再把目标程序烧写到OK6410开发板上，最后是验证该系统的正确性。</p>
+    		<p>　　嵌入式的开发环境既能在Windows下搭建，又能在Mac OS或Linux下搭建，由于本设计使用Linux操作系统作为开发的平台，因此这里只讲解在Linux下如何搭建相应的开发环境，对于其它操作系统也是类似，这里就不讲解了。</p>
+    		<p>　　本设计里搭建的嵌入式开发环境只要配置相应的交叉开发工具链即可，因为平常在PC上所使用的编译工具一般都是gcc、ld等，它们编译出来的程序一般都是运行在x86平台上的，对于ARM平台上的嵌入式设备来讲，是不能运行x86的应用程序，因此需要使用交叉编译工具来生成ARM平台上的目标程序，这里的交叉编译工具就是arm-linux-gcc、arm-linux-ld等。</p>
+    		<p>　　本设计里所使用的主机操作系统为Fedora 20 Xfce，所使用的交叉编译工具链是Sourcery CodeBench Lite 2013.11-24（GCC版本号为4.8.1）。<a href="results/328.html" target="resultFrame"><span class="autotype">可以到http://www.</span></a>mentor.<a href="results/329.html" target="resultFrame"><span class="autotype">com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/处下载最新的ARM交叉编译工具链。</span></a><a href="results/330.html" target="resultFrame"><span class="light_autotype">注意，这里ARM的交叉工具链有两个版本：EABI和GNU/Linux。</span></a><a href="results/331.html" target="resultFrame"><span class="light_autotype">这里的GNU/Linux版本是用来编译嵌入式Linux内核或Linux应用的，由于本文设计的嵌入式操作</span><span class="light_autotype">系统不涉及Linux，因此本设计选择EABI版本来作为工具链。</span></a>EABI版本适用于编译自己的嵌入式操作系统或应用，不能用于编译Linux应用。<a href="results/333.html" target="resultFrame"><span class="light_autotype">此处下载到的安装包格式为.</span></a>tar.bz2。</p>
+    		<p><a href="results/334.html" target="resultFrame"><span class="light_autotype">　　在Fedora 20里安装交叉编译工具链的推荐步骤为：</span></a></p>
+    		<p><a href="results/335.html" target="resultFrame"><span class="light_autotype">　　首先在/usr/local/目录里创建一个名为CodeSourcery的文件夹（非必须，只是推荐）。</span></a>命令为：</p>
+    		<p><a href="results/336.html" target="resultFrame"><span class="autotype">　　mkdir /usr/local/CodeSourcery</span></a></p>
+    		<p>　　解压下载的安装包。<a href="results/337.html" target="resultFrame"><span class="light_autotype">命令分为2步，第一条命令将把.</span></a>tar.<a href="results/338.html" target="resultFrame"><span class="light_autotype">bz2解压为tar包，然后再使用第二条命令解压tar包得到安装的文件夹：</span></a></p>
+    		<p>　　bunzip2 arm-2013.11-24-arm-none-eabi-i686-pc-linux-gnu.tar.bz2</p>
+    		<p>　　tar -xf arm-2013.11-24-arm-none-eabi-i686-pc-linux-gnu.tar</p>
+    		<p>　　解压后得到arm-2013.11的文件夹，本课题里把它重命名为arm-none-eabi，并移到第一步所创建的文件夹CodeSourcery下，命令为：</p>
+    		<p>　　mv arm-2013.<a href="results/342.html" target="resultFrame"><span class="autotype">11 /usr/local/CodeSourcery/arm-none-eabi</span></a></p>
+    		<p><a href="results/343.html" target="resultFrame"><span class="autotype">　　把交叉工具链的目录添加到环境变量中，具体为编辑用户目录下的.</span></a><a href="results/344.html" target="resultFrame"><span class="autotype">bashrc文件，命令为：</span></a></p>
+    		<p>　　vim ~/.bashrc</p>
+    		<p><a href="results/345.html" target="resultFrame"><span class="autotype">然后添加bin目录的路径和lib目录的路径，如下：</span></a></p>
+    		<p>　　PATH=$PATH:/usr/local/CodeSourcery/arm-none-eabi/bin</p>
+    		<p>　　LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/CodeSourcery/arm-none-eabi/lib</p>
+    		<p><a href="results/348.html" target="resultFrame"><span class="autotype">最后是输出环境变量，保存修改的.</span></a><a href="results/349.html" target="resultFrame"><span class="autotype">bashrc文件即可：</span></a></p>
+    		<p><a href="results/350.html" target="resultFrame"><span class="light_autotype">　　export PATH</span></a></p>
+    		<p><a href="results/351.html" target="resultFrame"><span class="light_autotype">　　至此，交叉编译链就配置好了，可以使用命令让修改的环境变量立即生效：</span></a></p>
+    		<p>　　source ~/.bashrc</p>
+    		<p><a href="results/352.html" target="resultFrame"><span class="light_autotype">　　最后可以使用下面命令测试一下交叉编译工具链是否安装正确：</span></a></p>
+    		<p><a href="results/353.html" target="resultFrame"><span class="autotype">　　arm-none-eabi-gcc -v</span></a></p>
+    		<p>　　如果出现如下图2-7的GCC版本号，那么基本的开发环境就搭建好了，可以开始编写和编译ARM应用程序了。</p>
+    		<p></p>
+    		<p><a href="results/355.html" target="resultFrame"><span class="autotype">图4-1 ARM交叉编译工具链版本号</span></a></p>
+    		<p>4.<a href="results/356.html" target="resultFrame"><span class="autotype">2 任务管理模块的实现</span></a></p>
+    		<p>4.2.<a href="results/357.html" target="resultFrame"><span class="autotype">1 任务控制块的定义及初始化</span></a></p>
+    		<p><a href="results/358.html" target="resultFrame"><span class="light_autotype">　　根据第3章任务控制块的设计，具体的代码实现如下图所示。</span></a></p>
+    		<p>　　</p>
+    		<p><a href="results/359.html" target="resultFrame"><span class="autotype">　　图4-2 任务控制块的定义</span></a></p>
+    		<p><a href="results/360.html" target="resultFrame"><span class="light_autotype">　　其中tcb_stk_ptr就是每个任务的栈指针，该栈指针指向每个任务的栈地址；</span></a>tcb_prio是任务的优先级号，即任务号；tcb_next和tcb_prev分别指向下一个和前一个任务控制块，task_status是任务的状态，tcb_delay为任务的延时节拍，tcb_del_req是任务的删除标志。<a href="results/363.html" target="resultFrame"><span class="light_autotype">其中定义了3种任务状态，就绪、延时和挂起，定义如下图所示。</span></a></p>
+    		<p></p>
+    		<p>图4-3 任务状态的定义</p>
+    		<p><a href="results/364.html" target="resultFrame"><span class="autotype">　　任务控制定义好后，还需要定义任务控制块的链表指针、任务块的变量，当前运行任务块</span><span class="autotype">的指针、最高优先级就绪任务的指针，优先级有序表等，如下图所示。</span></a></p>
+    		<p></p>
+    		<p><a href="results/365.html" target="resultFrame"><span class="autotype">图4-4 任务控制块的相关变量</span></a></p>
+    		<p><a href="results/366.html" target="resultFrame"><span class="light_autotype">　　当定义好任务控制块的所有变量后，需要把空任务块连接成空任务块控制链表，主要代码如下图所示。</span></a></p>
+    		<p></p>
+    		<p>图4-5 空任务块链表</p>
+    		<p>4.3.2 任务的创建</p>
+    		<p><a href="results/367.html" target="resultFrame"><span class="light_autotype">　　任务控制块初始化后，系统会创建系统任务，然后才会创建开发者定义的普通任务。</span></a><a href="results/368.html" target="resultFrame"><span class="light_autotype">系统和普通任务都是通过create_task()函数来创建。</span></a><a href="results/369.html" target="resultFrame"><span class="light_autotype">create_task()需要四个参数，分别是任务函数的入口地址，任务函数的参数，栈顶地址和任务的优先级号。</span></a>首先函数会判断任务的优先级号是否在正常范围内，即0到最小优先级号之间，接着判断该任务号是否已经被其它任务申请了，这里是通过os_tcb_prio_table[prio]来判断，如果为NULL，则说明此任务号还没被使用，接着会初始化该任务的栈和任务块，代码如下图所示。</p>
+    		<p></p>
+    		<p>　　其中init_task_stack()和init_tcb()是创建任务的重点函数，init_task_stack()用来初始化任务的栈空间，即从栈顶地址分配寄存器空间，用于保存任务调度时的任务现场数据，代码如下图所示。</p>
+    		<p></p>
+    		<p>　　init_tcb()函数主要是从os_tcb_free_list里取出一个空任务块，把它连接到任务控制块链表中，接着设置任务相应的值后，该任务就处于就绪运行的状态了，代码如下。</p>
+    		<p></p>
+    		<p>图4-8 init_tcb()函数部分代码</p>
+    		<p><a href="results/374.html" target="resultFrame"><span class="light_autotype">　　当创建的任务进入就绪状态后，会返回到create_task()函数中继续运行，此时create_task()函数</span><span class="light_autotype">会判断系统是否已经在运行，如果系统已经运行，则会进入任务调度函数进行任务调度。</span></a>如果系统还没有开始运行，则会返回，直到start_os()函数运行后才开始调度多任务。</p>
+    		<p>4.3.3 多任务的调度</p>
+    		<p>　　系统开始运行前，会执行start_os()函数，才会开始执行多任务的调度。<a href="results/377.html" target="resultFrame"><span class="light_autotype">start_os()函数首先从优先级有序表找出就绪的最高优先级任务，然后开始运行就绪任务，代码如下。</span></a></p>
+    		<p></p>
+    		<p>图4-9 start_os()函数</p>
+    		<p>　　其中，sched_new()函数负责找出最高优先级就绪的任务，代码如下。</p>
+    		<p></p>
+    		<p>图4-10 sched_new()函数</p>
+    		<p>　　查找最高优先级就绪任务的算法比较简单，直接从os_tcb_prio_table开始从0往下找，因为优先级越高的任务，其任务号越低，所以，只要os_tcb_prio_table[prio]不为NULL，就能知道该任务号是存在的，所以我们就可以通过该任务的task_status来判断是否为就绪，如果就绪，则把os_prio_high_ready设为该任务号。</p>
+    		<p>　　start_task()函数运行就绪任务，将任务从栈寄存器中恢复数据，就可以开始运行了，本函数通过ARM汇编来编写，代码如下图4-11和4-12所示。</p>
+    		<p></p>
+    		<p><a href="results/383.html" target="resultFrame"><span class="light_autotype">图4-11 start_task()函数</span></a></p>
+    		<p></p>
+    		<p>图4-12 restore_task()函数</p>
+    		<p>　　系统开始运行后，就由sched()函数来专门负责任务的调度了，比如正在运行的任务进入延时后，就会调用sched()函数来重新进行任务的调度运行，代码如下所示。</p>
+    		<p></p>
+    		<p>图4-13 sched()函数</p>
+    		<p><a href="results/386.html" target="resultFrame"><span class="light_autotype">　　该函数首先判断当前运行的任务与最高优先级的就绪任务是否相同，如果不相同，则进行任务的调度，选择最高优先级就绪的任务来运行。</span></a>切换任务由switch_task()函数来完成，该函数使用ARM汇编来编写，主要先保存当前任务的数据，然后恢复最高优先级就绪任务的栈寄存器数据即可恢复现场来运行，主要代码如下。</p>
+    		<p></p>
+    		<p><a href="results/388.html" target="resultFrame"><span class="light_autotype">图4-14 switch_task()函数主要代码</span></a></p>
+    		<p>　　任务的调度主要由选择最高优先级就绪任务和切换任务这两部分来完成，本设计只是用比较简单的算法来实现基本任务调度原理，因此没有复杂的调度算法，而切换任务只需首先把当前任务的数据保存起来，然后把最高优先级就绪任务的地址保存到当前栈指针SP处，就能由ldr指令恢复现场数据了。</p>
+    		<p>4.3.4 任务的挂起和恢复</p>
+    		<p><a href="results/390.html" target="resultFrame"><span class="autotype">　　挂起任务，就能让任务停止运行。</span></a><a href="results/391.html" target="resultFrame"><span class="light_autotype">挂起任务的函数为suspend_task()，调用该函数，可以挂起任务自身，也可以挂起其它有效任务。</span></a>如果需要挂起任务自身，传递的参数为OS_PRIO_SELF，其它任务只需传递相应的任务号即可。该函数会改变任务的状态为TASK_SUSPEND，从而使它不能就绪而停止运行。如果挂起的任务是当前任务自身，改变任务状态后，还会调用sched()来进行重新的任务调度，选择最高优先级就绪任务来进行运行。基本代码如下所示。</p>
+    		<p></p>
+    		<p>图4-15 任务挂起函数</p>
+    		<p><a href="results/395.html" target="resultFrame"><span class="light_autotype">　　任务的恢复只能通过其它任务来恢复被挂起的任务，函数为resume_task()。</span></a>该函数将任务状态的TASK_SUSPEND清零，如果该任务没有设置延时状态，该位清零就会变成就绪状态，也就是TASK_READY，同时会进行新的任务调度，代码如下所示。</p>
+    		<p>　　</p>
+    		<p>图4-16 任务恢复函数</p>
+    		<p>　　任务的挂起和恢复相对简单，只要设置任务状态的相应位为对应的状态即可，设置后只要调用sched()函数就能进行新的任务调度了。</p>
+    		<p>4.3.5 任务的删除</p>
+    		<p>　　任务删除可以删除其它任务或者删除任务自身，首先要调用delete_task_request()来发送删除任务的消息，被删除任务接受到删除消息后，调用delete_task()来删除任务自身。<a href="results/399.html" target="resultFrame"><span class="light_autotype">删除任务首先把任务挂起，并把延时时间设为0，避免被调度。</span></a>接着把该任务块从os_tcb_list中归还到os_tcb_free_list中，再引发新的任务调度。代码如下所示。</p>
+    		<p></p>
+    		<p>图4-17 delete_task_request()部分代码</p>
+    		<p></p>
+    		<p><a href="results/402.html" target="resultFrame"><span class="autotype">图4-18 delete_task()部分代码</span></a></p>
+    		<p>4.<a href="results/403.html" target="resultFrame"><span class="autotype">4 中断服务模块的实现</span></a></p>
+    		<p>　　由于系统启动时，本设计就已经设置外部中断服务程序的入口地址，所以当发生外部中断IRQ后，系统会跳转到irq_isr函数处执行中断处理。<a href="results/405.html" target="resultFrame"><span class="light_autotype">执行中断处理前，首先需要保存任务现场，然后跳转到中断处理程序处理中断，处理完毕后，退出中断，恢复任务。</span></a>核心代码如下所示。</p>
+    		<p></p>
+    		<p>图4-19 irq_isr函数</p>
+    		<p><a href="results/407.html" target="resultFrame"><span class="light_autotype">　　其中handle_irq用来跳到开发者定义的中断处理函数，代码如下。</span></a></p>
+    		<p></p>
+    		<p><a href="results/408.html" target="resultFrame"><span class="light_autotype">图4-20 handle_irq函数</span></a></p>
+    		<p>　　退出中断，由exit_interrupt函数来完成。<a href="results/410.html" target="resultFrame"><span class="light_autotype">退出中断前，该函数会进行一次任务调度，如果没有更高优先级就绪的任务，那么会恢复</span><span class="light_autotype">被中断的任务接着运行，否则会去运行更高优先级就绪的任务，代码如下所示。</span></a></p>
+    		<p></p>
+    		<p>图4-21 exit_interrupt函数</p>
+    		<p>　　如果没有更高优先级就绪任务，那么函数就会返回到irq_isr函数处，接着恢复被中断的任务去运行，如果此时有了更高优先级就绪的任务，那么就会执行interrupt_switch_task()函数来运行更高优先级就绪任务。interrupt_switch_task()首先得出更高优先级就绪任务的任务块指针，接着恢复寄存器数据就能开始运行了，代码比较简单，如下所示。</p>
+    		<p></p>
+    		<p>图4-22 interrupt_switch_task()函数</p>
+    		<p>　　中断服务模块还有一个重要的功能，就是能提供开中断或关中断功能，系统默认是打开中断的，但有时一些代码不能受到中断的影响，因此需要关闭中断，那些不希望被中断的代码段叫做临界段。<a href="results/416.html" target="resultFrame"><span class="light_autotype">打开和关闭中断涉及到ARM指令，因此这部分代码是通过ARM汇编来编写的。</span></a>本系统通过enter_critical()和exit_critical()两个函数来退出和打开中断，这两个函数其实是用宏定义来实现，代码如下。</p>
+    		<p></p>
+    		<p><a href="results/418.html" target="resultFrame"><span class="autotype">4-23 退出和打开中断宏定义</span></a></p>
+    		<p>　　退出中断首先需要保存CPSR状态寄存器，由save_cpsr()来完成，然后关闭中断即可。恢复中断由restore_cpsr()来完成，只需要恢复原先保存的CPSR寄存器即可。代码如下所示。</p>
+    		<p></p>
+    		<p><a href="results/421.html" target="resultFrame"><span class="light_autotype">图4-24 保存和恢复CPSR寄存器代码</span></a></p>
+    		<p>4.<a href="results/422.html" target="resultFrame"><span class="autotype">5 时间管理模块的实现</span></a></p>
+    		<p>　　时钟中断服务程序为time_tick()，该函数的主要功能是给时间计数器计数，接着遍历所有任务控制块，如果该任务有延时，就把延时计数器减1，并判断计数器是否减为0，如果是，还需要把该任务的延时状态给清零。代码如下所示。</p>
+    		<p></p>
+    		<p><a href="results/424.html" target="resultFrame"><span class="autotype">图4-25 time_tick()函数代码</span></a></p>
+    		<p>　　本系统提供多个函数接口给开发者调用，比如delay()函数，能够让当前任务休眠指定个时钟节拍，sleep()函数，让当前任务休眠指定的秒数，msleep()让任务休眠指定的毫秒数，sleep_hmsm()能用时、分、秒、毫秒来作为传递参数进行休眠延时。其中sleep()、msleep()、sleep_hmsm()函数都是先把时间转化为毫秒数，然后计算出休眠的时间节拍后，再调用delay()函数来进入休眠，所以delay()函数是所有休眠函数的最终调用函数，delay()函数的核心代码如下所示。</p>
+    		<p></p>
+    		<p><a href="results/427.html" target="resultFrame"><span class="light_autotype">图4-26 delay()函数代码</span></a></p>
+    		<p><a href="results/428.html" target="resultFrame"><span class="autotype">　　休眠函数msleep()的代码如下所示。</span></a></p>
+    		<p></p>
+    		<p><a href="results/429.html" target="resultFrame"><span class="light_autotype">图4-27 msleep()函数代码</span></a></p>
+    		<p>　　剩下的sleep()和sleep_hmsm()函数代码都是比较简单，都是把休眠的时间转化为毫秒，再调用msleep()就可以了。任务进行休眠后，会进行一次新的任务调度，从而运行最高优先级就绪任务，延时任务会在时间中断服务程序里减去延时计数器，当延时计数器减为0时，如果任务没有被挂起，那么该任务就会再次成为就绪任务，等待调度。</p>
+    		<p>　　任务也可以取消延时，由其它任务进行调用cancel_delay()函数从而取消被延时的任务，并进行一次新的调度。<a href="results/433.html" target="resultFrame"><span class="autotype">取消延时的函数如下所示。</span></a></p>
+    		<p></p>
+    		<p>图4-28 cancel_delay()函数</p>
+    		<p>4.<a href="results/435.html" target="resultFrame"><span class="autotype">6 内存管理模块的实现</span></a></p>
+    		<p><a href="results/436.html" target="resultFrame"><span class="light_autotype">　　内存控制块主要用来记录内存分区的状态信息，其定义如下所示。</span></a></p>
+    		<p></p>
+    		<p><a href="results/437.html" target="resultFrame"><span class="autotype">图4-29 内存控制块的定义</span></a></p>
+    		<p>　　内存控制块中mem_addr指向内存分区的起始地址，mem_free_list指向下一个内存块地址，block_len表示内存块的长度，即大小，num_blocks表示内存块的个数，num_free表示空闲的内存块的数目。当系统初始化时，首先会把内存分区内的各个内存块连成一个链表，当任务需要内存块时，就从链表中取出内存块，返回给任务。</p>
+    		<p></p>
+    		<p>图4-30 create_mem()函数核心代码</p>
+    		<p>　　核心代码如上图所示，以定义的u8 array[10][50]为例，内存分区就是array这个数组，其中有10个内存块，每个内存块大小为50个字节，所以每次分配内存，就是把array[0]、array[1]、array[2]的地址返回给调用者。因此，还需要把全部内存块连接在一起，这里可以把array[0]指向array[1]，array[1]指向array[2]，以此类推，然后内存控制块的mem_addr指向内存分区的首地址，也就是array，mem_free_list指向内存块，每申请一次内存，mem_free_list就指向下一个内存块，从而达到分配内存的目的。</p>
+    		<p><a href="results/443.html" target="resultFrame"><span class="light_autotype">　　当内存分区创建好后，就可以在任务里申请和释放内存空间了。</span></a>这里需要要注意，申请内存空间，并不像一般程序里申请多少个字节就能获取多少个字节的空间，在本嵌入式操作系统里，申请的空间必须小于或等于内存块的大小，如果定义的内存分区为u8 array[10][50]，那么每次申请的内存空间绝对不能超过50个字节，而且只能申请10次内存空间。如果申请的空间超过内存块的大小，那么只会返回NULL指针。申请内存块使用get_mem()函数，该函数首先判断申请内存的大小，然后判断该内存分区是否还有空余的内存块，如果有，则把该内存块的地址返回给调用者。具体代码如下所示。</p>
+    		<p>图4-31 get_mem()函数代码</p>
+    		<p>　　释放内存的函数为free_mem()，该函数首先把释放的内存块指向内存分区里的空余内存块，然后把mem_free_list指向该内存块，从而达到归还到内存分区中。<a href="results/449.html" target="resultFrame"><span class="autotype">释放内存空间代码如下。</span></a></p>
+    		<p><a href="results/450.html" target="resultFrame"><span class="light_autotype">图4-32 free_mem()函数代码</span></a></p>
+    		<p>4.7 本章小结</p>
+    		<p>　　本章主要详细讲解了操作系统模块的实现代码，也就是整个小型嵌入式操作系统的内核代码，包括系统变量的定义，任务的创建和调度等功能的实现，中断服务功能的实现，时间管理和内存管理的功能实现，这四个模块组合起来，就是一个简单操作系统的基本实现。</p>
+    		<p>系统测试</p>
+    		<p>5.1 测试环境</p>
+    		<p>　　（1）主机配置</p>
+    		<p> 处理器：Intel Core i3-3217U，1.8GHz</p>
+    		<p>　　内存：4GB</p>
+    		<p>　　硬盘：320GB</p>
+    		<p><a href="results/453.html" target="resultFrame"><span class="autotype">　　操作系统：Windows 7旗舰版</span></a></p>
+    		<p>　　（2）开发板配置</p>
+    		<p><a href="results/454.html" target="resultFrame"><span class="light_autotype">　　芯片：三星S3C6410，ARM 11，533 MHz</span></a></p>
+    		<p>　　内存：DDR 256MB</p>
+    		<p><a href="results/455.html" target="resultFrame"><span class="autotype">　　NAND Flash：4GB</span></a></p>
+    		<p>5.2 测试结果及分析</p>
+    		<p><a href="results/456.html" target="resultFrame"><span class="light_autotype">　　下面针对操作系统的各个功能模块进行测试。</span></a></p>
+    		<p>　　（1）任务管理模块</p>
+    		<p><a href="results/457.html" target="resultFrame"><span class="light_autotype">表5-1 任务管理模块的测试用例和结果</span></a></p>
+    		<p><a href="results/458.html" target="resultFrame"><span class="autotype">测试用例	操作描述	预期结果	实际结果	测试状态</span></a></p>
+    		<p><a href="results/459.html" target="resultFrame"><span class="light_autotype">1-1	使用任务创建函数，分别创建2个任务，并显示出任务的栈地址和函数的入口地址。</span></a><a href="results/460.html" target="resultFrame"><span class="autotype">	创建相应优先级的任务，并打印出该任务的栈地址和函数入口地址。</span></a>	如图5-1所示	通过</p>
+    		<p>1-2	进行2个任务的调度，每个任务打印出各自的优先级号后休眠1秒。	2个任务各自打印自己的优先级号，然后延时1秒。	如图5-2所示	通过</p>
+    		<p>1-3	在用例1-2的基础上，当系统运行100个时钟节拍后，创建一个更高优先级的任务，观察3个任务的调度次序。<a href="results/464.html" target="resultFrame"><span class="light_autotype">	当优先级更高的任务创建后，更高优先级的任务会比2个优先级低的任务更先运行。</span></a>	如图5-3所示	通过</p>
+    		<p><a href="results/465.html" target="resultFrame"><span class="light_autotype">1-4	两个任务，当系统时钟节拍为10时，挂起一个任务；</span></a><a href="results/466.html" target="resultFrame"><span class="light_autotype">当时钟节拍为50时，恢复任务。</span></a><a href="results/467.html" target="resultFrame"><span class="light_autotype">	一开始两个任务分别打印自己的优先级号，当一个任务被挂起后，只有一个任务在运行，当被挂起的任务恢复后，才有两个任务运行。</span></a>	如图5-4所示	通过</p>
+    		<p><a href="results/468.html" target="resultFrame"><span class="light_autotype">1-5	两个任务，当系统时钟节拍为20时，删除一个任务。</span></a><a href="results/469.html" target="resultFrame"><span class="light_autotype">	删除任务后只有一个任务在运行。</span></a>	如图5-5所示	通过</p>
+    		<p></p>
+    		<p>用例 1-1</p>
+    		<p><a href="results/470.html" target="resultFrame"><span class="autotype">创建任务函数代码如下所示，分别创建两个优先级为5和6的任务：</span></a></p>
+    		<p>　create_task(task_5, NULL, &task_stk[5][STK_SIZE - 1], 5);</p>
+    		<p>　create_task(task_6, NULL, &task_stk[6][STK_SIZE - 1], 6);</p>
+    		<p><a href="results/473.html" target="resultFrame"><span class="autotype">运行结果如下图所示：</span></a></p>
+    		<p></p>
+    		<p>图5-1 用例 1-1 运行结果</p>
+    		<p>用例1-2</p>
+    		<p><a href="results/474.html" target="resultFrame"><span class="light_autotype">创建2个任务分别打印自己的优先级号，并休眠1秒，代码如下：</span></a></p>
+    		<p>　prio_t prio;</p>
+    		<p>while (1) {</p>
+    		<p>prio = os_tcb_current_ptr-》tcb_prio;</p>
+    		<p>uart_print("[app] I am task ");</p>
+    		<p>uart_print_int(prio);</p>
+    		<p><a href="results/478.html" target="resultFrame"><span class="autotype">uart_print("\n");</span></a></p>
+    		<p>sleep(1);</p>
+    		<p>	}</p>
+    		<p><a href="results/479.html" target="resultFrame"><span class="autotype">运行结果如下图所示：</span></a></p>
+    		<p></p>
+    		<p>图5-2 用例1-2 运行结果</p>
+    		<p>用例1-3</p>
+    		<p><a href="results/480.html" target="resultFrame"><span class="autotype">当系统运行节拍超过100后，创建一个优先级为1的任务：</span></a></p>
+    		<p>　if (is_created == 0 && get_os_time() 》= 100) {</p>
+    		<p>　create_task(task_1, NULL, &task_stk[1][STK_SIZE - 1], 1);</p>
+    		<p>is_created = 1;</p>
+    		<p>}</p>
+    		<p><a href="results/483.html" target="resultFrame"><span class="autotype">运行结果如下图所示：</span></a></p>
+    		<p></p>
+    		<p>图5-3 用例1-3运行结果</p>
+    		<p>用例1-4</p>
+    		<p><a href="results/484.html" target="resultFrame"><span class="light_autotype">优先级为5和6的两个任务，当时钟节拍为10时，任务5挂起任务6，当时钟节拍为50时，任务5恢复任务6，代码如下：</span></a></p>
+    		<p>　if (get_os_time() == 10)</p>
+    		<p><a href="results/486.html" target="resultFrame"><span class="autotype">suspend_task(6);</span></a></p>
+    		<p>else if (get_os_time() == 50)</p>
+    		<p><a href="results/488.html" target="resultFrame"><span class="autotype">resume_task(6);</span></a></p>
+    		<p>运行结果如下所示：</p>
+    		<p></p>
+    		<p>图5-4 用例1-4运行结果</p>
+    		<p>用例1-5</p>
+    		<p><a href="results/489.html" target="resultFrame"><span class="light_autotype">优先级为5和6的两个任务，当系统时钟节拍为20时，删除优先级为6的任务，代码如下：</span></a></p>
+    		<p>　if (delete_task_request(OS_PRIO_SELF) == OS_TASK_DEL_REQ) {</p>
+    		<p>uart_print("I am going to delete myself\n");</p>
+    		<p>delete_task(OS_PRIO_SELF);</p>
+    		<p>	}</p>
+    		<p>运行结果如下所示：</p>
+    		<p>图5-5 用例1-5运行结果</p>
+    		<p>　　（2）时间管理模块</p>
+    		<p><a href="results/493.html" target="resultFrame"><span class="light_autotype">表5-2 时间管理模块的测试用例和结果</span></a></p>
+    		<p><a href="results/494.html" target="resultFrame"><span class="autotype">测试用例	操作描述	预期结果	实际结果	测试状态</span></a></p>
+    		<p><a href="results/495.html" target="resultFrame"><span class="light_autotype">2-1	创建一个任务，打印自己的优先级号后延时2秒。</span></a><a href="results/496.html" target="resultFrame"><span class="autotype">	任务每隔2秒打印一次信息。</span></a>	如图5-6所示	通过</p>
+    		<p><a href="results/497.html" target="resultFrame"><span class="light_autotype">2-2	创建一个任务，打印自己的优先级号后延时500毫秒。</span></a><a href="results/498.html" target="resultFrame"><span class="autotype">	任务每隔500毫秒打印一次信息。</span></a>	如图5-7所示	通过</p>
+    		<p><a href="results/499.html" target="resultFrame"><span class="light_autotype">2-3	创建2个任务，当高优先级任务打印自己的优先级后延时50秒，当时钟节拍为30时，低优先级任务取消高优先级任务的延时。</span></a><a href="results/500.html" target="resultFrame"><span class="light_autotype">	高优先级任务运行一次后就进入延时，当时钟节拍为30时，高优先级任务取消延时，继续运行。</span></a>	如图5-8所示	通过</p>
+    		<p></p>
+    		<p>用例2-1</p>
+    		<p>创建一个优先级为5的任务，每次打印自己的信息后延时2秒，代码如下：</p>
+    		<p>　while (1) {</p>
+    		<p>　prio = os_tcb_current_ptr-》tcb_prio;</p>
+    		<p>　uart_print("[app] I am task ");</p>
+    		<p>　uart_print_int(prio);</p>
+    		<p><a href="results/505.html" target="resultFrame"><span class="autotype">　uart_print("\n");</span></a></p>
+    		<p>　sleep(2);</p>
+    		<p>　}</p>
+    		<p>运行结果如下所示：</p>
+    		<p></p>
+    		<p>图5-6 用例2-1运行结果</p>
+    		<p>用例2-2</p>
+    		<p><a href="results/506.html" target="resultFrame"><span class="light_autotype">创建一个优先级为5的任务，每次打印自己的信息后延时500毫秒，代码如下：</span></a></p>
+    		<p>　while (1) {</p>
+    		<p>　prio = os_tcb_current_ptr-》tcb_prio;</p>
+    		<p>　uart_print("[app] I am task ");</p>
+    		<p>　uart_print_int(prio);</p>
+    		<p><a href="results/510.html" target="resultFrame"><span class="autotype">　uart_print("\n");</span></a></p>
+    		<p>　msleep(500);</p>
+    		<p>　　}</p>
+    		<p>运行结果如下所示：</p>
+    		<p></p>
+    		<p>图5-7 用例2-2运行结果</p>
+    		<p>用例2-3</p>
+    		<p>优先级为5和6的任务，优先级为5的任务运行一次后延时50秒，优先级为6的任务当时钟节拍为30时，取消优先级为5的任务的延时，代码如下：</p>
+    		<p>　while (1) {</p>
+    		<p>prio = os_tcb_current_ptr-》tcb_prio;</p>
+    		<p>uart_print("[app] I am task ");</p>
+    		<p>uart_print_int(prio);</p>
+    		<p><a href="results/515.html" target="resultFrame"><span class="autotype">uart_print("\n");</span></a></p>
+    		<p><a href="results/516.html" target="resultFrame"><span class="autotype">if (get_os_time() == 30)</span></a></p>
+    		<p><a href="results/517.html" target="resultFrame"><span class="autotype">cancel_delay(5);</span></a></p>
+    		<p>sleep(1);</p>
+    		<p>}</p>
+    		<p>运行结果如下所示：</p>
+    		<p></p>
+    		<p>　　（3）内存管理模块</p>
+    		<p><a href="results/518.html" target="resultFrame"><span class="light_autotype">表5-3 内存管理模块的测试用例和结果</span></a></p>
+    		<p><a href="results/519.html" target="resultFrame"><span class="autotype">测试用例	操作描述	预期结果	实际结果	测试状态</span></a></p>
+    		<p><a href="results/520.html" target="resultFrame"><span class="light_autotype">3-1	创建2个任务，1个任务在时钟节拍为10时申请一个内存块，另一个任务在时钟节拍为20时</span><span class="light_autotype">申请一个内存块，申请的内存块写进当前的系统时钟节拍，并打印出当前内存块的信息。</span></a><a href="results/521.html" target="resultFrame"><span class="light_autotype">	2个任务各申请一块内存，并显示内存块的信息。</span></a>	如图5-9所示	通过</p>
+    		<p>3-2	在用例3-1的基础上，当时钟节拍为50时，2个任务都释放自己申请的内存块。<a href="results/523.html" target="resultFrame"><span class="autotype">	2个任务释放自己占用的内存块。</span></a>	如图5-10所示	通过</p>
+    		<p></p>
+    		<p>用例3-1</p>
+    		<p>创建2个优先级分别为5和6的任务，在时钟节拍为10和20的时候申请一个内存块，代码如下：</p>
+    		<p>　　if (get_os_time() == 10) {</p>
+    		<p>ptr = get_mem(BLOCK_LEN);</p>
+    		<p>if (ptr != NULL) {</p>
+    		<p>uart_print("[app] Task ");</p>
+    		<p>uart_print_int(prio);</p>
+    		<p><a href="results/529.html" target="resultFrame"><span class="light_autotype">uart_print(" used one memory, content is: ");</span></a></p>
+    		<p>*ptr = get_os_time();</p>
+    		<p>uart_print_int(*ptr);</p>
+    		<p><a href="results/532.html" target="resultFrame"><span class="autotype">uart_print("\n");</span></a></p>
+    		<p>}</p>
+    		<p>}</p>
+    		<p>运行结果如下：</p>
+    		<p></p>
+    		<p></p>
+    		<p>用例3-2</p>
+    		<p><a href="results/533.html" target="resultFrame"><span class="light_autotype">当时钟节拍为50时，两个任务释放各自申请的内存，代码如下：</span></a></p>
+    		<p><a href="results/534.html" target="resultFrame"><span class="autotype">　　if (get_os_time() == 50) {</span></a></p>
+    		<p>uart_print("[app] Task ");</p>
+    		<p>uart_print_int(prio);</p>
+    		<p><a href="results/537.html" target="resultFrame"><span class="light_autotype">uart_print(" release one memory\n");</span></a></p>
+    		<p><a href="results/538.html" target="resultFrame"><span class="autotype">free_mem(ptr);</span></a></p>
+    		<p>	}</p>
+    		<p>运行结果如下：</p>
+    		<p></p>
+    		<p>5.3 本章小结</p>
+    		<p>　　本章简单列出了系统测试的基本环境，接着把系统的各个模块和功能做了测试，并把相应的结果显示出来，系统测试的结果表明系统的各个功能模块是能按照预期结果正确运行的。</p>
+    		<p>结    论</p>
+    		<p></p>
+    		<p>　　通过在ARM平台上设计一个小型的嵌入式操作系统，能够加深对操作系统基本原理的理解，又能避免涉及过多的传统计算机的硬件知识。在本设计过程中，虽然遇到过很多底层硬件代码编写和系统设计的问题，但最终还是把一个简单的操作系统的基本雏形做出来了。</p>
+    		<p><a href="results/542.html" target="resultFrame"><span class="autotype">　　本系统具有基本的多任务调度和简单的内存管理功能。</span></a>采用按优先级抢占式的调度算法，优先级最高的任务总能第一时间运行，多任务的调度主要靠中断服务和时间管理来共同完成。<a href="results/544.html" target="resultFrame"><span class="light_autotype">每个系统时钟节拍的中断，系统都会对每个任务控制块进行检查，退出中断时会查找最高优先级的就绪任务，从而保证最高优先级的任务的运行。</span></a>任务的切换是本系统的重点，需要保存当前任务的寄存器数据到栈中，然后再把需要切换的任务的栈中的数据恢复到CPU的寄存器中，就可以完成任务的切换了。<a href="results/546.html" target="resultFrame"><span class="light_autotype">任务的管理功能除了任务的创建和调度切换外，还能进行挂起任务、恢复任务、删除任务的操作。</span></a><a href="results/547.html" target="resultFrame"><span class="light_autotype">时间的管理功能包括任务的延时、取消延时、获取系统运行时间和设置系统运行时间。</span></a>内存管理功能采用了比较简单的方法来完成，主要把二维数组划分为不同的内存块来进行分配和管理，任务能在运行时申请需要的内存和释放不需要的内存。</p>
+    		<p>　　虽然本系统实现了操作系统的最基本的功能，但是还有很多不足和需要改进的地方，像文中里面谈到的任务优先级的设计、任务的调度算法、内存的管理和分配等，这些都是能够优化改善的，希望能在下一阶段进行更进一步的改进。此外这个内核延还有许多能伸出来的功能，比如任务的同步和通信、信号量、事件的管理等。</p>
+    		<p>　　通过本次的毕业设计，我进一步的了解操作系统基本的实现过程，虽然过程比较繁琐和复杂，但看到自己设计的系统能运行起来，真的感到无比的欣悦。今后还要学习更多的操作系统的设计思路和实现过程，做一个即完善又实用的系统。</p>
+    		<p><font color='gray'>参考文献</font></p>
+    		<p><font color='gray'></font></p>
+    		<p><font color='gray'>1  舒展.嵌入式系统综述.现代计算机.2011年，05期：44-46</font></p>
+    		<p><font color='gray'>2  Anand Lal Shimpi.ARM Partners Ship 50 Billion Chips Since 1991-Where Did They</font></p>
+    		<p><font color='gray'>   Go?.2014.http://www.anandtech.com/show/7909/arm-partners-ship-50-billion-</font></p>
+    		<p><font color='gray'>   chips-since-1991-where-did-they-go</font></p>
+    		<p><font color='gray'>3  Samsung Semiconductor, Inc.Samsung S3C6410 Mobile Processor.2008</font></p>
+    		<p><font color='gray'>4  Samsung Electronics, Inc.S3C6410X RISC Microprocessor USER’S MANUAL.2009</font></p>
+    		<p><font color='gray'>5  飞凌嵌入式.OK6410开发板硬件手册</font></p>
+    		<p><font color='gray'>6  孙传群.嵌入式操作系统（EOS）的研究、实现及应用.扬州大学硕士学位论文.</font></p>
+    		<p><font color='gray'>   2004:18-20,42</font></p>
+    		<p><font color='gray'>7  史毓达.嵌入式操作系统μC/OS-Ⅱ调度机制与算法研究.湖北教育学院学报.</font></p>
+    		<p><font color='gray'>   2007,24(2)：60-63</font></p>
+    		<p><font color='gray'>8  曹营.嵌入式系统任务调度机制的研究与实现.大连理工大学硕士学位论文.2010：</font></p>
+    		<p><font color='gray'>   10-14</font></p>
+    		<p><font color='gray'>9  Jean Labrosse，Michael Barr，周东，何小庆.嵌入式操作系统中的抢占式调度策略.</font></p>
+    		<p><font color='gray'>   单片机与嵌入式系统应用.2003年，09期：5-6</font></p>
+    		<p><font color='gray'>10  万柳.μC/OS-Ⅱ嵌入式操作系统中抢占式调度策略分析.微计算机应用.2005年，</font></p>
+    		<p><font color='gray'>　　　01期：116-118</font></p>
+    		<p><font color='gray'>11  吴文峰.嵌入式实时系统动态内存分配管理器的设计与实现.重庆大学硕士学位论文.</font></p>
+    		<p><font color='gray'>    2013：9-17</font></p>
+    		<p><font color='gray'>12  赵奎，张帆.一种嵌入式系统存储管理方案.企业技术开发.2005年，01期：23-24</font></p>
+    </div>
+</body>
+</html>

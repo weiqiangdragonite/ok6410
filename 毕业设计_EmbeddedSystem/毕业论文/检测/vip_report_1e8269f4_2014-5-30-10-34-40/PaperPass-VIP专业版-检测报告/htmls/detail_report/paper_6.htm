@@ -1,0 +1,732 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_5.htm">上一页</a>
+<a class="pagelink" href="paper_7.htm">下一页</a>
+<a class="pagelink" href="paper_8.htm">尾页</a>
+页码：6/8页
+]
+</div>
+
+<br><div style="margin-left:25px">
+
+<img src="../../images/guanwang.gif"></div><br><br>
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">206</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-12 restore_task()函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">207</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>系统开始运行后，就由sched()函数来专门负责任务的调度了，比如正在运行的任务进入延时后，就会调用sched()函数来重新进行任务的调度运行，代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">208</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-13 sched()函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">209</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/485.htm' target='right' class='orange' >该函数首先判断当前运行的任务与最高优先级的就绪任务是否相同，如果不相同，则进行任务的调度，选择最高优先级就绪的任务来运行。</a><span class='green'>切换任务由 switch_ task()函数来完成，该函数使用 ARM汇编来编写，主要先保存当前任务的数据，</span><a href='../sentence_detail/487.htm' target='right' class='orange' >然后恢复最高优先级就绪任务的栈寄存器数据即可恢复现场来运行，主要代码如下。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">210</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-14 switch_task()函数主要代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">211</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>任务的调度主要由选择最高优先级就绪任务和切换任务这两部分来完成，本设计只是用比较简单的算法来实现基本任务调度原理，</span><span class='green'>因此没有复杂的调度算法，而切换任务只需首先把当前任务的数据保存起来，然后把最高优先级就绪任务的地址保存到当前栈指针 SP处，</span><span class='green'>就能由 ldr指令恢复现场数据了。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">212</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3.4 任务的挂起和恢复</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">213</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/493.htm' target='right' class='orange' >挂起任务，就能让任务停止运行。</a><a href='../sentence_detail/494.htm' target='right' class='orange' >挂起任务的函数为suspend_task()，调用该函数，可以挂起任务自身，也可以挂起其它有效任务。</a><a href='../sentence_detail/495.htm' target='right' class='orange' >如果需要挂起任务自身，传递的参数为OS_PRIO_SELF，其它任务只需传递相应的任务号即可。</a><span class='green'>该函数会改变任务的状态为TASK_SUSPEND，从而使它不能就绪而停止运行。</span><a href='../sentence_detail/497.htm' target='right' class='orange' >如果挂起的任务是当前任务自身，改变任务状态后，还会调用sched()来进行重新的任务调度，选择最高优先级就绪任务来进行运行。</a><span class='green'>基本代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">214</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-15 任务挂起函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">215</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/500.htm' target='right' class='orange' >任务的恢复只能通过其它任务来恢复被挂起的任务，函数为resume_task()。</a><span class='green'>该函数将任务状态的TASK_SUSPEND清零，如果该任务没有设置延时状态，该位清零就会变成就绪状态，也就是TASK_READY，同时会进行新的任务调度，代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">216</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-16 任务恢复函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">217</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>任务的挂起和恢复相对简单，只要设置任务状态的相应位为对应的状态即可，设置后只要调用sched()函数就能进行新的任务调度了。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">218</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3.5 任务的删除</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">219</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>任务删除可以删除其它任务或者删除任务自身，首先要调用delete_task_request()来发送删除任务的消息，被删除任务接受到删除消息后，调用delete_task()来删除任务自身。</span><span class='green'>删除任务首先把任务挂起，并把延时时间设为0，避免被调度。</span><a href='../sentence_detail/507.htm' target='right' class='orange' >接着把该任务块从os_tcb_list中归还到os_tcb_free_list中，再引发新的任务调度。</a><span class='green'>代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">220</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-17 delete_task_request()部分代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">221</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-18 delete_task()部分代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">222</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.4 中断服务模块的实现</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">223</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/512.htm' target='right' class='orange' >由于系统启动时，本设计就已经设置外部中断服务程序的入口地址，所以当发生外部中断IRQ后，系统会跳转到irq_isr函数处执行中断处理。</a><a href='../sentence_detail/513.htm' target='right' class='orange' >执行中断处理前，首先需要保存任务现场，然后跳转到中断处理程序处理中断，处理完毕后，退出中断，恢复任务。</a><span class='green'>核心代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">224</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-19 irq_isr函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">225</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/516.htm' target='right' class='orange' >其中handle_irq用来跳到开发者定义的中断处理函数，代码如下。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">226</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-20 handle_irq函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">227</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>退出中断，由exit_interrupt函数来完成。</span><span class='green'>退出中断前，该函数会进行一次任务调度，如果没有更高优先级就绪的任务，那么会恢复被中断的任务接着运行，否则会去运行更高优先级就绪的任务，代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">228</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-21 exit_interrupt函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">229</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/521.htm' target='right' class='orange' >如果没有更高优先级就绪任务，那么函数就会返回到 irq_ isr函数处，</a><a href='../sentence_detail/522.htm' target='right' class='orange' >接着恢复被中断的任务去运行，如果此时有了更高优先级就绪的任务，</a><a href='../sentence_detail/523.htm' target='right' class='orange' >那么就会执行 interrupt_ switch_ task()函数来运行更高优先级就绪任务。</a><span class='green'>interrupt_switch_task()首先得出更高优先级就绪任务的任务块指针，接着恢复寄存器数据就能开始运行了，代码比较简单，如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">230</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-22 interrupt_switch_task()函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">231</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>中断服务模块还有一个重要的功能，就是能提供开中断或关中断功能，系统默认是打开中断的，</span><span class='green'>但有时一些代码不能受到中断的影响，因此需要关闭中断，那些不希望被中断的代码段叫做临界段。</span><span class='green'>打开和关闭中断涉及到ARM指令，因此这部分代码是通过ARM汇编来编写的。</span><a href='../sentence_detail/529.htm' target='right' class='orange' >本系统通过enter_critical()和exit_critical()两个函数来退出和打开中断，这两个函数其实是用宏定义来实现，代码如下。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">232</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4-23 退出和打开中断宏定义</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">233</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>退出中断首先需要保存CPSR状态寄存器，由save_cpsr()来完成，然后关闭中断即可。</span><span class='green'>恢复中断由restore_cpsr()来完成，只需要恢复原先保存的CPSR寄存器即可。</span><span class='green'>代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">234</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/534.htm' target='right' class='orange' >图4-24 保存和恢复CPSR寄存器代码</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">235</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.5 时间管理模块的实现</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">236</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/536.htm' target='right' class='orange' >时钟中断服务程序为 time_ tick()，该函数的主要功能是给时间计数器计数，</a><a href='../sentence_detail/537.htm' target='right' class='orange' >接着遍历所有任务控制块，如果该任务有延时，就把延时计数器减1，并判断计数器是否减为0，</a><span class='green'>如果是，还需要把该任务的延时状态给清零。</span><span class='green'>代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">237</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-25 time_tick()函数代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">238</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本系统提供多个函数接口给开发者调用，比如 delay()函数，能够让当前任务休眠指定个时钟节拍，</span><span class='green'>sleep()函数，让当前任务休眠指定的秒数， msleep()让任务休眠指定的毫秒数，</span><span class='green'>sleep_ hmsm()能用时、分、秒、毫秒来作为传递参数进行休眠延时。</span><span class='green'>其中 sleep()、 msleep()、 sleep_ hmsm()函数都是先把时间转化为毫秒数，</span><span class='green'>然后计算出休眠的时间节拍后，再调用 delay()函数来进入休眠，所以 delay()函数是所有休眠函数的最终调用函数，</span><span class='green'>delay()函数的核心代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">239</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-26 delay()函数代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">240</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>休眠函数msleep()的代码如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">241</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-27 msleep()函数代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">242</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>剩下的sleep()和sleep_hmsm()函数代码都是比较简单，都是把休眠的时间转化为毫秒，再调用msleep()就可以了。</span><a href='../sentence_detail/551.htm' target='right' class='orange' >任务进行休眠后，会进行一次新的任务调度，从而运行最高优先级就绪任务，</a><a href='../sentence_detail/552.htm' target='right' class='orange' >延时任务会在时间中断服务程序里减去延时计数器，当延时计数器减为0时，</a><span class='green'>如果任务没有被挂起，那么该任务就会再次成为就绪任务，等待调度。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">243</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>任务也可以取消延时，由其它任务进行调用cancel_delay()函数从而取消被延时的任务，并进行一次新的调度。</span><span class='green'>取消延时的函数如下所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">244</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-28 cancel_delay()函数</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">245</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.6 内存管理模块的实现</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">246</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/558.htm' target='right' class='orange' >内存控制块主要用来记录内存分区的状态信息，其定义如下所示。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">247</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-29 内存控制块的定义</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">248</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/560.htm' target='right' class='orange' >内存控制块中 mem_ addr指向内存分区的起始地址， mem_ free_ list指向下一个内存块地址， block_ len表示内存块的长度，</a><a href='../sentence_detail/561.htm' target='right' class='orange' >即大小， num_ blocks表示内存块的个数， num_ free表示空闲的内存块的数目。</a><span class='green'>当系统初始化时，首先会把内存分区内的各个内存块连成一个链表，当任务需要内存块时，就从链表中取出内存块，返回给任务。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">249</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-30 create_mem()函数核心代码</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">250</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>核心代码如上图所示，以定义的 u8 array[10][50]为例，内存分区就是 array这个数组，</span><span class='green'>其中有10个内存块，每个内存块大小为50个字节，所以每次分配内存，就是把 array[0]、 array[1]、 array[2]的地址返回给调用者。</span><span class='green'>因此，还需要把全部内存块连接在一起，这里可以把 array[0]指向 array[1]，</span><a href='../sentence_detail/567.htm' target='right' class='orange' > array[1]指向 array[2]，以此类推，然后内存控制块的 mem_ addr指向内存分区的首地址，</a><a href='../sentence_detail/568.htm' target='right' class='orange' >也就是 array， mem_ free_ list指向内存块，每申请一次内存， mem_ free_ list就指向下一个内存块，</a><span class='green'>从而达到分配内存的目的。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">251</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/570.htm' target='right' class='orange' >当内存分区创建好后，就可以在任务里申请和释放内存空间了。</a><span class='green'>这里需要要注意，申请内存空间，并不像一般程序里申请多少个字节就能获取多少个字节的空间，在本嵌入式操作系统里，</span><span class='green'>申请的空间必须小于或等于内存块的大小，如果定义的内存分区为 u8 array[10][50]，</span><span class='green'>那么每次申请的内存空间绝对不能超过50个字节，而且只能申请10次内存空间。</span><a href='../sentence_detail/574.htm' target='right' class='orange' >如果申请的空间超过内存块的大小，那么只会返回NULL指针。</a><span class='green'>申请内存块使用get_mem()函数，该函数首先判断申请内存的大小，然后判断该内存分区是否还有空余的内存块，如果有，则把该内存块的地址返回给调用者。</span><span class='green'>具体代码如下所示。</span>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_5.htm">上一页</a>
+<a class="pagelink" href="paper_7.htm">下一页</a>
+<a class="pagelink" href="paper_8.htm">尾页</a>
+页码：6/8页
+]
+</div>
+
+</div>
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+demo_padding {
+line-height: 30px;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:scroll;
+}
+.liebiao {
+border-bottom-width: 1px;
+border-bottom-style: dashed;
+border-bottom-color: #CCCCCC;
+height: 0px;
+margin-top:10px;
+margin-bottom:10px;
+float: left;
+width: 90%;
+}
+.liebiao ul {
+list-style-type: none;
+display: block;
+margin: 0px;
+clear: none;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px dashed #999999;
+padding-right: 10px;
+padding-left: 10px;
+}
+.shubu{
+float: left;
+height: 15px;
+width: 15px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+}
+.kuang {
+border: 1px solid #999999;
+}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+.green{color:#008000}
+
+a:hover {color:#000000}
+a:active {color:#000000}
+
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+<div class="zhengwen">综合&nbsp;&nbsp;|&nbsp;&nbsp;<a href="111_local.htm">本地库</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="111_net.htm">网络库</a><br /></div>
+<div class="zhengwen">
+语句：<span class='orange' >设置当前状态寄存器为相应的异常工作模式，而且禁止IRQ外部中断，如果进入的是复位模式或快速中断模式，还要禁止FIQ快速中断。</span><br><br>
+在本地库和网络库共找出相似内容：3个
+</div>
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">1</div>
+<font color="#666666">相似度：</font><span class='orange' >47</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">的异常中断模式，同时切换程序状态为ARM状态，禁止IRQ中断，若异常响应为复位异常或FIQ异常，则还要禁止FIQ中断(由此可以</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……器的动作当7种异常中的任何一个在中断响应允许的前提下请求中断，处理器会进行必要的预处理，其动作如下“1：1)保存当前程序状态字CPSR到各异常对应的备份程序状态字SPSR中；2)设置CPSR中的相应位，使处理器进入相应<span class='green'>的异常中断模式，同时切换程序状态为ARM状态，禁止IRQ中断，若异常响应为复位异常或FIQ异常，则还要禁止FIQ中断(由此可以</span>看出默认情况下的中断服务程序是非重入的。)；3)将返回地址修正为PC一4，并保存到相应的LR寄存器中；4……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《ARM异常处理机制》<br>作者：李莉等<br>出处：《燕山大学学报》&nbsp;2006年4期
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">2</div>
+<font color="#666666">相似度：</font><span class='orange' >41</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">中的位，使处理器进入相应的执行模式；设置CPSR中的位，禁止IRQ中断，当进入FIQ模式时，禁止FIQ中断。(3</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……当前状态、中断屏蔽位以及各条件标志位。这是通过将当前程序状态寄存器CPSR的内容保存到将要执行的异常中断对应的SPSR寄存器中实现的。各异常中断有自己的物理SPSR寄存器。(2)设置当前程序状态寄存器CPSR中相应的位。包括：设置CPSR<span class='green'>中的位，使处理器进入相应的执行模式；设置CPSR中的位，禁止IRQ中断，当进入FIQ模式时，禁止FIQ中断。(3</span>)将寄存器irmode设置成返回地址。以ARM微处理器为核心的伞自动生化分析仪的研究L．j设计(4)将程序计数器值(……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《以ARM微处理器为核心的全自动生化分析仪的研究与设计》<br>作者：阴光磊<br>出处：《湖南大学 湖南大学》&nbsp;2005
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">3</div>
+<font color="#666666">相似度：</font><span class='orange' >40</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">设置CPSR中的位，使处理器进入相应的执行模式；设置CPSR中的位，禁止IRQ中断，当进入FIQ模式时，禁止FIQ中断。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……中ARM处理器对异常中断的响应过程如下：(1)保存处理器当前状态、中断屏蔽位以及各条件标志位。将当前程序状态寄存器CPSR的内容保存到将要执行的异常中断对应的SPSR寄存器中。(2)设置当前程序状态寄存器CPSR中相应的位。包括<span class='green'>设置CPSR中的位，使处理器进入相应的执行模式；设置CPSR中的位，禁止IRQ中断，当进入FIQ模式时，禁止FIQ中断。</span>丁雷：硕士研究生(3)将寄存器lr_mode设置成返回地址。(4)将程序计数器值(PC)，设置成该异常中断……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《ARM S3C2410X系统中断编程机制的研究与应用》<br>作者：丁雷等<br>出处：《微计算机信息》&nbsp;2006年32期
+</td>
+</tr>
+</table>
+
+
+
+
+<div style="margin-bottom:100px"></div>
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+demo_padding {
+line-height: 30px;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:scroll;
+}
+.liebiao {
+border-bottom-width: 1px;
+border-bottom-style: dashed;
+border-bottom-color: #CCCCCC;
+height: 0px;
+margin-top:10px;
+margin-bottom:10px;
+float: left;
+width: 90%;
+}
+.liebiao ul {
+list-style-type: none;
+display: block;
+margin: 0px;
+clear: none;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px dashed #999999;
+padding-right: 10px;
+padding-left: 10px;
+}
+.shubu{
+float: left;
+height: 15px;
+width: 15px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+}
+.kuang {
+border: 1px solid #999999;
+}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+.green{color:#008000}
+
+a:hover {color:#000000}
+a:active {color:#000000}
+
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+<div class="zhengwen">综合&nbsp;&nbsp;|&nbsp;&nbsp;<a href="568_local.htm">本地库</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="568_net.htm">网络库</a><br /></div>
+<div class="zhengwen">
+语句：<span class='orange' >也就是 array， mem_ free_ list指向内存块，每申请一次内存， mem_ free_ list就指向下一个内存块，</span><br><br>
+在本地库和网络库共找出相似内容：2个
+</div>
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">1</div>
+<font color="#666666">相似度：</font><span class='orange' >43</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">使用内存控制块节用来存储一个指针，指向下一个空闲内存块，内存控制块的OSMemFreeList域指向空闲内存块链表的</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……了一种改进的方法。1昨／OSlI内存管理的分析在／-C／OSII中，操作系统把连续的大块内存按分区来管理。每个分区中包含有整数个大小相同的内存块。为了便于内存的管理，在pC／OSII中<span class='green'>使用内存控制块节用来存储一个指针，指向下一个空闲内存块，内存控制块的OSMemFreeList域指向空闲内存块链表的</span>第一个空闲内存块。对于一个新建立的内存分区，分区中的各内存块都是空闲的，内存控制块及对应的内存……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《μC/OSⅡ内存管理的一种改进方法》<br>作者：陈凯明等<br>出处：《计算机技术与发展》&nbsp;2005年5期
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">2</div>
+<font color="#666666">相似度：</font><span class='orange' >40</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">头几个字节用来存储一个指针，指向下一个空闲内存块，形成单向链表，内存控制块OSMemFreeList域指向空闲内存链表</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……伞局：维数组以确定该分区内的内存块数和块尺寸，建立分区函数时首先申请一个空闲内存控制块结构并以其首地址和刚刚建市的全局数组内容为参数建立并初始化分区。分区中大小相M的内存块的<span class='green'>头几个字节用来存储一个指针，指向下一个空闲内存块，形成单向链表，内存控制块OSMemFreeList域指向空闲内存链表</span>的第一个空闲内存块，其结构如图l所示：图1¨c／os-u内存区控制块结构示意图当……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《基于μC/OS-Ⅱ内存管理改进方法的研究与实现》<br>作者：刘晋等<br>出处：《微型电脑应用》&nbsp;2008年11期
+</td>
+</tr>
+</table>
+
+
+
+
+<div style="margin-bottom:100px"></div>
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+demo_padding {
+line-height: 30px;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:scroll;
+}
+.liebiao {
+border-bottom-width: 1px;
+border-bottom-style: dashed;
+border-bottom-color: #CCCCCC;
+height: 0px;
+margin-top:10px;
+margin-bottom:10px;
+float: left;
+width: 90%;
+}
+.liebiao ul {
+list-style-type: none;
+display: block;
+margin: 0px;
+clear: none;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px dashed #999999;
+padding-right: 10px;
+padding-left: 10px;
+}
+.shubu{
+float: left;
+height: 15px;
+width: 15px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+}
+.kuang {
+border: 1px solid #999999;
+}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+.green{color:#008000}
+
+a:hover {color:#000000}
+a:active {color:#000000}
+
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+<div class="zhengwen">综合&nbsp;&nbsp;|&nbsp;&nbsp;<a href="91_local.htm">本地库</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="91_net.htm">网络库</a><br /></div>
+<div class="zhengwen">
+语句：<span class='orange' >系统模式和用户模式下使用相同的堆栈指针R13（Stack Pointer，SP）和程序链接寄存器R14（Link Register，LR），其它模式都有自己特定的寄存器。</span><br><br>
+在本地库和网络库共找出相似内容：3个
+</div>
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">1</div>
+<font color="#666666">相似度：</font><span class='orange' >43</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">快速中断模式下使用单独的一组寄存器。R13和R14，每个寄存器对应6个不同的物理寄存器，只有用户模式和系统模式使用相同的物理寄存器。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……处理器模式：用户模式，中断模式，特权模式，数据访问中止模式，未定义指令中止模式，系统模式和快速中断模式。在每一种处理器模式中有一组相应的寄存器。R0-R7，每个寄存器在每一种模式中都对应着同一个物理寄存器。R8．R12，每个寄存器对应着两个不同的物理寄存器，在<span class='green'>快速中断模式下使用单独的一组寄存器。R13和R14，每个寄存器对应6个不同的物理寄存器，只有用户模式和系统模式使用相同的物理寄存器。</span>除了用户模式和系统模式，其余的模式都有一个专用的物理寄存器SPSR(备份程序状态寄存器)。当特定的异常中断发生时，这个寄存器用于存放当前程序……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《ThreadX操作系统在ARM处理器上的移植》<br>作者：安蓉等<br>出处：《计算机工程与设计》&nbsp;2008年9期
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">2</div>
+<font color="#666666">相似度：</font><span class='orange' >42</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">模式，每种模式都使用自己的堆栈指针，在用户模式下使用用户模式的堆栈指针，进入IRQ中断后系统就使用了IRQ模式的堆栈指针。每种工作模式下的堆栈的</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……INTPRl0～INTPRl5；②中断模式寄存器INTMOD；③中断悬挂寄存器INTPND；④中断掩码寄存器INTMSK。对于删7TDMI内核的微处理器，中断是作为一种异常来处理的。整个中断程序在ADSl．2开发环境下完成的。2S3C4510B中断的开发方法设置处理器不同模式下的堆栈起始地址ARM内核的微处理器有7种操作<span class='green'>模式，每种模式都使用自己的堆栈指针，在用户模式下使用用户模式的堆栈指针，进入IRQ中断后系统就使用了IRQ模式的堆栈指针。每种工作模式下的堆栈的</span>位置不能重叠。这对于以前熟悉C51的人可能会忽视这一点，因为C51只有一个堆栈指针。如果忽视了这一点整个系统就可能进入不确定的状态，致使函数不能……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《ARM7TDMI内核微处理器S3C4510B中断开发方法》<br>作者：秦洪新等<br>出处：《电子测量技术》&nbsp;2004年3期
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">3</div>
+<font color="#666666">相似度：</font><span class='orange' >42</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">的情况。3．连接寄存器R14寄存器R14用作子程序链接寄存器，称为链接寄存器(LR，LinkRegister)。寄存器R14在结构上有两个特殊功能。</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……R13的指令或其他功能，只是习惯上都这样使用，被初始化成指向异常模式专用的堆栈，每个异常模式都有其自身的R13分组版本。在入口处，异常处理程序将用到的其他寄存器的值保存到堆栈中；返回时，重新将这些数据加载到寄存器中，这样就保证了异常出现后，执行程序不会出现状态不可靠<span class='green'>的情况。3．连接寄存器R14寄存器R14用作子程序链接寄存器，称为链接寄存器(LR，LinkRegister)。寄存器R14在结构上有两个特殊功能。</span>～是在每种模式下，模式自身的R14版本用于保存子程．湖北大学硕十学位论文序返回地址。当使用BL或BLX指令调用子程序时，R14设置为子……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于FPGA技术的嵌入式微处理器设计研究》<br>作者：何丽平<br>出处：《湖北大学》&nbsp;2009
+</td>
+</tr>
+</table>
+
+
+
+
+<div style="margin-bottom:100px"></div>
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

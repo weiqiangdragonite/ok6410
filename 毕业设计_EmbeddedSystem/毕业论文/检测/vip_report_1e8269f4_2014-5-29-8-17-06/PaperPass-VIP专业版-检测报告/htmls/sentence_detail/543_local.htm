@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威中文论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+demo_padding {
+line-height: 30px;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:scroll;
+}
+.liebiao {
+border-bottom-width: 1px;
+border-bottom-style: dashed;
+border-bottom-color: #CCCCCC;
+height: 0px;
+margin-top:10px;
+margin-bottom:10px;
+float: left;
+width: 90%;
+}
+.liebiao ul {
+list-style-type: none;
+display: block;
+margin: 0px;
+clear: none;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px dashed #999999;
+padding-right: 10px;
+padding-left: 10px;
+}
+.shubu{
+float: left;
+height: 15px;
+width: 15px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+}
+.kuang {
+border: 1px solid #999999;
+}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+.green{color:#008000}
+
+a:hover {color:#000000}
+a:active {color:#000000}
+
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+<div class="zhengwen"><a href="543.htm">综合</a>&nbsp;&nbsp;|&nbsp;&nbsp;本地库&nbsp;&nbsp;|&nbsp;&nbsp;<a href="543_net.htm">网络库</a><br /></div>
+<div class="zhengwen">
+语句：<span class='orange' >本系统通过enter_critical()和exit_critical()两个函数来退出和打开中断，这两个函数其实是用宏定义来实现，代码如下。</span><br><br>
+在本地库共找出相似内容：4个
+</div>
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">1</div>
+<font color="#666666">相似度：</font><span class='orange' >51</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">II系统具有OS—ENTER_CRITICAL()和OSEXITCRITICAL()两个宏来负责关闭／打开中断，由此使得共享数据达到一致。本文涉及的移植方法采用</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……寄存器PSR为32位)木／pC／os—II操作系统和一般实时系统一样，都需要在没有进到临界代码区的时候将中断关闭，再次打开需要等到已经退出临界区的时候，它通过这种途径使得核心数据不在多任务情况下被其他任务中断破坏。l-tc／os—<span class='green'>II系统具有OS—ENTER_CRITICAL()和OSEXITCRITICAL()两个宏来负责关闭／打开中断，由此使得共享数据达到一致。本文涉及的移植方法采用</span>先在中断关闭前将中断状态存储至堆栈，随后再关闭中断。若打算堆栈中复原中断状态，那么我们通常采用OS—EXIT_CRITICAL()操作。……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于AT91RM9200的嵌入式电能采集器设计》<br>作者：熊晨含<br>出处：《南京理工大学》&nbsp;2011
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">2</div>
+<font color="#666666">相似度：</font><span class='orange' >47</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">．II中，可通过OSENTERCRITICAL()或者OSEXITCRITICAL()宏来控制系统关闭或打开中断，这需要处理器的支持。在LPC2880的处理器</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……调用，而不必担心会破坏数据。也就是说，可重入型函数在任何时候都可以被中断执行，过一段时间以后又可以继续运行，而不会因为在函数中断的时候被其它任务重新调用而影响函数中的数据。2．在程序中可以打开或关闭中断。在I-tC／OS<span class='green'>．II中，可通过OSENTERCRITICAL()或者OSEXITCRITICAL()宏来控制系统关闭或打开中断，这需要处理器的支持。在LPC2880的处理器</span>上，可以设置相应的寄存器来关闭和打开系统所有的中断。3．处理器支持中断，并且能产生定时中断(通常在10Hz-100Hz……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于ARM嵌入式工业控制器设计》<br>作者：卫军峰<br>出处：《哈尔滨理工大学》&nbsp;2008
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">3</div>
+<font color="#666666">相似度：</font><span class='orange' >43</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">来允许和禁止中断：OSENTERCRITICAL()关闭中断和OSEXITCPdTICAL()打开中断。具体定义如下：(3)．定义堆栈的增长方向在laC／OSII中</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……：(2)．允许和禁止中断的宏定义在gC／OSII中需要先禁止中断后才能访问临界区代码，并且在访问后重新打开河北科技大学硕士学位论文中断。这样使得pC／OSII可以保护临界区代码免受多任务调用或中断调用的破坏。在“C／OSII中通过两个宏定义<span class='green'>来允许和禁止中断：OSENTERCRITICAL()关闭中断和OSEXITCPdTICAL()打开中断。具体定义如下：(3)．定义堆栈的增长方向在laC／OSII中</span>使用常量OSSTK进行数据类型的声明，进一步实现对任务堆栈中的数据类型进行设置。ARM9处理器上的堆栈类型是16位的，因此将……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学位论文)：</font><br>
+篇名：《基于ARM的感应电机定子电流谐波分析的用户界面系统的设计》<br>作者：张悌<br>出处：《河北科技大学》&nbsp;2011
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" cellpadding="3">
+<tr>
+<td align="right" width="100%">
+<div class="shubu">4</div>
+<font color="#666666">相似度：</font><span class='orange' >41</a><font color="#666">%</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容：</font><br>
+<span class="green">。系统提供OS_ENTERCRITICAL和OSEXIT_CRITICAL来开关中断。该宏可以使用3种方法来实现，设计采用第一种方法．即直接通过调用Thumb-</span>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">相似内容片段：</font><br>
+……其移植．由于LM3S8962为32位机．故定义整型数据结构为INT32U。值得注意的是OS_STK数据类型的确定：2)实时操作系统在处理临界代码时需要戈闭中断，执行完代码后再打开中断．这样可以保证临界代码不被任务程序和中断服务程序破坏<span class='green'>。系统提供OS_ENTERCRITICAL和OSEXIT_CRITICAL来开关中断。该宏可以使用3种方法来实现，设计采用第一种方法．即直接通过调用Thumb-</span>2指令开关中断：移植UC，oS．U要求用户编写10个简单的C函数：OSTaskStklnit()是必要的，其他9个只需要声明．并不一……
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<font color="#666666">来源(学术期刊)：</font><br>
+篇名：《μC/OS-Ⅱ在微处理器LM3S8962上的移植》<br>作者：刘凯等<br>出处：《电子设计工程》&nbsp;2011年1期
+</td>
+</tr>
+</table>
+
+
+
+
+<div style="margin-bottom:100px"></div>
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2013 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>
